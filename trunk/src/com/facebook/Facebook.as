@@ -2,6 +2,8 @@
 	Copyright(c) 2007 Keith Salisbury, Winston Lee
 	All rights reserved.
 	
+	Works derived from AS2 version written by  Tim Whitlock
+	
 	Please read this Source Code License Agreement carefully before using
 	the source code.
 
@@ -74,6 +76,33 @@ package com.facebook
 		public var secret:String;
 
 		/**
+		 * The user agent.
+		 * 
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public var userAgent:String;
+
+		/**
+		 * The session key.
+		 * 
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public var sessionKey:String;
+
+		/**
+		 * The user id.
+		 * 
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public var userId:String;
+
+		/**
  		 * Creates a new Category object.
 		 * 
 		 * @langversion ActionScript 3.0
@@ -83,6 +112,7 @@ package com.facebook
 		public function Facebook()
 		{
 			rest_url = 'http://api.facebook.com/restserver.php';
+			user_agent = 'ActionScript/3.0 Flash/8.5';
 		}
 
 		/**
@@ -96,24 +126,23 @@ package com.facebook
 		 */
 		public function setKey(key:String):void
 		{
-			this.api_key = key;
+			api_key = key;
 		}
 
-/*
-
-	private static var userAgent:String;
-	static function get USER_AGENT():String {
-		if( Facebook.userAgent == null ){
-			var fvers:String = _root.$version.split(' ').join('-').split(',').join('.');
-			Facebook.userAgent = 'ActionScript/2.0 (http://whiteinteractive.com/facebook/asclient.php) Flash/'+fvers;	
+		/**
+		 * Starts a new session with the credentials supplied
+		 * 
+		 * @param userId A string that represents the user id.
+		 * @param sessionKey A string that represents the session key, obtained from "facebook.auth.getSession".
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function startSession(userId:String,key:String):void
+		{
+			Facebook.sessionKey = key;
+			Facebook.userID = userId;
 		}
-		return Facebook.userAgent;
-	}
-
-
-
-*/
-
-
 	}
 }
