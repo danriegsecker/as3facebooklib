@@ -55,7 +55,7 @@ package com.facebook
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public static var rest_url:String;
+		public var rest_url:String;
 
 		/**
 		 * The api authentication key.
@@ -82,7 +82,7 @@ package com.facebook
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public var userAgent:String;
+		public var user_agent:String;
 
 		/**
 		 * The session key.
@@ -91,7 +91,7 @@ package com.facebook
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public var sessionKey:String;
+		public var session_key:String;
 
 		/**
 		 * The user id.
@@ -100,7 +100,7 @@ package com.facebook
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public var userId:String;
+		public var user_id:String;
 
 		/**
  		 * Creates a new Category object.
@@ -141,8 +141,8 @@ package com.facebook
 		 */
 		public function startSession(userId:String,key:String):void
 		{
-			Facebook.sessionKey = key;
-			Facebook.userID = userId;
+			session_key = key;
+			user_id = userId;
 		}
 	}
 }
