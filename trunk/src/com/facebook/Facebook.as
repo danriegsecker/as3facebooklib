@@ -109,10 +109,111 @@ package com.facebook
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function Facebook()
+		public function Facebook(api_key:String, secret_key:String)
 		{
+		    //facebookURL = "http://api.facebook.com/restserver.php"
+		    //facebookSecureURL = "https://api.facebook.com/restserver.php"
+
 			rest_url = 'http://api.facebook.com/restserver.php';
 			user_agent = 'ActionScript/3.0 Flash/8.5';
+			
+	        //this.api_key = api_key
+	        //this.secret_key = secret_key
+	        //this.secret = secret_key
+	        //this.session_key = None
+	        //this.auth = new AuthFacebookProxy("facebook.auth")
+	
+		}
+
+		/**
+		 * Returns an MD5 hash of arguments.
+		 * 
+		 * @param args A object that represents the arguments.
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function hashArgs(args:Object):void
+		{
+	        //hasher = md5.new(''.join([x + '=' + args[x] for x in sorted(args.keys())]))
+	        //hasher.update(self.secret)
+	        //return hasher.hexdigest()
+		}
+
+		/**
+		 * Returns the authentication url.
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function getAuthURL():String
+		{
+        	return "http://api.facebook.com/login.php?api_key=" + this.api_key + "&auth_token=" + this.auth_token
+		}
+
+		/**
+		 * Sets the authentication token.
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function setAuthToken():void
+		{
+	        this.auth_token = token
+		}
+
+		/**
+		 * Do request.
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function doRequest(secure:Boolean, args:Object):void
+		{
+			/*
+	        for arg in args.items():
+	            if type(arg[1]) == list:
+	                args[arg[0]] = ','.join(arg[1])
+	        args['api_key'] = self.api_key
+	        args['sig'] = self.__hash_args(args)
+	        post_data = urllib.urlencode(args)
+	        if secure:
+	            url = self.FacebookSecureURL + "?" + post_data
+	        else:
+	            url = self.FacebookURL + "?" + post_data
+	        try:
+	            rsp = xmltramp.load(url)
+	        except:
+	            raise RuntimeError("Failed to download and parse XML result.")
+	        self._check_error(rsp)
+	        return rsp
+	        */
+		}
+
+		/**
+		 * Check error.
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function checkError(res:Object):void
+		{
+			/*
+		    def _check_error(self, res):
+		        code = ""
+		        msg = ""
+		        try:
+		            code = str(res['fb_error']['code'])
+		            msg = str(res['fb_error']['msg'])
+		        except:
+		            return
+		        raise FacebookError(code, msg)
+	        */
 		}
 
 		/**
