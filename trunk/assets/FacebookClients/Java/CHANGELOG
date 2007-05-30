@@ -1,0 +1,20 @@
+2007 May 24
+ + Added FacebookParam and FacebookSignatureUtil
+ + Factored out signature calculations from FacebookRestClient to FacebookSignatureUtil
+ + Added the Platform API methods and fields
+
+2007 Mar 12
+ + Added batch version of photos_addTag to FacebookRestClient
+ + Added JSON library from json.org to bin directory as JSON.jar
+
+2007 Mar 8
+ + ExampleClient prints helpful message when credentials not specified in settings.conf.
+ + Added photo uploading methods to FacebookRestClient and FacebookMethod:
+   * photos_upload
+   * photos_createAlbum
+   * photos_addTag
+
+Changes prior to 2007 Mar 8:
+ + Support for fql_query added to the library
+ + Library upgraded to API 1.0
+
