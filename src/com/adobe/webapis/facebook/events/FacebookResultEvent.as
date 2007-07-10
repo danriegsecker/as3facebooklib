@@ -1,0 +1,160 @@
+/*
+Adobe Systems Incorporated(r) Source Code License Agreement
+Copyright(c) 2005 Adobe Systems Incorporated. All rights reserved.
+	
+Please read this Source Code License Agreement carefully before using
+the source code.
+	
+Adobe Systems Incorporated grants to you a perpetual, worldwide, non-exclusive,
+no-charge, royalty-free, irrevocable copyright license, to reproduce,
+prepare derivative works of, publicly display, publicly perform, and
+distribute this source code and such derivative works in source or
+object code form without any attribution requirements.
+	
+The name "Adobe Systems Incorporated" must not be used to endorse or promote products
+derived from the source code without prior written permission.
+	
+You agree to indemnify, hold harmless and defend Adobe Systems Incorporated from and
+against any loss, damage, claims or lawsuits, including attorney's
+fees that arise or result from your use or distribution of the source
+code.
+	
+THIS SOURCE CODE IS PROVIDED "AS IS" AND "WITH ALL FAULTS", WITHOUT
+ANY TECHNICAL SUPPORT OR ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING,
+BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. ALSO, THERE IS NO WARRANTY OF
+NON-INFRINGEMENT, TITLE OR QUIET ENJOYMENT. IN NO EVENT SHALL MACROMEDIA
+OR ITS SUPPLIERS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE CODE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+package com.adobe.webapis.facebook.events {
+
+	import com.adobe.webapis.events.ServiceEvent;
+	
+	/**
+	* Event class that contains information about events broadcast in response
+	* to data events from the Facebook API.
+	*/
+	public class FacebookResultEvent extends ServiceEvent
+	{
+		/** Constant for the authCreateToken event type. */
+		public static const AUTH_CREATE_TOKEN:String = "authCreateToken";
+		
+		/** Constant for the authGetSession event type. */
+		public static const AUTH_GET_SESSION:String = "authGetSession";
+		
+		/** Constant for the feedPublishStoryToUser event type. */
+		public static const FEED_PUBLISH_STORY_TO_USER:String = "feedPublishStoryToUser";
+		
+		/** Constant for the feedPublishActionOfUser event type. */
+		public static const FEED_PUBLISH_ACTION_OF_USER:String = "feedPublishActionOfUser";
+		
+		/** Constant for the fqlQuery event type. */
+		public static const FQL_QUERY:String = "fqlQuery";
+		
+		/** Constant for the friendsAreFriends event type. */
+		public static const FRIENDS_ARE_FRIENDS:String = "friendsAreFriends";
+		
+		/** Constant for the friendsGet event type. */
+		public static const FRIENDS_GET:String = "friendsGet";
+		
+		/** Constant for the friendsGetAppUsers event type. */
+		public static const FRIENDS_GET_APP_USERS:String = "friendsGetAppUsers";
+		
+		/** Constant for the noticationsGet event type. */
+		public static const NOTIFICATIONS_GET:String = "noticationsGet";
+		
+		/** Constant for the noticationsSend event type. */
+		public static const NOTIFICATIONS_SEND:String = "noticationsSend";
+		
+		/** Constant for the noticationsSendRequest event type. */
+		public static const NOTIFICATIONS_SEND_REQUEST:String = "noticationsSendRequest";
+
+		/** Constant for the profileSetFbml event type. */
+		public static const PROFILE_SET_FBML:String = "profileSetFbml";
+
+		/** Constant for the profileGetFbml event type. */
+		public static const PROFILE_GET_FBML:String = "profileGetFbml";
+
+		/** Constant for the usersGetInfo event type. */
+		public static const USERS_GET_INFO:String = "usersGetInfo";
+
+		/** Constant for the usersGetLoggedInUser event type. */
+		public static const USERS_GET_LOGGED_IN_USER:String = "usersGetLoggedInUser";
+
+		/** Constant for the eventsGet event type. */
+		public static const EVENTS_GET:String = "eventsGet";
+
+		/** Constant for the eventsGetMembers event type. */
+		public static const EVENTS_GET_MEMBERS:String = "eventsGetMembers";
+
+		/** Constant for the groupsGet event type. */
+		public static const GROUPS_GET:String = "groupsGet";
+
+		/** Constant for the groupsGetMembers event type. */
+		public static const GROUPS_GET_MEMBERS:String = "groupsGetMembers";
+
+		/** Constant for the photosAddTag event type. */
+		public static const PHOTOS_ADD_TAG:String = "photosAddTag";
+
+		/** Constant for the photosCreateAlbum event type. */
+		public static const PHOTOS_CREATE_ALBUM:String = "photosCreateAlbum";
+
+		/** Constant for the photosGet event type. */
+		public static const PHOTOS_GET:String = "photosGet";
+
+		/** Constant for the photosGetAlbums event type. */
+		public static const PHOTOS_GET_ALBUMS:String = "photosGetAlbums";
+
+		/** Constant for the photosGetTags event type. */
+		public static const PHOTOS_GET_TAGS:String = "photosGetTags";
+
+		/** Constant for the photosUpload event type. */
+		public static const PHOTOS_UPLOAD:String = "photosUpload";
+		
+		/** Constant for the testEcho event type. */
+		public static const TEST_ECHO:String = "testEcho";
+		
+		/** Constant for the testLogin event type. */
+		public static const TEST_LOGIN:String = "testLogin";
+		
+		/** Constant for the urlsGetGroup event type. */
+		public static const URLS_GET_GROUP:String = "urlsGetGroup";
+		
+		/** Constant for the urlsGetUserPhotos event type. */
+		public static const URLS_GET_USER_PHOTOS:String = "urlsGetUserPhotos";
+		
+		/** Constant for the urlsGetUserProfile event type. */
+		public static const URLS_GET_USER_PROFILE:String = "urlsGetUserProfile";
+		
+		/** Constant for the urlsLookupGroup event type. */
+		public static const URLS_LOOKUP_GROUP:String = "urlsLookupGroup";
+		
+		/** Constant for the urlsLookupUser event type. */
+		public static const URLS_LOOKUP_USER:String = "urlsLookupUser";
+		
+		/**
+		 * True if the event is the result of a successful call,
+		 * False if the call failed
+		 */
+		public var success:Boolean;
+		
+		/**
+		 * Constructs a new FlickrResultEvent
+		 */
+		public function FlickrResultEvent( type:String, 
+										   bubbles:Boolean = false, 
+										   cancelable:Boolean = false ) {
+										   	
+			super( type, bubbles, cancelable );
+		}
+	
+	}
+	
+}
