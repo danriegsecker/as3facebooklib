@@ -10,11 +10,4 @@
 		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
 		<nature>org.asdt.core.ASNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>core</name>
-			<type>2</type>
-			<locationURI>core</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
