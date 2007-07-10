@@ -108,7 +108,7 @@ package com.adobe.webapis.flickr.methodgroups {
 		private var _service:FacebookService;
 	
 		/**
-		 * Construct a new Test "method group" class
+		 * Construct a new Auth "method group" class
 		 *
 		 * @param service The FacebookService this method group
 		 *		is associated with.

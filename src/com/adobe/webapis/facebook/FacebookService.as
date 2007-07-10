@@ -90,8 +90,6 @@ package com.adobe.webapis.facebook {
 //		private var _events:Events;
 //		private var _groups:Groups;
 //		private var _photos:Photos;
-//		private var _test:Test;
-//		private var _urls:Urls;
 		
 		public function FacebookService( api_key:String ) {
 			_api_key = api_key;
@@ -107,8 +105,6 @@ package com.adobe.webapis.facebook {
 //			_events = new Events( this );
 //			_groups = new Groups( this );
 //			_photos = new Photos( this );
-//			_test = new Test( this );
-//			_urls = new Urls( this );
 			
 		}
 		
@@ -314,28 +310,6 @@ package com.adobe.webapis.facebook {
 //		 */
 //		public function get photos():Photos {
 //			return _photos;	
-//		}
-//
-//		/**
-//		 * Provide read-only access to the Test method group in the Facebook API
-//		 *
-//		 * @langversion ActionScript 3.0
-//		 * @playerversion Flash 8.5
-//		 * @tiptext
-//		 */
-//		public function get test():Test {
-//			return _test;	
-//		}
-//
-//		/**
-//		 * Provide read-only access to the Urls method group in the Facebook API
-//		 *
-//		 * @langversion ActionScript 3.0
-//		 * @playerversion Flash 8.5
-//		 * @tiptext
-//		 */
-//		public function get urls():Urls {
-//			return _urls;	
 //		}
 
 		/**
