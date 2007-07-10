@@ -111,42 +111,6 @@ package com.adobe.webapis.facebook {
 			assertTrue("event data is string with length", frob.length > 0 ); 
 		}
 		
-		//**************************************************************
-		//
-		// Tests for the "Test" Method Group
-		//
-		//**************************************************************
-		
-		public function testTestEcho():void {
-			var service:FacebookService = new FacebookService( API_KEY );
-			service.addEventListener( FacebookResultEvent.TEST_ECHO, 
-									  addAsync( onTestEcho, CALL_TIMEOUT ) );
-			service.test.echo( "test" );
-		}
-	
-		private function onTestEcho( event:FacebookResultEvent ):void {
-			assertTrue("event.success == true", event.success );
-			assertTrue("event.data.method == 'facebook.test.echo'", event.data.method = "facebook.test.echo");
-			assertTrue("event.data.param0 == 'test'", event.data.param0 == "test");
-		}
-		
-		public function testTestLogin():void {
-			var service:FacebookService = new FacebookService( API_KEY );
-			service.addEventListener( FacebookResultEvent.TEST_LOGIN, 
-									  addAsync( onTestLogin, CALL_TIMEOUT ) );
-			service.test.login();
-		}
-		
-		private function onTestLogin( event:FacebookResultEvent ):void {
-			// Because we're not logged in, we should get an insufficient permission
-			assertTrue("event.success == false", event.success == false );
-			
-			// Test the the error was constructed correctly
-			var e:FlickrError = event.data.error;
-			assertTrue( "e.errorCode == insufficient permission", e.errorCode == FlickrError.INSUFFICIENT_PERMISSIONS );
-			assertTrue( "testing for correct error message", e.errorMessage == "Insufficient permissions. Method requires read privileges; none granted." );
-			
-		}
 	}
 
 }
