@@ -118,27 +118,6 @@ package com.adobe.webapis.facebook.events {
 		/** Constant for the photosUpload event type. */
 		public static const PHOTOS_UPLOAD:String = "photosUpload";
 		
-		/** Constant for the testEcho event type. */
-		public static const TEST_ECHO:String = "testEcho";
-		
-		/** Constant for the testLogin event type. */
-		public static const TEST_LOGIN:String = "testLogin";
-		
-		/** Constant for the urlsGetGroup event type. */
-		public static const URLS_GET_GROUP:String = "urlsGetGroup";
-		
-		/** Constant for the urlsGetUserPhotos event type. */
-		public static const URLS_GET_USER_PHOTOS:String = "urlsGetUserPhotos";
-		
-		/** Constant for the urlsGetUserProfile event type. */
-		public static const URLS_GET_USER_PROFILE:String = "urlsGetUserProfile";
-		
-		/** Constant for the urlsLookupGroup event type. */
-		public static const URLS_LOOKUP_GROUP:String = "urlsLookupGroup";
-		
-		/** Constant for the urlsLookupUser event type. */
-		public static const URLS_LOOKUP_USER:String = "urlsLookupUser";
-		
 		/**
 		 * True if the event is the result of a successful call,
 		 * False if the call failed
