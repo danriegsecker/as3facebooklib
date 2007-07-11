@@ -43,20 +43,28 @@ package com.adobe.webapis.facebook.events {
 	*/
 	public class FacebookResultEvent extends ServiceEvent
 	{
+		/* Authentication */
+		
 		/** Constant for the authCreateToken event type. */
 		public static const AUTH_CREATE_TOKEN:String = "authCreateToken";
 		
 		/** Constant for the authGetSession event type. */
 		public static const AUTH_GET_SESSION:String = "authGetSession";
 		
-		/** Constant for the feedPublishStoryToUser event type. */
-		public static const FEED_PUBLISH_STORY_TO_USER:String = "feedPublishStoryToUser";
-		
-		/** Constant for the feedPublishActionOfUser event type. */
-		public static const FEED_PUBLISH_ACTION_OF_USER:String = "feedPublishActionOfUser";
-		
+		/* FQL Query */
+
 		/** Constant for the fqlQuery event type. */
 		public static const FQL_QUERY:String = "fqlQuery";
+		
+		/* Events */
+
+		/** Constant for the eventsGet event type. */
+		public static const EVENTS_GET:String = "eventsGet";
+
+		/** Constant for the eventsGetMembers event type. */
+		public static const EVENTS_GET_MEMBERS:String = "eventsGetMembers";
+		
+		/* Friends */
 		
 		/** Constant for the friendsAreFriends event type. */
 		public static const FRIENDS_ARE_FRIENDS:String = "friendsAreFriends";
@@ -67,20 +75,10 @@ package com.adobe.webapis.facebook.events {
 		/** Constant for the friendsGetAppUsers event type. */
 		public static const FRIENDS_GET_APP_USERS:String = "friendsGetAppUsers";
 		
-		/** Constant for the noticationsGet event type. */
-		public static const NOTIFICATIONS_GET:String = "noticationsGet";
+		/** Constant for the friendsGetRequests event type. */
+		public static const FRIENDS_GET_REQUESTS:String = "friendsGetRequests";
 		
-		/** Constant for the noticationsSend event type. */
-		public static const NOTIFICATIONS_SEND:String = "noticationsSend";
-		
-		/** Constant for the noticationsSendRequest event type. */
-		public static const NOTIFICATIONS_SEND_REQUEST:String = "noticationsSendRequest";
-
-		/** Constant for the profileSetFbml event type. */
-		public static const PROFILE_SET_FBML:String = "profileSetFbml";
-
-		/** Constant for the profileGetFbml event type. */
-		public static const PROFILE_GET_FBML:String = "profileGetFbml";
+		/* Users */
 
 		/** Constant for the usersGetInfo event type. */
 		public static const USERS_GET_INFO:String = "usersGetInfo";
@@ -88,17 +86,10 @@ package com.adobe.webapis.facebook.events {
 		/** Constant for the usersGetLoggedInUser event type. */
 		public static const USERS_GET_LOGGED_IN_USER:String = "usersGetLoggedInUser";
 
-		/** Constant for the eventsGet event type. */
-		public static const EVENTS_GET:String = "eventsGet";
-
-		/** Constant for the eventsGetMembers event type. */
-		public static const EVENTS_GET_MEMBERS:String = "eventsGetMembers";
-
-		/** Constant for the groupsGet event type. */
-		public static const GROUPS_GET:String = "groupsGet";
-
-		/** Constant for the groupsGetMembers event type. */
-		public static const GROUPS_GET_MEMBERS:String = "groupsGetMembers";
+		/** Constant for the usersIsAppAdded event type. */
+		public static const USERS_IS_APP_ADDED:String = "usersIsAppAdded";
+		
+		/* Photos */
 
 		/** Constant for the photosAddTag event type. */
 		public static const PHOTOS_ADD_TAG:String = "photosAddTag";
@@ -118,6 +109,49 @@ package com.adobe.webapis.facebook.events {
 		/** Constant for the photosUpload event type. */
 		public static const PHOTOS_UPLOAD:String = "photosUpload";
 		
+		/* Notification */
+		
+		/** Constant for the noticationsGet event type. */
+		public static const NOTIFICATIONS_GET:String = "noticationsGet";
+		
+		/** Constant for the noticationsSend event type. */
+		public static const NOTIFICATIONS_SEND:String = "noticationsSend";
+		
+		/** Constant for the noticationsSendRequest event type. */
+		public static const NOTIFICATIONS_SEND_REQUEST:String = "noticationsSendRequest";
+		
+		/* Profile */
+
+		/** Constant for the profileSetFbml event type. */
+		public static const PROFILE_SET_FBML:String = "profileSetFbml";
+
+		/** Constant for the profileGetFbml event type. */
+		public static const PROFILE_GET_FBML:String = "profileGetFbml";
+		
+		/* Groups */
+
+		/** Constant for the groupsGet event type. */
+		public static const GROUPS_GET:String = "groupsGet";
+
+		/** Constant for the groupsGetMembers event type. */
+		public static const GROUPS_GET_MEMBERS:String = "groupsGetMembers";
+		
+		/* FBML */
+
+		/** Constant for the fbmlRefreshRefUrl event type. */
+		public static const FBML_REFRESH_REF_URL:String = "fbmlRefreshRefUrl";
+
+		/** Constant for the fbmlRefreshImgSrc event type. */
+		public static const FBML_REFRESH_IMG_SRC:String = "fbmlRefreshImgSrc";
+		
+		/* Feed */
+		
+		/** Constant for the feedPublishStoryToUser event type. */
+		public static const FEED_PUBLISH_STORY_TO_USER:String = "feedPublishStoryToUser";
+		
+		/** Constant for the feedPublishActionOfUser event type. */
+		public static const FEED_PUBLISH_ACTION_OF_USER:String = "feedPublishActionOfUser";
+		
 		/**
 		 * True if the event is the result of a successful call,
 		 * False if the call failed
@@ -125,9 +159,9 @@ package com.adobe.webapis.facebook.events {
 		public var success:Boolean;
 		
 		/**
-		 * Constructs a new FlickrResultEvent
+		 * Constructs a new FacebookResultEvent
 		 */
-		public function FlickrResultEvent( type:String, 
+		public function FacebookResultEvent( type:String, 
 										   bubbles:Boolean = false, 
 										   cancelable:Boolean = false ) {
 										   	

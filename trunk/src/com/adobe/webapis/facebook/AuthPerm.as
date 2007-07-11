@@ -36,13 +36,24 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.adobe.webapis.facebook {
 	
 	/**
-	 * Because of the directory structure (having a methodgroups package
-	 * where the classes in there are really "Friends" of the FacebookService
-	 * class), we can't use the "internal" modifier to hide methods from
-	 * the public API.  Thus, in order to provide the helper classes in the
-	 * methodGroup package access to this class, we create a special
-	 * namespace to use as a method modifier.
+	 * A class containing static members to be used for authentication
+	 * permission when authenticating against facebook.com, describing
+	 * the permission the application has on the logged in user's account.
 	 */
-	public namespace facebookservice_internal = "http://www.macromedia.com/webapis/facebook/internal";
-	
+	public class AuthPerm {
+		
+		/** Permission to read private information */
+		public static const READ:String = "read";
+		
+		/** Permission to add, edit and delete photo metadata (includes READ) */
+		public static const WRITE:String = "write";
+		
+		/** Permission to delete photos (includes WRITE and READ) */
+		public static const DELETE:String = "delete";
+		
+		/** No permission to do anything ( not authenticated ) */
+		public static const NONE:String = "none";
+		
+	}
+		
 }
