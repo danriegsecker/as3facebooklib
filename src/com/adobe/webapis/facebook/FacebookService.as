@@ -61,6 +61,16 @@ package com.adobe.webapis.facebook {
 		 * Store the API key that gives developers access to the Facebook service 
 		 */
 		private var _api_key:String;
+		
+		/** 
+		 * Store the session key of the logged in user. 
+		 */
+		private var _session_key:String;
+
+		/** 
+		 * The version of the API.
+		 */
+		private var _v:String;
 
 		/**
 		 * The "shared secret" of your application for authentication
@@ -89,6 +99,8 @@ package com.adobe.webapis.facebook {
 			_api_key = api_key;
 			_secret = "";
 			_auth_token = "";
+			_session_key = "";
+			_version = "1.0";
 			
 			_auth = new Auth( this );
 //			_feed = new Feed( this );
@@ -124,6 +136,30 @@ package com.adobe.webapis.facebook {
 		 */
 		public function set api_key( value:String ):void {
 			_api_key = value;	
+		}
+		
+		/**
+		 * Returns the current session key of the logged in user.
+		 *  
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get session_key():String {
+			return _session_key;	
+		}
+		
+		/**
+		 * Sets the session key for the logged in user.
+		 *
+		 * @param value The session key to use against Facebook.com
+		 * @see http://developers.facebook.com/documentation.php?v=1.0&method=auth.getSession
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function set session_key( value:String ):void {
+			_session_key = value;	
 		}
 
 		/**
