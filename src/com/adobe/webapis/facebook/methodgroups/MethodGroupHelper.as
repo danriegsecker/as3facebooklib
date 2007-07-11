@@ -90,9 +90,9 @@ package com.adobe.webapis.facebook.methodgroups {
 				}
 			}
 			
-			// If a user is authenticated, automatically add their token
-			if ( service.permission != AuthPerm.NONE && service.token ) {
-				args.push( new NameValuePair( "auth_token", service.token ) );
+			// If a user is authenticated, automatically add their auth_token
+			if ( service.permission != AuthPerm.NONE && service.auth_token ) {
+				args.push( new NameValuePair( "auth_token", service.auth_token ) );
 				// auto-sign the call because the user is authenticated
 				signed = true;
 			}
@@ -154,7 +154,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		
 		/**
 		 * Reusable method that the "method group" classes can call
-		 * to process the results of the Flickr method.
+		 * to process the results of the Facebook method.
 		 *
 		 * @param facebookResponse The rest response string that aligns
 		 *		with the documentation here: 
@@ -198,7 +198,7 @@ package com.adobe.webapis.facebook.methodgroups {
 				if ( parseFunction == null ) {
 					// No parse function speficied, just pass through the XML data.
 					// Construct an object that we can access via E4X since
-					// the result we get back from Flickr is an xml response
+					// the result we get back from Facebook is an xml response
 					result.data = XML( rsp );
 				} else {
 					result.data[propertyName] = parseFunction( XML( rsp ) );	
@@ -292,12 +292,12 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 		
 		/**
-		 * Converts an auth result XML object into an AuthResult instance
+		 * Converts an auth result XML object into an GetSessionResult instance
 		 */
-		internal static function parseAuthResult( xml:XML ):AuthResult {
-			var authResult:AuthResult = new AuthResult();
-			authResult.token = xml.auth.token.toString();
-			authResult.perms = xml.auth.perms.toString();
+		internal static function parseGetSessionResult( xml:XML ):GetSessionResult {
+			var authResult:GetSessionResult = new GetSessionResult();
+			authResult.auth_token = xml.auth.token.toString();
+			//authResult.perms = xml.auth.perms.toString();
 			//authResult.user = new User();
 			//authResult.user.nsid = xml.auth.user.@nsid.toString();
 			//authResult.user.username = xml.auth.user.@username.toString();
@@ -306,10 +306,10 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 		
 		/**
-		 * Converts a token XML object into a string (the token value)
+		 * Converts a auth_createToken XML object into a string (the auth_token value)
 		 */
-		internal static function parseToken( xml:XML ):String {
-			return xml.token.toString();	
+		internal static function parseAuthToken( xml:XML ):String {
+			return xml.auth_createToken_response.toString();
 		}
 		
 	}

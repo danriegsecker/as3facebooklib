@@ -48,7 +48,7 @@ package com.adobe.webapis.facebook {
 	public class FacebookService extends URLLoaderBase {
 		
 		/**
-		 * The REST endpoint where we can talk with Flickr service
+		 * The REST endpoint where we can talk with Facebook service
 		 */
 		public static const END_POINT:String = "http://api.facebook.com/restserver.php?";
 		
@@ -58,10 +58,10 @@ package com.adobe.webapis.facebook {
 		public static const AUTH_END_POINT:String = "http://www.facebook.com/login.php?";
 		
 		/** 
-		 * Store the API key that gives developers access to the Flickr service 
+		 * Store the API key that gives developers access to the Facebook service 
 		 */
 		private var _api_key:String;
-		
+
 		/**
 		 * The "shared secret" of your application for authentication
 		 */
@@ -70,13 +70,7 @@ package com.adobe.webapis.facebook {
 		/**
 		 * The token identifying the user as logged in
 		 */
-		private var _token:String;
-		
-		/**
-		 * One of the consants from the AuthPerm class corresponding
-		 * to the current permission the authenticated user has
-		 */
-		private var _permission:String;
+		private var _auth_token:String;
 		
 		/**
 		 * Private variable that we provide read-only access to
@@ -93,8 +87,8 @@ package com.adobe.webapis.facebook {
 		
 		public function FacebookService( api_key:String ) {
 			_api_key = api_key;
-			_permission = AuthPerm.NONE;
-			_token = "";
+			_secret = "";
+			_auth_token = "";
 			
 			_auth = new Auth( this );
 //			_feed = new Feed( this );
@@ -131,12 +125,12 @@ package com.adobe.webapis.facebook {
 		public function set api_key( value:String ):void {
 			_api_key = value;	
 		}
-		
+
 		/**
 		 * Returns the "shared secret" of the Application associated with
 		 * the API key for use in Authentication.
 		 * 
-		 * @see http://www.flickr.com/services/api/registered_keys.gne
+		 * @see http://www.facebook.com/developers/apps.php
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
@@ -151,7 +145,7 @@ package com.adobe.webapis.facebook {
 		 *
 		 * @param value The "shared secret" of the Application to authenticate 
 		 *			against.
-		 * @see http://www.flickr.com/services/api/registered_keys.gne
+		 * @see http://www.facebook.com/developers/apps.php
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
@@ -161,56 +155,27 @@ package com.adobe.webapis.facebook {
 		}
 		
 		/**
-		 * Returns the token identifying the user as logged in
+		 * Returns the auth_token identifying the user as logged in
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get token():String {
-			return _token;	
+		public function get auth_token():String {
+			return _auth_token;	
 		}
 		
 		/**
 		 * Sets the token identifyin the user as logged in so that
-		 * the FlickrService API can sign the method calls correctly.
+		 * the FacebookService API can sign the method calls correctly.
 		 *
 		 * @param value The authentication token
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function set token( value:String ):void {
-			_token = value;	
-		}
-		
-		/**
-		 * Returns the permission the application has for the
-		 * currently logged in user's account.
-		 *
-		 * @langversion ActionScript 3.0
-		 * @playerversion Flash 8.5
-		 * @tiptext
-		 */
-		public function get permission():String {
-			return _permission;
-		}
-		
-		/**
-		 * Sets the desired permission for the user's account requested
-		 * by the application.  During the login process, the user has
-		 * the ability to allow or deny the application the permission.
-		 *
-		 * @param value One of the consants from the AuthPerm class
-		 *			corresponding to the current permission the 
-		 *			authenticated user has
-		 * @see com.adobe.service.flickr.AuthPerm
-		 * @langversion ActionScript 3.0
-		 * @playerversion Flash 8.5
-		 * @tiptext
-		 */
-		public function set permission( value:String ):void {
-			_permission = value;	
+		public function set auth_token( value:String ):void {
+			_auth_token = value;	
 		}
 		
 		/**
@@ -316,25 +281,26 @@ package com.adobe.webapis.facebook {
 		 * Returns the URL to use for authentication so the developer
 		 * doesn't have to build it by hand.
 		 *
-		 * @param frob The frob from flickr.auth.getFrob to authenticate with
-		 * @param permission The permission the user will have after successful
-		 *			login
+		 * @param token The frob from flickr.auth.createToken to authenticate with
 		 * @return The url to open a browser to to authenticate against
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
 		public function getLoginURL( frob:String, permission:String ):String {
-			// TODO - change to suit facebook auth signature
+			/* TODO - change to suit facebook auth signature
+			args = array of args to the request, formatted in arg=val pairs
+			sorted_array = alphabetically_sort_array_by_keys(args);
+			request_str = concatenate_in_order(sorted_array);
+			signature = md5(concatenate(request_str, secret))
+			*/
 			var sig:String = secret;
 			sig += "api_key" + api_key;
-			sig += "frob" + frob;
-			sig += "perms" + permission;
+			sig += "token" + token;
 			
 			var auth_url:String = AUTH_END_POINT;
 			auth_url += "api_key=" + api_key;
-			auth_url += "&frob=" + frob;
-			auth_url += "&perms=" + permission;
+			auth_url += "&auth_token=" + auth_token;
 			auth_url += "&api_sig=" + MD5.hash( sig );
 						
 			return auth_url;
