@@ -1,3 +1,4 @@
+Featured
 #summary Welcome to the ActionScript 3 Facebook Library.
 
 = Introduction =
@@ -23,4 +24,3 @@ Authors
 
     * Keith Salisbury
     * Jason Christ
-
