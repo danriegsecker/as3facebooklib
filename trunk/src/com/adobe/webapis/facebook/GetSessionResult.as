@@ -36,72 +36,70 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.adobe.webapis.facebook {
 	
 	/**
-	 * AuthResult is a ValueObject for the Facebook API.
+	 * GetSessionResult is a ValueObject for the Facebook API.
 	 */
-	public class AuthResult {
+	public class GetSessionResult {
 		
-		private var _token:String;
-		private var _perms:String;
-		//private var _user:User;
+		private var _session_key:String;
+		private var _uid:String;
+		private var _expires:String;
 		
 		/**
-		 * Construct a new AuthResult instance
+		 * Construct a new GetSessionResult instance
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function AuthResult() {
+		public function GetSessionResult() {
 			// Assume no permission
-			perms = AuthPerm.NONE;
+			//perms = AuthPerm.NONE;
 		}	
 		
 		/**
-		 * The token for the logged in user
+		 * The session_key for the logged in user
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get token():String {
-			return _token;
+		public function get session_key():String {
+			return _session_key;
 		}
 		
-		public function set token( value:String ):void {
-			_token = value;
+		public function set session_key( value:String ):void {
+			_session_key = value;
 		}
 		
 		/**
-		 * The permission the application has for the logged in
-		 * user's account
+		 * The uid for the logged in user
 		 *
-		 * @see com.adobe.webapis.facebook.AuthPerm
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get perms():String {
-			return _perms;
+		public function get uid():String {
+			return _uid;
 		}
 		
-		public function set perms( value:String ):void {
-			_perms = value;
+		public function set uid( value:String ):void {
+			_uid = value;
 		}
 		
-//		/**
-//		 * The User that is logged in
-//		 *
-//		 * @langversion ActionScript 3.0
-//		 * @playerversion Flash 8.5
-//		 * @tiptext
-//		 */
-//		public function get user():User {
-//			return _user;	
-//		}
-//		
-//		public function set user( value:User ):void {
-//			_user = value;	
-//		}
+		/**
+		 * The expires for the logged in user
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get expires():String {
+			return _expires;
+		}
+		
+		public function set expires( value:String ):void {
+			_expires = value;
+		}
 		
 	}
 	

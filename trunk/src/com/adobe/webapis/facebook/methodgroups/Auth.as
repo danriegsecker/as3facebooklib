@@ -45,11 +45,11 @@ package com.adobe.webapis.facebook.methodgroups {
 		 *
 		 * The event contains the following properties
 		 *	success	- Boolean indicating if the call was successful or not
-		 *	data - When success is true, contains a "token" string (the token value to be 
+		 *	data - When success is true, contains a "auth_token" string (the auth_token value to be 
 		 *				used for authentication)
 		 *		   When success is false, contains an "error" FacebookError instance
 		 *
-		 * @see #getSession
+		 * @see #createToken
 		 * @see com.adobe.service.facebook.FacebookError
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
@@ -59,14 +59,14 @@ package com.adobe.webapis.facebook.methodgroups {
 			 type="com.adobe.webapis.facebook.events.FacebookResultEvent")]
 		
 		/**
-		 * Broadcast as a result of the getToken method being called
+		 * Broadcast as a result of the getSession method being called
 		 *
 		 * The event contains the following properties
 		 *	success	- Boolean indicating if the call was successful or not
-		 *	data - When success is true, contains an "auth" AuthResult instance
+		 *	data - When success is true, contains an "auth" GetSessionResult instance
 		 *		   When success is false, contains an "error" FacebookError instance
 		 *
-		 * @see #getToken
+		 * @see #getSession
 		 * @see com.adobe.service.facebook.FacebookError
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
@@ -133,26 +133,26 @@ package com.adobe.webapis.facebook.methodgroups {
 			MethodGroupHelper.processAndDispatch( _service, 
 												  URLLoader( event.target ).data, 
 												  result,
-												  "token",
-												  MethodGroupHelper.parseToken );
+												  "auth_createToken_response",
+												  MethodGroupHelper.parseAuthToken );
 		}
 		
 		/**
-		 * Returns the auth token for the given frob, if one has been attached.
+		 * Returns the session key for the given auth_token, if one has been attached.
 		 *
-		 * @param token The token to get the session for
+		 * @param auth_token The token to get the session for
 		 *
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&method=auth.getSession
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function getSession( token:String ):void {
+		public function getSession( auth_token:String ):void {
 			// Let the Helper do the work to invoke the method
 			MethodGroupHelper.invokeMethod( _service, getSession_result, 
-									"flickr.auth.getSession",
+									"facebook.auth.getSession",
 									true,
-									new NameValuePair( "token", token ) );
+									new NameValuePair( "auth_token", auth_token ) );
 		}
 		
 		/**
@@ -172,8 +172,8 @@ package com.adobe.webapis.facebook.methodgroups {
 			MethodGroupHelper.processAndDispatch( _service, 
 												  URLLoader( event.target ).data, 
 												  result,
-												  "auth",
-												  MethodGroupHelper.parseAuthResult );
+												  "auth_getSession_response",
+												  MethodGroupHelper.parseGetSessionResult );
 			
 		}
 		
