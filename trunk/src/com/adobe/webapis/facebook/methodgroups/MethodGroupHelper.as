@@ -215,8 +215,8 @@ package com.adobe.webapis.facebook.methodgroups {
 				var error:FacebookError = new FacebookError();
 				if ( rsp.firstChild != null ) 
 				{
-					error.errorCode = int( rsp.firstChild.attributes.code );
-					error.errorMessage = rsp.firstChild.attributes.msg;
+					error.errorCode = int( rsp.firstChild.attributes.error_code );
+					error.errorMessage = rsp.firstChild.attributes.error_msg;
 					
 					result.data.error = error;
 				}
