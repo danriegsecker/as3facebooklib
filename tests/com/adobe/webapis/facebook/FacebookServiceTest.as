@@ -69,11 +69,10 @@ package com.adobe.webapis.facebook {
 			//*********************************************************
 			// Test the "Auth" method group
 			//*********************************************************
+			// Not tested - need to have a valid api key to return successful result
+			ts.addTest( Test( new FacebookServiceTest("testAuthCreateToken") ) );
 			// Not tested - need to have a valid token to return successful result
-			//ts.addTest( Test( new FacebookServiceTest("testAuthCheckToken") ) );
-			ts.addTest( Test( new FacebookServiceTest("testAuthGetFrob") ) );
-			// Not tested - need to have a valid frob to return successful result
-			//ts.addTest( Test( new FacebookServiceTest("testAuthGetToken") ) );
+			//ts.addTest( Test( new FacebookServiceTest("testAuthGetSession") ) );
 			
 			return ts;
 		}
@@ -96,19 +95,19 @@ package com.adobe.webapis.facebook {
 		//
 		//**************************************************************
 		
-		public function testAuthGetFrob():void {
+		public function testAuthCreateToken():void {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.secret = SECRET;
-			service.addEventListener( FacebookResultEvent.AUTH_GET_FROB, 
-									  addAsync( onAuthGetFrob, CALL_TIMEOUT ) );
-			service.auth.getFrob();
+			service.addEventListener( FacebookResultEvent.AUTH_CREATE_TOKEN, 
+									  addAsync( onAuthCreateToken, CALL_TIMEOUT ) );
+			service.auth.createToken();
 		}
 		
-		private function onAuthGetFrob( event:FacebookResultEvent ):void {
+		private function onAuthCreateToken( event:FacebookResultEvent ):void {
 			assertTrue("event.success == true", event.success );
 			
-			var frob:String = String( event.data.frob );
-			assertTrue("event data is string with length", frob.length > 0 ); 
+			var token:String = String( event.data.token );
+			assertTrue("event data is string with length", token.length > 0 ); 
 		}
 		
 	}
