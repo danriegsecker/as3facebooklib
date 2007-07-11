@@ -102,6 +102,14 @@ package com.adobe.webapis.facebook.methodgroups {
 				
 				// sign the call according to the documentation
 				// here: http://developers.facebook.com/documentation.php?v=1.0&doc=auth
+				
+				/* TODO - change to suit facebook auth signature
+				args = array of args to the request, formatted in arg=val pairs
+				sorted_array = alphabetically_sort_array_by_keys(args);
+				request_str = concatenate_in_order(sorted_array);
+				signature = md5(concatenate(request_str, secret))
+				*/
+				
 				args.sortOn( "name" );
 				var sig:String = service.secret;
 				for ( var j:int = 0; j < args.length; j++ ) {

@@ -317,27 +317,23 @@ package com.adobe.webapis.facebook {
 		 * Returns the URL to use for authentication so the developer
 		 * doesn't have to build it by hand.
 		 *
-		 * @param token The frob from flickr.auth.createToken to authenticate with
+		 * @param token The auth_token from flickr.auth.createToken to authenticate with
 		 * @return The url to open a browser to to authenticate against
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function getLoginURL( frob:String, permission:String ):String {
-			/* TODO - change to suit facebook auth signature
-			args = array of args to the request, formatted in arg=val pairs
-			sorted_array = alphabetically_sort_array_by_keys(args);
-			request_str = concatenate_in_order(sorted_array);
-			signature = md5(concatenate(request_str, secret))
-			*/
-			var sig:String = secret;
-			sig += "api_key" + api_key;
-			sig += "token" + token;
+		public function getLoginURL( auth_token:String ):String {
+			// TODO: Add other login url parameters
+			//var sig:String = secret;
+			//sig += "api_key" + api_key;
+			//sig += "auth_token" + auth_token;
 			
 			var auth_url:String = AUTH_END_POINT;
 			auth_url += "api_key=" + api_key;
+			auth_url += "v=" + v;
 			auth_url += "&auth_token=" + auth_token;
-			auth_url += "&api_sig=" + MD5.hash( sig );
+			//auth_url += "&api_sig=" + MD5.hash( sig );
 						
 			return auth_url;
 		}
