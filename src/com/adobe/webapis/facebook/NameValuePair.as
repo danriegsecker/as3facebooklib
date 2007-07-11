@@ -36,13 +36,69 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.adobe.webapis.facebook {
 	
 	/**
-	 * Because of the directory structure (having a methodgroups package
-	 * where the classes in there are really "Friends" of the FacebookService
-	 * class), we can't use the "internal" modifier to hide methods from
-	 * the public API.  Thus, in order to provide the helper classes in the
-	 * methodGroup package access to this class, we create a special
-	 * namespace to use as a method modifier.
+	 * NameValuePair is an object containing a key/value
+	 * combination.
 	 */
-	public namespace facebookservice_internal = "http://www.macromedia.com/webapis/facebook/internal";
+	public class NameValuePair {
+		
+		private var _name:String;
+		private var _value:String;
+	
+		/**
+		 * Construct a new name value pair
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function NameValuePair( name:String = "", value:String = "" ) {
+			_name = name;
+			_value = value;
+		}
+		
+		/**
+		 * Returns the name
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get name():String {
+			return _name;
+		}
+		
+		/**
+		 * Sets the name
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function set name( value:String ):void {
+			_name = value;
+		}
+		
+		/**
+		 * Returns the value
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get value():String {
+			return _value;
+		}
+		
+		/**
+		 * Sets the value
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function set value( v:String ):void {
+			_value = v;
+		}
+	}	
 	
 }

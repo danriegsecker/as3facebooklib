@@ -36,13 +36,73 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.adobe.webapis.facebook {
 	
 	/**
-	 * Because of the directory structure (having a methodgroups package
-	 * where the classes in there are really "Friends" of the FacebookService
-	 * class), we can't use the "internal" modifier to hide methods from
-	 * the public API.  Thus, in order to provide the helper classes in the
-	 * methodGroup package access to this class, we create a special
-	 * namespace to use as a method modifier.
+	 * AuthResult is a ValueObject for the Facebook API.
 	 */
-	public namespace facebookservice_internal = "http://www.macromedia.com/webapis/facebook/internal";
+	public class AuthResult {
+		
+		private var _token:String;
+		private var _perms:String;
+		//private var _user:User;
+		
+		/**
+		 * Construct a new AuthResult instance
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function AuthResult() {
+			// Assume no permission
+			perms = AuthPerm.NONE;
+		}	
+		
+		/**
+		 * The token for the logged in user
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get token():String {
+			return _token;
+		}
+		
+		public function set token( value:String ):void {
+			_token = value;
+		}
+		
+		/**
+		 * The permission the application has for the logged in
+		 * user's account
+		 *
+		 * @see com.adobe.webapis.facebook.AuthPerm
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get perms():String {
+			return _perms;
+		}
+		
+		public function set perms( value:String ):void {
+			_perms = value;
+		}
+		
+//		/**
+//		 * The User that is logged in
+//		 *
+//		 * @langversion ActionScript 3.0
+//		 * @playerversion Flash 8.5
+//		 * @tiptext
+//		 */
+//		public function get user():User {
+//			return _user;	
+//		}
+//		
+//		public function set user( value:User ):void {
+//			_user = value;	
+//		}
+		
+	}
 	
 }
