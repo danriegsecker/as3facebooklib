@@ -91,7 +91,7 @@ package com.adobe.webapis.facebook.methodgroups {
 			}
 			
 			// If a user is authenticated, automatically add their auth_token
-			if ( service.permission != AuthPerm.NONE && service.auth_token ) {
+			if ( service.auth_token ) {
 				args.push( new NameValuePair( "auth_token", service.auth_token ) );
 				// auto-sign the call because the user is authenticated
 				signed = true;
@@ -303,14 +303,11 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * Converts an auth result XML object into an GetSessionResult instance
 		 */
 		internal static function parseGetSessionResult( xml:XML ):GetSessionResult {
-			var authResult:GetSessionResult = new GetSessionResult();
-			authResult.auth_token = xml.auth.token.toString();
-			//authResult.perms = xml.auth.perms.toString();
-			//authResult.user = new User();
-			//authResult.user.nsid = xml.auth.user.@nsid.toString();
-			//authResult.user.username = xml.auth.user.@username.toString();
-			//authResult.user.fullname = xml.auth.user.@fullname.toString();
-			return authResult;
+			var getSessionResult:GetSessionResult = new GetSessionResult();
+			getSessionResult.session_key = xml.auth_getSession_response.session_key.toString();
+			getSessionResult.uid = xml.auth_getSession_response.uid.toString();
+			getSessionResult.expires = xml.auth_getSession_response.expires.toString();
+			return getSessionResult;
 		}
 		
 		/**
