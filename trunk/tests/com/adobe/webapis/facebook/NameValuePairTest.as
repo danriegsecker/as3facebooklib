@@ -38,7 +38,7 @@ package com.adobe.webapis.facebook {
 	import flexunit.framework.TestCase;
 	import flexunit.framework.TestSuite;
 	
-	import com.adobe.webapis.flickr.NameValuePair;
+	import com.adobe.webapis.facebook.NameValuePair;
 	import flexunit.framework.Test;
 	
 	public class NameValuePairTest extends TestCase {
