@@ -324,17 +324,20 @@ package com.adobe.webapis.facebook {
 		 * @tiptext
 		 */
 		public function getLoginURL( auth_token:String ):String {
-			// TODO: Add other login url parameters
-			//var sig:String = secret;
-			//sig += "api_key" + api_key;
-			//sig += "auth_token" + auth_token;
+			/* TODO: Add other login url parameters
+			next	A way for web based applications to preserve some state for this login - this will get appended to their callback_url after the user logs in as described below. Optional.
+			auth_token	Before generating the login URL, the desktop application should call the facebook.auth.createToken API function, and then use the auth_token returned by that function here. Required for desktop apps.
+			popup	An alternative style for the login page that does not contain any Facebook navigational elements. For the best results, the pop-up should ideally have the following dimensions: width=646 pixels, height=436 pixels. Optional.
+			skipcookie	Pass this in to allow a user to re-enter their login information. This may be useful if another Facebook user previously forgot to logout. Optional.
+			hide_checkbox	Pass this in to hide the "Save my login info" checkbox from the user. This may be useful if your application does not wish to persist the user's session information. See the "Infinite Sessions" section below for more info. Optional.
+			*/
 			
 			var auth_url:String = AUTH_END_POINT;
 			auth_url += "api_key=" + api_key;
 			auth_url += "v=" + v;
-			auth_url += "&auth_token=" + auth_token;
+			auth_url += "&auth_token=" + auth_token; // required for desktop apps
 			//auth_url += "&api_sig=" + MD5.hash( sig );
-						
+			
 			return auth_url;
 		}
 		
