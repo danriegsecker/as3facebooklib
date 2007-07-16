@@ -103,7 +103,7 @@ package com.adobe.webapis.facebook.methodgroups {
 				// sign the call according to the documentation
 				// here: http://developers.facebook.com/documentation.php?v=1.0&doc=auth
 				
-				/* TODO - change to suit facebook auth signature
+				/* FROM FACEBOOK:
 				args = array of args to the request, formatted in arg=val pairs
 				sorted_array = alphabetically_sort_array_by_keys(args);
 				request_str = concatenate_in_order(sorted_array);
@@ -114,22 +114,22 @@ package com.adobe.webapis.facebook.methodgroups {
 				var sig:String = service.secret;
 				for ( var j:int = 0; j < args.length; j++ ) {
 					sig += args[j].name.toString() + args[j].value.toString();	
-				}	
+				}
+				sig += service.secret;
 				args.push( new NameValuePair( "api_sig", MD5.hash( sig ) ) );
 			}
 			
 			// Construct the query string to send to the Facebook service
 			var query:String = "";
 			for ( var k:int = 0; k < args.length; k++ ) {
-				// This puts 1 too many "&" on the end, but that doesn't
-				// affect the facebook call, so it doesn't matter
-				query += args[k].name + "=" + args[k].value + "&";	
+				query += args[k].name + "=" + args[k].value
+				if (k<args.length-1) query += "&";
 			}
-			
+
 			// Use the "internal" facebookservice namespace to be able to
 			// access the urlLoader so we can make the request.
 			var loader:URLLoader = service.facebookservice_internal::urlLoader;
-			
+
 			// Construct a url request with our query string and invoke
 			// the Facebook method
 			loader.addEventListener( "complete", callBack );
