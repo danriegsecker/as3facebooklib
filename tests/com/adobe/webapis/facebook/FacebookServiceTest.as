@@ -53,8 +53,8 @@ package com.adobe.webapis.facebook {
 		*
 		*	http://developers.facebook.com/documentation.php?v=1.0&doc=auth
 		*/		
-		public static var API_KEY:String = "<APP KEY>";
-		public static var SECRET:String = "<SHARED SECRET>";
+		public static var API_KEY:String = "<YOUR API KEY>";
+		public static var SECRET:String = "<YOUR SECRET>";
 		
 	    public function FacebookServiceTest( methodName:String ) {
 			super( methodName );
