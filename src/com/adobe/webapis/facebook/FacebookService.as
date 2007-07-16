@@ -100,7 +100,7 @@ package com.adobe.webapis.facebook {
 			_secret = "";
 			_auth_token = "";
 			_session_key = "";
-			_version = "1.0";
+			_v = "1.0";
 			
 			_auth = new Auth( this );
 //			_feed = new Feed( this );
@@ -136,6 +136,30 @@ package com.adobe.webapis.facebook {
 		 */
 		public function set api_key( value:String ):void {
 			_api_key = value;	
+		}
+		
+		/**
+		 * Returns the current API version in use for accessing the Facebook service.
+		 *  
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get v():String {
+			return _v;	
+		}
+		
+		/**
+		 * Sets the API version that should be used to access the Facebook service.
+		 *
+		 * @param value The API version to use against Facebook.com
+		 * @see http://developers.facebook.com/documentation.php?v=1.0&method=auth.getSession
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function set v( value:String ):void {
+			_v = value;	
 		}
 		
 		/**
