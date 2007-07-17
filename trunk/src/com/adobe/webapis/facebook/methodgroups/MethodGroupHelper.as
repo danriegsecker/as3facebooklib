@@ -117,7 +117,7 @@ package com.adobe.webapis.facebook.methodgroups {
 					sig += args[j].name.toString() + args[j].value.toString();	
 				}
 				sig += service.secret;
-				args.push( new NameValuePair( "api_sig", MD5.hash( sig ) ) );
+				args.push( new NameValuePair( "sig", MD5.hash( sig ) ) );
 			}
 			
 			// Construct the query string to send to the Facebook service
@@ -170,6 +170,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @param facebookResponse The rest response string that aligns
 		 *		with the documentation here: 
 		 *			http://developers.facebook.com/documentation.php?v=1.0
+		 *			http://api.facebook.com/1.0/facebook.xsd
 		 * @param parseFunction A reference to the function that should be used
 		 *		to parse the XML received from the server
 		 * @param propertyName The name of the property to put the parsed data in.
