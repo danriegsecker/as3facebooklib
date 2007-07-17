@@ -75,8 +75,9 @@ package com.adobe.webapis.facebook.methodgroups {
 			// these alphabetically
 			var args:Array = new Array();
 			
-			args.push( new NameValuePair( "api_key", service.api_key ) );
+			args.push( new NameValuePair( "v", service.version ) );
 			args.push( new NameValuePair( "method", method ) );
+			args.push( new NameValuePair( "api_key", service.api_key ) );
 			
 			
 			// Loop over the params and add them as arguments
@@ -111,7 +112,7 @@ package com.adobe.webapis.facebook.methodgroups {
 				*/
 				
 				args.sortOn( "name" );
-				var sig:String = service.secret;
+				var sig:String = "";
 				for ( var j:int = 0; j < args.length; j++ ) {
 					sig += args[j].name.toString() + args[j].value.toString();	
 				}
@@ -125,10 +126,12 @@ package com.adobe.webapis.facebook.methodgroups {
 				query += args[k].name + "=" + args[k].value
 				if (k<args.length-1) query += "&";
 			}
-
+			
 			// Use the "internal" facebookservice namespace to be able to
 			// access the urlLoader so we can make the request.
 			var loader:URLLoader = service.facebookservice_internal::urlLoader;
+
+			trace("url:" + FacebookService.END_POINT + query)
 
 			// Construct a url request with our query string and invoke
 			// the Facebook method
@@ -189,6 +192,8 @@ package com.adobe.webapis.facebook.methodgroups {
 			var doc:XMLDocument = new XMLDocument();
 			doc.ignoreWhite = true;
 			doc.parseXML( facebookResponse );
+			
+			trace("response: "+doc.toString());
 						
 			// Get the root rsp node from the document
 			var rsp:XMLNode = doc.firstChild;
@@ -196,7 +201,9 @@ package com.adobe.webapis.facebook.methodgroups {
 			// Clean up a little
 			doc = null; 
 			
-			if ( rsp.attributes.stat == "ok" ) {
+			trace("rsp.nodeName: "+rsp.nodeName)
+			
+			if ( rsp.nodeName != "error_response" ) {
 				result.success = true;
 				
 				// Parse the XML object into a user-defined class (This gives us
