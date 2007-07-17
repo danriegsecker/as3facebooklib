@@ -114,7 +114,7 @@ package com.adobe.webapis.facebook.methodgroups {
 				args.sortOn( "name" );
 				var sig:String = "";
 				for ( var j:int = 0; j < args.length; j++ ) {
-					sig += args[j].name.toString() + args[j].value.toString();	
+					sig += args[j].name.toString() + "=" + args[j].value.toString();	
 				}
 				sig += service.secret;
 				args.push( new NameValuePair( "sig", MD5.hash( sig ) ) );
