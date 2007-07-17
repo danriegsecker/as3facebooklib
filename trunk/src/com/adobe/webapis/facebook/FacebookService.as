@@ -70,7 +70,7 @@ package com.adobe.webapis.facebook {
 		/** 
 		 * The version of the API.
 		 */
-		private var _v:String;
+		private var _version:String;
 
 		/**
 		 * The "shared secret" of your application for authentication
@@ -100,7 +100,7 @@ package com.adobe.webapis.facebook {
 			_secret = "";
 			_auth_token = "";
 			_session_key = "";
-			_v = "1.0";
+			_version = "1.0";
 			
 			_auth = new Auth( this );
 //			_feed = new Feed( this );
@@ -122,7 +122,7 @@ package com.adobe.webapis.facebook {
 		 * @tiptext
 		 */
 		public function get api_key():String {
-			return _api_key;	
+			return _api_key;
 		}
 		
 		/**
@@ -135,7 +135,7 @@ package com.adobe.webapis.facebook {
 		 * @tiptext
 		 */
 		public function set api_key( value:String ):void {
-			_api_key = value;	
+			_api_key = value;
 		}
 		
 		/**
@@ -145,8 +145,8 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get v():String {
-			return _v;	
+		public function get version():String {
+			return _version;	
 		}
 		
 		/**
@@ -158,8 +158,8 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function set v( value:String ):void {
-			_v = value;	
+		public function set version( value:String ):void {
+			_version = value;	
 		}
 		
 		/**
@@ -358,7 +358,7 @@ package com.adobe.webapis.facebook {
 			
 			var auth_url:String = AUTH_END_POINT;
 			auth_url += "api_key=" + api_key;
-			auth_url += "v=" + v;
+			auth_url += "v=" + version;
 			auth_url += "&auth_token=" + auth_token; // required for desktop apps
 			//auth_url += "&api_sig=" + MD5.hash( sig );
 			
