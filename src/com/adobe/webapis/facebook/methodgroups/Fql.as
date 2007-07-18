@@ -88,14 +88,19 @@ package com.adobe.webapis.facebook.methodgroups {
 		/**
 		 * Evaluates an FQL (Facebook Query Language) query.
 		 * 
+		 * @param query The query to perform, as described in the FQL documentation.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=fql
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function query():void {
+		public function query( query:String ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, query_result, "facebook.fql.query", true );
+			MethodGroupHelper.invokeMethod( _service, query_result, 
+									"facebook.fql.query", 
+									true,
+									new NameValuePair( "query", query )
+									);
 		}
 		
 		/**

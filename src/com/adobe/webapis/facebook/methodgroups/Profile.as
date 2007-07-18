@@ -106,14 +106,21 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * Sets the FBML for a user's profile, including the content for both the profile 
 		 * box and the profile actions.
 		 * 
+		 * @param markup The FBML intended for the user's profile.
+		 * @param uid (Optional) The user whose profile is to be updated. Not allowed for desktop applications (since the application secret is essentially public).
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=profile
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function setFBML():void {
+		public function setFBML( markup:String, uid:Number = -1 ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, setFBML_result, "facebook.profile.setFBML", true );
+			MethodGroupHelper.invokeMethod( _service, setFBML_result, 
+									"facebook.profile.setFBML", 
+									true,
+									new NameValuePair( "markup", markup ),
+									new NameValuePair( "uid", uid == -1 ? "" : uid.toString() )
+									);
 		}
 		
 		/**

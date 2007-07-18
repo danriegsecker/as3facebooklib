@@ -110,14 +110,21 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * the affiliations element, the notes_count value, and the contents 
 		 * of the profile_update_time element.
 		 * 
+		 * @param uids List of user ids. This is a comma-separated list of user ids.
+		 * @param fields List of desired fields in return. This is a comma-separated list of field strings.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=users
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function getInfo():void {
+		public function getInfo( uids:Array, fields:Array ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, getInfo_result, "facebook.users.getInfo", true );
+			MethodGroupHelper.invokeMethod( _service, getInfo_result, 
+									"facebook.users.getInfo", 
+									true,
+									new NameValuePair( "uids", uids.toString() ),
+									new NameValuePair( "fields", fields.toString() )
+									 );
 		}
 		
 		/**
