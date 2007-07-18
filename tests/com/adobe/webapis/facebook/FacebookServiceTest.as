@@ -42,7 +42,7 @@ package com.adobe.webapis.facebook {
 	import com.adobe.webapis.facebook.events.*;
 	import com.adobe.webapis.facebook.methodgroups.MethodGroupHelper;
 	import flexunit.framework.Test;
-	
+
 	public class FacebookServiceTest extends TestCase {
 		
 		private const CALL_TIMEOUT:int = 10000;
@@ -70,10 +70,102 @@ package com.adobe.webapis.facebook {
 			// Test the "Auth" method group
 			//*********************************************************
 			// Not tested - need to have a valid api key to return successful result
-			ts.addTest( Test( new FacebookServiceTest("testAuthCreateToken") ) );
+			ts.addTest( Test( new AuthTest("testAuthCreateToken") ) );
 			// Not tested - need to have a valid token to return successful result
-			//ts.addTest( Test( new FacebookServiceTest("testAuthGetSession") ) );
-			
+			//ts.addTest( Test( new FacebookServiceAuthTest("testAuthGetSession") ) );
+
+			//*********************************************************
+			// Test the "Fbml" method group
+			//*********************************************************
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testFbmlRefreshImgSrc") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testFbmlRefreshRefUrl") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testFbmlSetRefHandle") ) );
+
+			//*********************************************************
+			// Test the "Feed" method group
+			//*********************************************************
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testFeedPublishStoryToUser") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testFeedPublishActionOfUser") ) );
+
+			//*********************************************************
+			// Test the "Fql" method group
+			//*********************************************************
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testFqlQuery") ) );
+
+			//*********************************************************
+			// Test the "Friends" method group
+			//*********************************************************
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testFriendsAreFriends") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testFriendsGet") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testFriendsGetAppUsers") ) );
+
+			//*********************************************************
+			// Test the "Notifications" method group
+			//*********************************************************
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testNotificationsGet") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testNotificationsSend") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testNotificationsSendRequest") ) );
+
+			//*********************************************************
+			// Test the "Profile" method group
+			//*********************************************************
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testProfileSetFBML") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testProfileGetFBML") ) );
+
+			//*********************************************************
+			// Test the "Users" method group
+			//*********************************************************
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testUsersGetInfo") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testUsersGetLoggedInUser") ) );
+
+			//*********************************************************
+			// Test the "Events" method group
+			//*********************************************************
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testEventsGet") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testEventsGetMembers") ) );
+
+			//*********************************************************
+			// Test the "Groups" method group
+			//*********************************************************
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testGroupsGet") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testGroupsGetMembers") ) );
+
+			//*********************************************************
+			// Test the "Photos" method group
+			//*********************************************************
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testPhotosAddTag") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testPhotosCreateAlbum") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testPhotosGet") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testPhotosGetAlbums") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testPhotosGetTags") ) );
+			// Not tested - need to be authenticated to return successful result
+			//ts.addTest( Test( new FacebookServiceTest("testPhotosUpload") ) );
+
 			return ts;
 		}
 		
@@ -88,7 +180,7 @@ package com.adobe.webapis.facebook {
 			service.secret = SECRET;
 			assertTrue( "service.secret == SECRET", service.secret == SECRET );
 		}
-		
+
 		//**************************************************************
 		//
 		// Tests for the "Auth" Method Group
@@ -109,7 +201,8 @@ package com.adobe.webapis.facebook {
 			var token:String = String( event.data.token );
 			assertTrue("event data is string with length", token.length > 0 );
 		}
-		
+
+
 	}
 
 }
