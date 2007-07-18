@@ -195,14 +195,20 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * publish identical FBML to many user profiles and do subsequent updates without having 
 		 * to republish FBML on behalf of each user.
 		 * 
+		 * @param handle Handle to associate with the given FBML.
+		 * @param fbml FBML to associate with the given handle.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&method=fbml.refreshRefUrl
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function setRefHandle():void {
+		public function setRefHandle( handle:String, fbml:String ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, setRefHandle_result, "facebook.fbml.setRefHandle", true );
+			MethodGroupHelper.invokeMethod( _service, setRefHandle_result,
+									"facebook.fbml.setRefHandle", 
+									true,
+									new NameValuePair( "handle", handle ),
+									new NameValuePair( "fbml", fbml ) );
 		}
 		
 		/**
