@@ -143,6 +143,9 @@ package com.adobe.webapis.facebook.events {
 
 		/** Constant for the fbmlRefreshImgSrc event type. */
 		public static const FBML_REFRESH_IMG_SRC:String = "fbmlRefreshImgSrc";
+
+		/** Constant for the fbmlSetRefHandle event type. */
+		public static const FBML_SET_REF_HANDLE:String = "fbmlSetRefHandle";
 		
 		/* Feed */
 		
