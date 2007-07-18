@@ -325,6 +325,188 @@ package com.adobe.webapis.facebook.methodgroups {
 			return xml.auth_createToken_response.toString();
 		}
 		
+		/**
+		 * Converts a photos_addTag XML object into a string (the photos_addTag value)
+		 */
+		internal static function parsePhotosAddTag( xml:XML ):String {
+			return xml.photos_addTag_response.toString();
+		}
+		
+		/**
+		 * Converts a photos_createAlbum XML object into a string (the photos_createAlbum value)
+		 */
+		internal static function parsePhotosCreateAlbum( xml:XML ):String {
+			return xml.photos_createAlbum_response.toString();
+		}
+		
+		/**
+		 * Converts a photos_get XML object into a string (the photos_get value)
+		 */
+		internal static function parsePhotosGet( xml:XML ):String {
+			return xml.photos_get_response.toString();
+		}
+		
+		/**
+		 * Converts a photos_getAlbums XML object into a string (the photos_getAlbums value)
+		 */
+		internal static function parsePhotosGetAlbums( xml:XML ):String {
+			return xml.photos_getAlbums_response.toString();
+		}
+		
+		/**
+		 * Converts a photos_getTags XML object into a string (the photos_getTags value)
+		 */
+		internal static function parsePhotosGetTags( xml:XML ):String {
+			return xml.photos_getTags_response.toString();
+		}
+		
+		/**
+		 * Converts a photos_upload XML object into a string (the photos_upload value)
+		 */
+		internal static function parsePhotosUpload( xml:XML ):String {
+			return xml.photos_upload_response.toString();
+		}
+		
+		/**
+		 * Converts a groups_get XML object into a string (the groups_get value)
+		 */
+		internal static function parseGroupsGet( xml:XML ):String {
+			return xml.groups_get_response.toString();
+		}
+		
+		/**
+		 * Converts a groups_getMembers XML object into a string (the groups_getMembers value)
+		 */
+		internal static function parseGroupsGetMembers( xml:XML ):String {
+			return xml.groups_getMembers_response.toString();
+		}
+		
+		/**
+		 * Converts a users_getInfo XML object into a string (the users_getInfo value)
+		 */
+		internal static function parseUsersGetInfo( xml:XML ):String {
+			return xml.users_getInfo_response.toString();
+		}
+		
+		/**
+		 * Converts a users_getLoggedInUser XML object into a string (the users_getLoggedInUser value)
+		 */
+		internal static function parseUsersGetLoggedInUser( xml:XML ):String {
+			return xml.users_getLoggedInUser_response.toString();
+		}
+		
+		/**
+		 * Converts a fbml_refreshImgSrc XML object into a string (the fbml_refreshImgSrc value)
+		 */
+		internal static function parseFbmlRefreshImgSrc( xml:XML ):String {
+			return xml.fbml_refreshImgSrc_response.toString();
+		}
+		
+		/**
+		 * Converts a fbml_refreshRefUrl XML object into a string (the fbml_refreshRefUrl value)
+		 */
+		internal static function parseFbmlRefreshRefUrl( xml:XML ):String {
+			return xml.fbml_refreshRefUrl_response.toString();
+		}
+		
+		/**
+		 * Converts a fbml_setRefHandle XML object into a string (the fbml_setRefHandle value)
+		 */
+		internal static function parseFbmlSetRefHandle( xml:XML ):String {
+			return xml.fbml_setRefHandle_response.toString();
+		}
+		
+		/**
+		 * Converts a feed_publishStoryToUser XML object into a string (the feed_publishStoryToUser value)
+		 */
+		internal static function parseFeedPublishStoryToUser( xml:XML ):String {
+			return xml.feed_publishStoryToUser_response.toString();
+		}
+		
+		/**
+		 * Converts a feed_publishActionOfUser XML object into a string (the feed_publishActionOfUser value)
+		 */
+		internal static function parseFeedPublishActionOfUser( xml:XML ):String {
+			return xml.feed_publishActionOfUser_response.toString();
+		}
+		
+		/**
+		 * Converts a events_get XML object into a string (the events_get value)
+		 */
+		internal static function parseEventsGet( xml:XML ):String {
+			return xml.events_get_response.toString();
+		}
+		
+		/**
+		 * Converts a events_getMembers XML object into a string (the events_getMembers value)
+		 */
+		internal static function parseEventsGetMembers( xml:XML ):String {
+			return xml.events_getMembers_response.toString();
+		}
+		
+		/**
+		 * Converts a notifications_get XML object into a string (the notifications_get value)
+		 */
+		internal static function parseNotificationsGet( xml:XML ):String {
+			return xml.notifications_get_response.toString();
+		}
+		
+		/**
+		 * Converts a notifications_send XML object into a string (the notifications_send value)
+		 */
+		internal static function parseNotificationsSend( xml:XML ):String {
+			return xml.notifications_send_response.toString();
+		}
+
+		/**
+		 * Converts a notifications_sendRequest XML object into a string (the notifications_sendRequest value)
+		 */
+		internal static function parseNotificationsSendRequest( xml:XML ):String {
+			return xml.notifications_sendRequest_response.toString();
+		}
+
+		/**
+		 * Converts a profile_setFBML XML object into a string (the profile_setFBML value)
+		 */
+		internal static function parseProfileSetFBML( xml:XML ):String {
+			return xml.profile_setFBML_response.toString();
+		}
+
+		/**
+		 * Converts a profile_getFBML XML object into a string (the profile_getFBML value)
+		 */
+		internal static function parseProfileGetFBML( xml:XML ):String {
+			return xml.profile_getFBML_response.toString();
+		}
+
+		/**
+		 * Converts a friends_areFriends XML object into a string (the friends_areFriends value)
+		 */
+		internal static function parseFriendsAreFriends( xml:XML ):String {
+			return xml.friends_areFriends_response.toString();
+		}
+
+		/**
+		 * Converts a friends_get XML object into a string (the friends_get value)
+		 */
+		internal static function parseFriendsGet( xml:XML ):String {
+			return xml.friends_get_response.toString();
+		}
+
+		/**
+		 * Converts a friends_getAppUsers XML object into a string (the friends_getAppUsers value)
+		 */
+		internal static function parseFriendsGetAppUsers( xml:XML ):String {
+			return xml.friends_getAppUsers_response.toString();
+		}
+
+		/**
+		 * Converts a fql_query XML object into a string (the fql_query value)
+		 */
+		internal static function parseFqlQuery( xml:XML ):String {
+			return xml.fql_query_response.toString();
+		}
+
 	}
 	
 }

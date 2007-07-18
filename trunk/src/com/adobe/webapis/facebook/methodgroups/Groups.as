@@ -35,9 +35,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.adobe.webapis.facebook.methodgroups {
 	
-	import com.adobe.webapis.facebook.groups.FacebookResultEvent;
+	import com.adobe.webapis.facebook.events.FacebookResultEvent;
 	import com.adobe.webapis.facebook.*;
-	import flash.groups.Event;
+	import flash.events.Event;
 	import flash.net.URLLoader;
 	
 		/**

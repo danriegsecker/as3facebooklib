@@ -86,14 +86,15 @@ package com.adobe.webapis.facebook {
 		 * Private variable that we provide read-only access to
 		 */
 		private var _auth:Auth;
-//		private var _feed:Feed;
-//		private var _friends:Friends;
-//		private var _notifications:Notifications;
-//		private var _profile:Profile;
-//		private var _users:Users;
-//		private var _events:Events;
-//		private var _groups:Groups;
-//		private var _photos:Photos;
+		private var _fbml:Fbml;
+		private var _feed:Feed;
+		private var _friends:Friends;
+		private var _notifications:Notifications;
+		private var _profile:Profile;
+		private var _users:Users;
+		private var _events:Events;
+		private var _groups:Groups;
+		private var _photos:Photos;
 		
 		public function FacebookService( api_key:String ) {
 			_api_key = api_key;
@@ -103,14 +104,15 @@ package com.adobe.webapis.facebook {
 			_version = "1.0";
 			
 			_auth = new Auth( this );
-//			_feed = new Feed( this );
-//			_friends = new Friends( this );
-//			_notifications = new Notifications( this );
-//			_profile = new Profile( this );
-//			_users = new Users( this );
-//			_events = new Events( this );
-//			_groups = new Groups( this );
-//			_photos = new Photos( this );
+			_fbml = new Fbml( this );
+			_feed = new Feed( this );
+			_friends = new Friends( this );
+			_notifications = new Notifications( this );
+			_profile = new Profile( this );
+			_users = new Users( this );
+			_events = new Events( this );
+			_groups = new Groups( this );
+			_photos = new Photos( this );
 			
 		}
 		
@@ -249,93 +251,104 @@ package com.adobe.webapis.facebook {
 			return _auth;	
 		}
 		
-//		/**
-//		 * Provide read-only access to the Feed method group in the Facebook API
-//		 *
-//		 * @langversion ActionScript 3.0
-//		 * @playerversion Flash 8.5
-//		 * @tiptext
-//		 */
-//		public function get feed():Feed {
-//			return _feed;	
-//		}
-//		
-//		/**
-//		 * Provide read-only access to the Friends method group in the Facebook API
-//		 *
-//		 * @langversion ActionScript 3.0
-//		 * @playerversion Flash 8.5
-//		 * @tiptext
-//		 */
-//		public function get friends():Feed {
-//			return _friends;	
-//		}
-//		
-//		/**
-//		 * Provide read-only access to the Notifications method group in the Facebook API
-//		 *
-//		 * @langversion ActionScript 3.0
-//		 * @playerversion Flash 8.5
-//		 * @tiptext
-//		 */
-//		public function get notifications():Notifications {
-//			return _notifications;	
-//		}
-//
-//		/**
-//		 * Provide read-only access to the Profile method group in the Facebook API
-//		 *
-//		 * @langversion ActionScript 3.0
-//		 * @playerversion Flash 8.5
-//		 * @tiptext
-//		 */
-//		public function get profile():Profile {
-//			return _profile;	
-//		}
-//
-//		/**
-//		 * Provide read-only access to the Users method group in the Facebook API
-//		 *
-//		 * @langversion ActionScript 3.0
-//		 * @playerversion Flash 8.5
-//		 * @tiptext
-//		 */
-//		public function get users():Users {
-//			return _users;	
-//		}
-//
-//		/**
-//		 * Provide read-only access to the Events method group in the Facebook API
-//		 *
-//		 * @langversion ActionScript 3.0
-//		 * @playerversion Flash 8.5
-//		 * @tiptext
-//		 */
-//		public function get events():Events {
-//			return _events;	
-//		}
-//
-//		/**
-//		 * Provide read-only access to the Groups method group in the Facebook API
-//		 *
-//		 * @langversion ActionScript 3.0
-//		 * @playerversion Flash 8.5
-//		 * @tiptext
-//		 */
-//		public function get groups():Groups {
-//			return _groups;	
-//		}
-//
-//		/**
-//		 * Provide read-only access to the Photos method group in the Facebook API
-//		 *
-//		 * @langversion ActionScript 3.0
-//		 * @playerversion Flash 8.5
-//		 * @tiptext
-//		 */
-//		public function get photos():Photos {
-//			return _photos;	
-//		}
+		/**
+		 * Provide read-only access to the Fbml method group in the Facebook API
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get fbml():Fbml {
+			return _fbml;	
+		}
+		
+		/**
+		 * Provide read-only access to the Feed method group in the Facebook API
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get feed():Feed {
+			return _feed;	
+		}
+		
+		/**
+		 * Provide read-only access to the Friends method group in the Facebook API
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get friends():Friends {
+			return _friends;	
+		}
+		
+		/**
+		 * Provide read-only access to the Notifications method group in the Facebook API
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get notifications():Notifications {
+			return _notifications;	
+		}
+
+		/**
+		 * Provide read-only access to the Profile method group in the Facebook API
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get profile():Profile {
+			return _profile;	
+		}
+
+		/**
+		 * Provide read-only access to the Users method group in the Facebook API
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get users():Users {
+			return _users;	
+		}
+
+		/**
+		 * Provide read-only access to the Events method group in the Facebook API
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get events():Events {
+			return _events;	
+		}
+
+		/**
+		 * Provide read-only access to the Groups method group in the Facebook API
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get groups():Groups {
+			return _groups;	
+		}
+
+		/**
+		 * Provide read-only access to the Photos method group in the Facebook API
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get photos():Photos {
+			return _photos;	
+		}
 
 		/**
 		 * Returns the URL to use for authentication so the developer

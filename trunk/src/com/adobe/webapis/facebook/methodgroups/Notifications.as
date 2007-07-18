@@ -213,7 +213,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function sendRequest( to_ids:Array, type:String, content:String, image:String, invite:Boolean ):void {
+		public function sendRequest( to_ids:Array, type:String, content:String, image:String, invite:Boolean = false ):void {
 			// Let the Helper do the work to invoke the method			
 			MethodGroupHelper.invokeMethod( _service, send_result, 
 									"facebook.notifications.sendRequest", 
@@ -222,7 +222,7 @@ package com.adobe.webapis.facebook.methodgroups {
 									new NameValuePair( "type", type ),
 									new NameValuePair( "content", content ),
 									new NameValuePair( "image", image ),
-									new NameValuePair( "invite", invite )
+									new NameValuePair( "invite", invite ? "1" : "0" )
 									);
 		}
 		

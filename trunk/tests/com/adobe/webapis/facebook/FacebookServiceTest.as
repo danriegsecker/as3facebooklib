@@ -238,7 +238,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.FEED_PUBLISH_STORY_TO_USER, 
 									  addAsync( onFeedPublishStoryToUser, CALL_TIMEOUT ) );
-			service.feed.publishStoryToUser();
+			//service.feed.publishStoryToUser();
 		}
 		
 		private function onFeedPublishStoryToUser( event:FacebookResultEvent ):void {
@@ -248,7 +248,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.FEED_PUBLISH_STORY_TO_USER, 
 									  addAsync( onFeedPublishActionOfUser, CALL_TIMEOUT ) );
-			service.feed.publishActionOfUser();
+			//service.feed.publishActionOfUser();
 		}
 		
 		private function onFeedPublishActionOfUser( event:FacebookResultEvent ):void {
@@ -264,7 +264,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.FQL_QUERY, 
 									  addAsync( onFqlQuery, CALL_TIMEOUT ) );
-			service.fql.query();
+			//service.fql.query();
 		}
 		
 		private function onFqlQuery( event:FacebookResultEvent ):void {
@@ -280,7 +280,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.FRIENDS_ARE_FRIENDS, 
 									  addAsync( onFriendsAreFriends, CALL_TIMEOUT ) );
-			service.friends.areFriends();
+			//service.friends.areFriends();
 		}
 		
 		private function onFriendsAreFriends( event:FacebookResultEvent ):void {
@@ -290,7 +290,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.FRIENDS_GET, 
 									  addAsync( onFriendsGet, CALL_TIMEOUT ) );
-			service.friends.get();
+			//service.friends.get();
 		}
 		
 		private function onFriendsGet( event:FacebookResultEvent ):void {
@@ -300,7 +300,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.FRIENDS_GET_APP_USERS, 
 									  addAsync( onFriendsGetAppUsers, CALL_TIMEOUT ) );
-			service.friends.getAppUsers();
+			//service.friends.getAppUsers();
 		}
 		
 		private function onFriendsGetAppUsers( event:FacebookResultEvent ):void {
@@ -316,7 +316,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.NOTIFICATIONS_GET, 
 									  addAsync( onNotificationsGet, CALL_TIMEOUT ) );
-			service.notifications.get();
+			//service.notifications.get();
 		}
 		
 		private function onNotificationsGet( event:FacebookResultEvent ):void {
@@ -326,7 +326,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.NOTIFICATIONS_SEND, 
 									  addAsync( onNotificationsSend, CALL_TIMEOUT ) );
-			service.notifications.send();
+			//service.notifications.send();
 		}
 		
 		private function onNotificationsSend( event:FacebookResultEvent ):void {
@@ -336,7 +336,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.NOTIFICATIONS_SEND_REQUEST, 
 									  addAsync( onNotificationsSendRequest, CALL_TIMEOUT ) );
-			service.notifications.sendRequest();
+			//service.notifications.sendRequest();
 		}
 		
 		private function onNotificationsSendRequest( event:FacebookResultEvent ):void {
@@ -352,7 +352,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.USERS_GET_INFO, 
 									  addAsync( onUsersGetInfo, CALL_TIMEOUT ) );
-			service.users.getInfo();
+			//service.users.getInfo();
 		}
 		
 		private function onUsersGetInfo( event:FacebookResultEvent ):void {
@@ -362,7 +362,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.USERS_GET_INFO, 
 									  addAsync( onUsersGetLoggedInUser, CALL_TIMEOUT ) );
-			service.users.getLoggedInUser();
+			//service.users.getLoggedInUser();
 		}
 		
 		private function onUsersGetLoggedInUser( event:FacebookResultEvent ):void {
@@ -378,7 +378,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.EVENTS_GET, 
 									  addAsync( onUsersGetInfo, CALL_TIMEOUT ) );
-			service.events.get();
+			//service.events.get();
 		}
 		
 		private function onEventsGet( event:FacebookResultEvent ):void {
@@ -388,7 +388,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.EVENTS_GET_MEMBERS, 
 									  addAsync( onEventsGetMembers, CALL_TIMEOUT ) );
-			service.events.getMembers();
+			//service.events.getMembers();
 		}
 		
 		private function onEventsGetMembers( event:FacebookResultEvent ):void {
@@ -404,7 +404,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.GROUPS_GET, 
 									  addAsync( onGroupsGet, CALL_TIMEOUT ) );
-			service.groups.get();
+			//service.groups.get();
 		}
 		
 		private function onGroupsGet( event:FacebookResultEvent ):void {
@@ -414,7 +414,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.GROUPS_GET_MEMBERS, 
 									  addAsync( onGroupsGetMembers, CALL_TIMEOUT ) );
-			service.groups.getMembers();
+			//service.groups.getMembers();
 		}
 		
 		private function onGroupsGetMembers( event:FacebookResultEvent ):void {
@@ -430,7 +430,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.PHOTOS_ADD_TAG, 
 									  addAsync( onPhotosAddTag, CALL_TIMEOUT ) );
-			service.photos.addTag();
+			//service.photos.addTag();
 		}
 
 		private function onPhotosAddTag( event:FacebookResultEvent ):void {
@@ -440,7 +440,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.PHOTOS_CREATE_ALBUM, 
 									  addAsync( onPhotosCreateAlbum, CALL_TIMEOUT ) );
-			service.photos.createAlbum();
+			//service.photos.createAlbum();
 		}
 
 		private function onPhotosCreateAlbum( event:FacebookResultEvent ):void {
@@ -450,7 +450,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.PHOTOS_GET, 
 									  addAsync( onPhotosGet, CALL_TIMEOUT ) );
-			service.photos.get();
+			//service.photos.get();
 		}
 
 		private function onPhotosGet( event:FacebookResultEvent ):void {
@@ -460,7 +460,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.PHOTOS_GET_ALBUMS, 
 									  addAsync( onPhotosGetAlbums, CALL_TIMEOUT ) );
-			service.photos.getAlbums();
+			//service.photos.getAlbums();
 		}
 
 		private function onPhotosGetAlbums( event:FacebookResultEvent ):void {
@@ -470,7 +470,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.PHOTOS_GET_TAGS, 
 									  addAsync( onPhotosGetTags, CALL_TIMEOUT ) );
-			service.photos.getTags();
+			//service.photos.getTags();
 		}
 
 		private function onPhotosGetTags( event:FacebookResultEvent ):void {
@@ -480,7 +480,7 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.PHOTOS_UPLOAD, 
 									  addAsync( onPhotosUpload, CALL_TIMEOUT ) );
-			service.photos.upload();
+			//service.photos.upload();
 		}
 
 		private function onPhotosUpload( event:FacebookResultEvent ):void {
