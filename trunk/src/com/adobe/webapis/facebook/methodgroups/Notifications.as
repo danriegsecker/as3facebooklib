@@ -41,20 +41,54 @@ package com.adobe.webapis.facebook.methodgroups {
 	import flash.net.URLLoader;
 	
 		/**
-		 * Broadcast as a result of the areNotifications method being called
+		 * Broadcast as a result of the get method being called
 		 *
 		 * The event contains the following properties
 		 *	success	- Boolean indicating if the call was successful or not
-		 *	data - When success is true, contains a "notifications_areNotifications_response" string
+		 *	data - When success is true, contains a "notifications_get_response" string
 		 *		   When success is false, contains an "error" FacebookError instance
 		 *
-		 * @see #areNotifications
+		 * @see #get
 		 * @see com.adobe.service.facebook.FacebookError
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		[Event(name="notificationsAreNotifications", 
+		[Event(name="notificationsGet", 
+			 type="com.adobe.webapis.facebook.events.FacebookResultEvent")]
+	
+		/**
+		 * Broadcast as a result of the send method being called
+		 *
+		 * The event contains the following properties
+		 *	success	- Boolean indicating if the call was successful or not
+		 *	data - When success is true, contains a "notifications_send_response" string
+		 *		   When success is false, contains an "error" FacebookError instance
+		 *
+		 * @see #send
+		 * @see com.adobe.service.facebook.FacebookError
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		[Event(name="notificationsSend", 
+			 type="com.adobe.webapis.facebook.events.FacebookResultEvent")]
+	
+		/**
+		 * Broadcast as a result of the sendRequest method being called
+		 *
+		 * The event contains the following properties
+		 *	success	- Boolean indicating if the call was successful or not
+		 *	data - When success is true, contains a "notifications_sendRequest_response" string
+		 *		   When success is false, contains an "error" FacebookError instance
+		 *
+		 * @see #sendRequest
+		 * @see com.adobe.service.facebook.FacebookError
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		[Event(name="notificationsSendRequest", 
 			 type="com.adobe.webapis.facebook.events.FacebookResultEvent")]
 		
 	/**
@@ -124,14 +158,22 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * the application without any confirmation, or you can direct a user of your application 
 		 * to the URL returned by this function to email users who have not yet added your application.
 		 * 
+		 * @param to_ids Comma-separated list of recipient ids. These must be friends of the logged-in user or people who have added your application.
+		 * @param notification FBML for the notifications page.
+		 * @param email (Optional) FBML for the email. If not passed, no email will be sent.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=notifications
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function send():void {
+		public function send( to_ids:Array, notification:String, email:String = "" ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, send_result, "facebook.notifications.send", true );
+			MethodGroupHelper.invokeMethod( _service, send_result, 
+									"facebook.notifications.send", 
+									true,
+									new NameValuePair( "to_ids", to_ids.toString() ),
+									new NameValuePair( "notification", notification ),
+									new NameValuePair( "email", email ) );
 		}
 		
 		/**
@@ -161,14 +203,27 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * user of your application to the URL returned by this function to send requests 
 		 * to users who have not yet added your application.
 		 * 
+		 * @param to_ids Comma-separated list of recipient ids. These must be friends of the logged-in user or people who have added your application.
+		 * @param type The type of request/invitation - e.g. the word "event" in "1 event invitation."
+		 * @param content Content of the request/invitation. This should be FBML containing only links and the special tag <fb:req-choice url="" label="" /> to specify the buttons to be included in the request.
+		 * @param image URL of an image to show beside the request. It will be resized to be 100 pixels wide.
+		 * @param invite Whether to call this an "invitation" or a "request".
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=notifications
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function sendRequest():void {
+		public function sendRequest( to_ids:Array, type:String, content:String, image:String, invite:Boolean ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, send_result, "facebook.notifications.sendRequest", true );
+			MethodGroupHelper.invokeMethod( _service, send_result, 
+									"facebook.notifications.sendRequest", 
+									true,
+									new NameValuePair( "to_ids", to_ids.toString() ),
+									new NameValuePair( "type", type ),
+									new NameValuePair( "content", content ),
+									new NameValuePair( "image", image ),
+									new NameValuePair( "invite", invite )
+									);
 		}
 		
 		/**

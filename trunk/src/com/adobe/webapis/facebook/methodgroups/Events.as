@@ -106,14 +106,27 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * Returns all visible events according to the filters specified. This may be used 
 		 * to find all events of a user, or to query specific eids.
 		 * 
+		 * @param uid (Optional) Filter by events associated with a user with this uid.
+		 * @param eids (Optional) Filter by this list of event ids. This is a comma-separated list of eids.
+		 * @param start_time (Optional) Filter with this UTC as lower bound. A missing or zero parameter indicates no lower bound.
+		 * @param end_time (Optional) Filter with this UTC as upper bound. A missing or zero parameter indicates no upper bound.
+		 * @param rsvp_status (Optional) Filter by this RSVP status.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=events
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get():void {
+		public function get( uid:Number = -1, eids:Array = null, start_time:Date = null, end_time:Date = null, rsvp_status:String = "" ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, get_result, "facebook.events.get", true );
+			MethodGroupHelper.invokeMethod( _service, get_result, 
+									"facebook.events.get", 
+									true,
+									new NameValuePair( "uid", uid == -1 ? "" : uid.toString() ),
+									new NameValuePair( "eids", eids.toString() ),
+									// convert dates to # of milliseconds
+									new NameValuePair( "start_time", start_time == null ? "" : start_time.valueOf().toString() ),
+									new NameValuePair( "end_time", end_time == null ? "" : end_time.valueOf().toString() ),
+									new NameValuePair( "rsvp_status", rsvp_status ) );
 		}
 		
 		/**
@@ -140,14 +153,18 @@ package com.adobe.webapis.facebook.methodgroups {
 		/**
 		 * Returns membership list data associated with an event.
 		 * 
+		 * @param eid Event id.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=events
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function getMembers():void {
+		public function getMembers( eid:Number ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, getMembers_result, "facebook.events.getMembers", true );
+			MethodGroupHelper.invokeMethod( _service, getMembers_result, 
+									"facebook.events.getMembers", 
+									true,
+									new NameValuePair( "eid", eid.toString() ) );
 		}
 		
 		/**

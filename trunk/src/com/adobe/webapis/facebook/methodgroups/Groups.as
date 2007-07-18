@@ -106,14 +106,21 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * Returns all visible groups according to the filters specified. This may be used 
 		 * to find all groups of a user, or to query specific eids.
 		 * 
+		 * @param uid (Optional) Filter by events associated with a user with this uid.
+		 * @param eids (Optional) Filter by this list of event ids. This is a comma-separated list of eids.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=groups
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get():void {
+		public function get( uid:Number = -1, gids:Array = null ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, get_result, "facebook.groups.get", true );
+			MethodGroupHelper.invokeMethod( _service, get_result, 
+									"facebook.groups.get", 
+									true,
+									new NameValuePair( "uid", uid == -1 ? "" : uid.toString() ),
+									new NameValuePair( "gids", gids.toString() )
+									);
 		}
 		
 		/**
@@ -140,14 +147,19 @@ package com.adobe.webapis.facebook.methodgroups {
 		/**
 		 * Returns membership list data associated with an event.
 		 * 
+		 * @param gid Group id.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=groups
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function getMembers():void {
+		public function getMembers( gid:Number ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, getMembers_result, "facebook.groups.getMembers", true );
+			MethodGroupHelper.invokeMethod( _service, getMembers_result, 
+									"facebook.groups.getMembers", 
+									true,
+									new NameValuePair( "gid", gid.toString() )
+									);
 		}
 		
 		/**

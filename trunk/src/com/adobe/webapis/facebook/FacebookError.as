@@ -82,6 +82,18 @@ package com.adobe.webapis.facebook {
 		/** The XML-RPC request document could not be parsed */
 		public static const INVALID_XML_RPC_CALL:int = 115;
 		
+		/** Invalid album id. */
+		public static const INVALID_ALBUM_ID:int = 120;
+
+		/** Album is full. */
+		public static const ALBUM_IS_FULL:int = 321;
+
+		/** Missing or invalid image file. */
+		public static const MISSING_OR_INVALID_IMAGE_FILE:int = 324;
+
+		/** Too many unapproved photos pending. */
+		public static const TO_MANY_UNAPPROVED_PENDING:int = 325;
+		
 		private var _errorCode:int;
 		private var _errorMessage:String;
 		

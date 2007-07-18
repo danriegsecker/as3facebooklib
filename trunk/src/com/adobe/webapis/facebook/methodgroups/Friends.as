@@ -90,14 +90,21 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * each other. The first array specifies one half of each pair, the 
 		 * second array the other half; therefore, they must be of equal size.
 		 * 
+		 * @param uids1 A list of user ids matched with uids2.
+		 * @param uids2 A list of user ids matched with uids1.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=friends
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function areFriends():void {
+		public function areFriends( uids1:Array, uids2:Array ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, areFriends_result, "facebook.friends.areFriends", true );
+			MethodGroupHelper.invokeMethod( _service, areFriends_result, 
+									"facebook.friends.areFriends", 
+									true,
+									new NameValuePair( "uids1", uids1.toString() ),
+									new NameValuePair( "uids2", uids2.toString() )
+									);
 		}
 		
 		/**

@@ -157,14 +157,29 @@ package com.adobe.webapis.facebook.methodphotos {
 		 * Adds a tag with the given information to a photo. See photo uploads for a 
 		 * description of the upload workflow.
 		 * 
+		 * @param pid The photo id of the photo to be tagged.
+		 * @param tag_uid The user id of the user being tagged. Either tag_uid or tag_text must be specified.
+		 * @param tag_text Some text identifying the person being tagged. Either tag_uid or tag_text must be specified. This parameter is ignored if tag_uid is specified.
+		 * @param x The horizontal position of the tag, as a percentage from 0 to 100, from the left of the photo.
+		 * @param y The vertical position of the tag, as a percentage from 0 to 100, from the top of the photo.
+		 * @param tags A JSON-serialized array representing a list of tags to be added to the photo. If the tags parameter is specified, the x, y, tag_uid, and tag_text parameters are ignored. Each tag in the list must specify: "x", "y", and either the user id "tag_uid" or free-form "tag_text" identifying the person being tagged. 
+		 * 				An example of this is the string [{"x":"30.0","y":"30.0","tag_uid":1234567890}, {"x":"70.0","y":"70.0","tag_text":"some person"}].
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=photos
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function addTag():void {
+		public function addTag( pid:Number, tag_uid:Number, tag_text:String, x:Number, y:Number, tags:String ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, addTag_result, "facebook.photos.addTag", true );
+			MethodGroupHelper.invokeMethod( _service, addTag_result, 
+									"facebook.photos.addTag", 
+									true,
+									new NameValuePair( "pid", pid.toString() ),
+									new NameValuePair( "tag_uid", tag_uid.toString() ),
+									new NameValuePair( "tag_text", tag_text ),
+									new NameValuePair( "x", x.toString() ),
+									new NameValuePair( "y", y.toString() ),
+									new NameValuePair( "tags", tags ) );
 		}
 		
 		/**
@@ -193,14 +208,22 @@ package com.adobe.webapis.facebook.methodphotos {
 		 * description of the upload workflow. The only storable values returned from this call are 
 		 * aid and owner.
 		 * 
+		 * @param name The album name.
+		 * @param location (Optional) The album location.
+		 * @param description (Optional) The album description.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=photos
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function createAlbum():void {
+		public function createAlbum( name:String, location:String = "", description:String ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, createAlbum_result, "facebook.photos.createAlbum", true );
+			MethodGroupHelper.invokeMethod( _service, createAlbum_result, 
+									"facebook.photos.createAlbum", 
+									true,
+									new NameValuePair( "name", name ),
+									new NameValuePair( "location", location ),
+									new NameValuePair( "description", description ) );
 		}
 		
 		/**
@@ -228,14 +251,22 @@ package com.adobe.webapis.facebook.methodphotos {
 		 * Returns all visible photos according to the filters specified. This may be used 
 		 * to find all photos of a user, or to query specific eids.
 		 * 
+		 * @param subj_id (Optional) Filter by photos associated tagged with this user.
+		 * @param aid (Optional) Filter by photos in this album.
+		 * @param pids (Optional) Filter by photos in this list. This is a comma-separated list of pids.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=photos
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get():void {
+		public function get( subj_id:Number = -1, aid:Number = -1, pids:Array = null ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, get_result, "facebook.photos.get", true );
+			MethodGroupHelper.invokeMethod( _service, get_result, 
+									"facebook.photos.get", 
+									true,
+									new NameValuePair( "subj_id", subj_id == -1 ? "" : subj_id.toString() ),
+									new NameValuePair( "aid", aid == -1 ? "" : aid.toString() ),
+									new NameValuePair( "pids", pids.toString() ) );
 		}
 		
 		/**
@@ -262,14 +293,20 @@ package com.adobe.webapis.facebook.methodphotos {
 		/**
 		 * Returns membership list data associated with an event.
 		 * 
-		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=photos
+		 * @param uid (Optional) Return albums created by this user.
+		 * @param pids (Optional) Return albums with aids in this list. This is a comma-separated list of pids.
+	 	 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=photos
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function getAlbums():void {
+		public function getAlbums( uid:Number, pids:Array ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, getAlbums_result, "facebook.photos.getAlbums", true );
+			MethodGroupHelper.invokeMethod( _service, getAlbums_result, 
+									"facebook.photos.getAlbums", 
+									true,
+									new NameValuePair( "uid", uid == -1 ? "" : uid.toString() ),
+									new NameValuePair( "pids", pids.toString() ) );
 		}
 		
 		/**
@@ -296,14 +333,18 @@ package com.adobe.webapis.facebook.methodphotos {
 		/**
 		 * Returns membership list data associated with an event.
 		 * 
+		 * @param pids The list of photos from which to extract photo tags. This is a comma-separated list of pids.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=photos
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function getTags():void {
+		public function getTags( pids:Array ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, getTags_result, "facebook.photos.getTags", true );
+			MethodGroupHelper.invokeMethod( _service, getTags_result, 
+									"facebook.photos.getTags", 
+									true,
+									new NameValuePair( "pids", pids.toString() ) );
 		}
 		
 		/**
@@ -332,14 +373,22 @@ package com.adobe.webapis.facebook.methodphotos {
 		 * See photo uploads for a description of the upload workflow. The only storable 
 		 * values returned from this call are pid, aid, and owner.
 		 * 
+		 * @param aid (Optional) The album id of the destination album.
+		 * @param caption (Optional) The caption of the photo.
+		 * @param data (Optional) The raw image data for the photo.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=photos
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function upload():void {
+		public function upload( aid:Number = -1, caption:String = "", data:String ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, upload_result, "facebook.photos.upload", true );
+			MethodGroupHelper.invokeMethod( _service, upload_result, 
+									"facebook.photos.upload", 
+									true, 
+									new NameValuePair( "uid", uid == -1 ? "" : uid.toString() ),
+									new NameValuePair( "caption", caption ),
+									new NameValuePair( "data", data ) );
 		}
 		
 		/**
