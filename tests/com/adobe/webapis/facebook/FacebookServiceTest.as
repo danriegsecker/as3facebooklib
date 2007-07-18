@@ -70,7 +70,7 @@ package com.adobe.webapis.facebook {
 			// Test the "Auth" method group
 			//*********************************************************
 			// Not tested - need to have a valid api key to return successful result
-			ts.addTest( Test( new AuthTest("testAuthCreateToken") ) );
+			ts.addTest( Test( new FacebookServiceTest("testAuthCreateToken") ) );
 			// Not tested - need to have a valid token to return successful result
 			//ts.addTest( Test( new FacebookServiceAuthTest("testAuthGetSession") ) );
 
