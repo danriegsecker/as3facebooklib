@@ -33,7 +33,7 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE CODE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package com.adobe.webapis.flickr {
+package com.adobe.webapis.facebook {
 	
 	/**
 	 * User is a ValueObject for the Facebook API.
@@ -220,11 +220,11 @@ package com.adobe.webapis.flickr {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get affiliations():String {
+		public function get affiliations():Array {
 			return _affiliations;
 		}
 		
-		public function set affiliations( value:String ):void {
+		public function set affiliations( value:Array ):void {
 			_affiliations = value;
 		}
 		

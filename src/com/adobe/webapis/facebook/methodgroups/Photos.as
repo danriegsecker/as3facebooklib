@@ -33,11 +33,11 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE CODE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package com.adobe.webapis.facebook.methodphotos {
+package com.adobe.webapis.facebook.methodgroups {
 	
-	import com.adobe.webapis.facebook.photos.FacebookResultEvent;
+	import com.adobe.webapis.facebook.events.FacebookResultEvent;
 	import com.adobe.webapis.facebook.*;
-	import flash.photos.Event;
+	import flash.events.Event;
 	import flash.net.URLLoader;
 	
 		/**
@@ -216,7 +216,7 @@ package com.adobe.webapis.facebook.methodphotos {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function createAlbum( name:String, location:String = "", description:String ):void {
+		public function createAlbum( name:String, location:String = "", description:String = "" ):void {
 			// Let the Helper do the work to invoke the method			
 			MethodGroupHelper.invokeMethod( _service, createAlbum_result, 
 									"facebook.photos.createAlbum", 
@@ -319,7 +319,7 @@ package com.adobe.webapis.facebook.methodphotos {
 		 */
 		private function getAlbums_result( event:Event ):void {
 			// Create an PHOTOS_GET_MEMBERS event
-			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.PHOTOS_GET_MEMBERS );
+			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.PHOTOS_GET_ALBUMS );
 
 			// Have the Helper handle parsing the result from the server - get the data
 			// from the URLLoader which correspondes to the result from the API call
@@ -373,20 +373,23 @@ package com.adobe.webapis.facebook.methodphotos {
 		 * See photo uploads for a description of the upload workflow. The only storable 
 		 * values returned from this call are pid, aid, and owner.
 		 * 
+		 * Note: This signature is different from the facebook api because in Actionscript 
+		 * required parameters are not permitted *after* optional parameters.
+		 * 
+		 * @param data (Optional) The raw image data for the photo.
 		 * @param aid (Optional) The album id of the destination album.
 		 * @param caption (Optional) The caption of the photo.
-		 * @param data (Optional) The raw image data for the photo.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&doc=photos
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function upload( aid:Number = -1, caption:String = "", data:String ):void {
+		public function upload( data:String, aid:Number = -1, caption:String = "" ):void {
 			// Let the Helper do the work to invoke the method			
 			MethodGroupHelper.invokeMethod( _service, upload_result, 
 									"facebook.photos.upload", 
 									true, 
-									new NameValuePair( "uid", uid == -1 ? "" : uid.toString() ),
+									new NameValuePair( "aid", aid == -1 ? "" : aid.toString() ),
 									new NameValuePair( "caption", caption ),
 									new NameValuePair( "data", data ) );
 		}
