@@ -105,14 +105,45 @@ package com.adobe.webapis.facebook.methodgroups {
 		/**
 		 * Publishes a News Feed story to the user corresponding to the session_key parameter.
 		 * 
+		 * @param title The markup displayed in the feed story's title section.
+		 * @param body (Optional) The markup displayed in the feed story's body section.
+		 * @param image_1 (Optional) The URL of an image to be displayed in the News Feed story.
+		 * @param image_1_link (Optional) The URL destination after a click on the image referenced by image_1.
+		 * @param image_2 (Optional) The URL of an image to be displayed in the News Feed story.
+		 * @param image_2_link (Optional) The URL destination after a click on the image referenced by image_2.
+		 * @param image_3 (Optional) The URL of an image to be displayed in the News Feed story.
+		 * @param image_3_link (Optional) The URL destination after a click on the image referenced by image_3.
+		 * @param image_4 (Optional) The URL of an image to be displayed in the News Feed story.
+		 * @param image_4_link (Optional) The URL destination after a click on the image referenced by image_4.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&method=fbml.publishStoryToUser
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function publishStoryToUser():void {
+		public function publishStoryToUser( title:String, 
+											body:String = "", 
+											image_1:String = "",
+											image_1_link:String = "",
+											image_2:String = "",
+											image_2_link:String = "",
+											image_3:String = "",
+											image_3_link:String = "",
+											image_4:String = "",
+											image_4_link:String = "" ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, publishStoryToUser_result, "facebook.feed.publishStoryToUser", true );
+			MethodGroupHelper.invokeMethod( _service, publishStoryToUser_result, 
+									"facebook.feed.publishStoryToUser", 
+									true,
+									new NameValuePair( "title", title ),
+									new NameValuePair( "body", body ),
+									new NameValuePair( "image_1", image_1 ),
+									new NameValuePair( "image_1_link", image_1_link ),
+									new NameValuePair( "image_2", image_2 ),
+									new NameValuePair( "image_2_link", image_2_link ),
+									new NameValuePair( "image_3", image_3 ),
+									new NameValuePair( "image_3_link", image_3_link ),
+									new NameValuePair( "image_4", image_4 ),
+									new NameValuePair( "image_4_link", image_4_link ) );
 		}
 		
 		/**
@@ -140,14 +171,45 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * Publishes a Mini-Feed story to the user corresponding to the session_key parameter, and publishes 
 		 * News Feed stories to the friends of that user.
 		 * 
-		 * @see http://developers.facebook.com/documentation.php?v=1.0&method=fbml.publishActionOfUser
+		 * @param title The markup displayed in the feed story's title section.
+		 * @param body (Optional) The markup displayed in the feed story's body section.
+		 * @param image_1 (Optional) The URL of an image to be displayed in the News Feed story.
+		 * @param image_1_link (Optional) The URL destination after a click on the image referenced by image_1.
+		 * @param image_2 (Optional) The URL of an image to be displayed in the News Feed story.
+		 * @param image_2_link (Optional) The URL destination after a click on the image referenced by image_2.
+		 * @param image_3 (Optional) The URL of an image to be displayed in the News Feed story.
+		 * @param image_3_link (Optional) The URL destination after a click on the image referenced by image_3.
+		 * @param image_4 (Optional) The URL of an image to be displayed in the News Feed story.
+		 * @param image_4_link (Optional) The URL destination after a click on the image referenced by image_4.
+ 		 * @see http://developers.facebook.com/documentation.php?v=1.0&method=fbml.publishActionOfUser
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function publishActionOfUser():void {
+		public function publishActionOfUser( title:String, 
+											body:String = "", 
+											image_1:String = "",
+											image_1_link:String = "",
+											image_2:String = "",
+											image_2_link:String = "",
+											image_3:String = "",
+											image_3_link:String = "",
+											image_4:String = "",
+											image_4_link:String = "" ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, publishActionOfUser_result, "facebook.feed.publishActionOfUser", true );
+			MethodGroupHelper.invokeMethod( _service, publishActionOfUser_result, 
+									"facebook.feed.publishActionOfUser", 
+									true,
+									new NameValuePair( "title", title ),
+									new NameValuePair( "body", body ),
+									new NameValuePair( "image_1", image_1 ),
+									new NameValuePair( "image_1_link", image_1_link ),
+									new NameValuePair( "image_2", image_2 ),
+									new NameValuePair( "image_2_link", image_2_link ),
+									new NameValuePair( "image_3", image_3 ),
+									new NameValuePair( "image_3_link", image_3_link ),
+									new NameValuePair( "image_4", image_4 ),
+									new NameValuePair( "image_4_link", image_4_link ) );
 		}
 		
 		/**
