@@ -63,7 +63,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 *
 		 * The event contains the following properties
 		 *	success	- Boolean indicating if the call was successful or not
-		 *	data - When success is true, contains an "auth" GetSessionResult instance
+		 *	data - When success is true, contains an "auth" AuthSession instance
 		 *		   When success is false, contains an "error" FacebookError instance
 		 *
 		 * @see #getSession
@@ -173,7 +173,7 @@ package com.adobe.webapis.facebook.methodgroups {
 												  URLLoader( event.target ).data, 
 												  result,
 												  "auth_getSession_response",
-												  MethodGroupHelper.parseGetSessionResult );
+												  MethodGroupHelper.parseAuthSessionResult );
 			
 		}
 		

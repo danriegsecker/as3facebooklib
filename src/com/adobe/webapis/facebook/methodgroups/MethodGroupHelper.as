@@ -44,7 +44,8 @@ package com.adobe.webapis.facebook.methodgroups {
 	import flash.events.Event;
 	import flash.xml.*;
 	import flash.geom.Rectangle;
-	
+	import mx.utils.ObjectUtil;
+
 	/**
 	 * Contains helper functions for the method group classes that are
 	 * reused throughout them.
@@ -152,13 +153,17 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @tiptext
 		 */
 		internal static function processAndDispatch( service:FacebookService, response:String, result:FacebookResultEvent, propertyName:String = "", parseFunction:Function = null ):void {
+			
+			trace("processAndDispatch1")
+			
 			// Process the response to create an object for return values
 			var rsp:Object = processResponse( response, propertyName, parseFunction );
 
+			trace("processAndDispatch2: rsp = " + ObjectUtil.toString( rsp ))
 			// Copy some properties from the response to the result event
 			result.success = rsp.success;
 			result.data = rsp.data;
-
+			
 			// Notify everyone listening
 			service.dispatchEvent( result );
 		}
@@ -195,7 +200,7 @@ package com.adobe.webapis.facebook.methodgroups {
 			doc.parseXML( facebookResponse );
 			
 			trace("response: "+doc.toString());
-						
+
 			// Get the root rsp node from the document
 			var rsp:XMLNode = doc.firstChild;
 			
@@ -308,20 +313,23 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 		
 		/**
-		 * Converts an auth result XML object into an GetSessionResult instance
+		 * Converts an auth_getSession XML object into an AuthSession instance
 		 */
-		internal static function parseGetSessionResult( xml:XML ):GetSessionResult {
-			var getSessionResult:GetSessionResult = new GetSessionResult();
-			getSessionResult.session_key = xml.auth_getSession_response.session_key.toString();
-			getSessionResult.uid = xml.auth_getSession_response.uid.toString();
-			getSessionResult.expires = xml.auth_getSession_response.expires.toString();
-			return getSessionResult;
+		internal static function parseAuthSessionResult( xml:XML ):AuthSession {
+			trace("parseAuthSessionResult: xml = " + xml);
+			var authSession:AuthSession = new AuthSession();
+			authSession.session_key = xml.auth_getSession_response.session_key.toString();
+			authSession.uid = xml.auth_getSession_response.uid.toString();
+			authSession.expires = xml.auth_getSession_response.expires.toString();
+			authSession.secret = xml.auth_getSession_response.secret.toString();
+			return authSession;
 		}
 		
 		/**
 		 * Converts a auth_createToken XML object into a string (the auth_token value)
 		 */
 		internal static function parseAuthToken( xml:XML ):String {
+			trace("parseAuthToken")
 			return xml.auth_createToken_response.toString();
 		}
 		
