@@ -1,4 +1,5 @@
 #summary Welcome to the ActionScript 3 Facebook Library.
+#labels Featured
 
 = Introduction =
 
