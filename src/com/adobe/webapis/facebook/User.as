@@ -50,7 +50,7 @@ package com.adobe.webapis.facebook {
 		private var _pic:String;
 		private var _affiliations:Array;
 		private var _profile_update_time:Date;
-		private var _timezone:String;
+		private var _timezone:int;
 		private var _religion:String;
 		private var _birthday:String;
 		private var _sex:String;
@@ -250,11 +250,11 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get timezone():String {
+		public function get timezone():int {
 			return _timezone;
 		}
 		
-		public function set timezone( value:String ):void {
+		public function set timezone( value:int ):void {
 			_timezone = value;
 		}
 		

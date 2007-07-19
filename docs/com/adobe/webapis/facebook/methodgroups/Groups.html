@@ -67,7 +67,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#get()">get</a>(uid:Number = -1, gids:Array = null):void</div>
+<a class="signatureLink" href="#get()">get</a>(uid:int = -1, gids:Array = null):void</div>
 <div class="summaryTableDescription">
    Returns all visible groups according to the filters specified.</div>
 </td><td class="summaryTableOwnerCol">Groups</td>
@@ -75,7 +75,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#getMembers()">getMembers</a>(gid:Number):void</div>
+<a class="signatureLink" href="#getMembers()">getMembers</a>(gid:int):void</div>
 <div class="summaryTableDescription">
    Returns membership list data associated with an event.</div>
 </td><td class="summaryTableOwnerCol">Groups</td>
@@ -151,14 +151,14 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function get(uid:Number = -1, gids:Array = null):void</code><p>
+<code>public function get(uid:int = -1, gids:Array = null):void</code><p>
    Returns all visible groups according to the filters specified. This may be used 
    to find all groups of a user, or to query specific eids.
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">uid</span>:Number</code> (default = <code>-1</code>)<code></code> &mdash; (Optional) Filter by events associated with a user with this uid.
+<td width="20px"></td><td><code><span class="label">uid</span>:int</code> (default = <code>-1</code>)<code></code> &mdash; (Optional) Filter by events associated with a user with this uid.
    </td>
 </tr>
 <tr>
@@ -183,13 +183,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function getMembers(gid:Number):void</code><p>
+<code>public function getMembers(gid:int):void</code><p>
    Returns membership list data associated with an event.
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">gid</span>:Number</code> &mdash; Group id.
+<td width="20px"></td><td><code><span class="label">gid</span>:int</code> &mdash; Group id.
    </td>
 </tr>
 </table>

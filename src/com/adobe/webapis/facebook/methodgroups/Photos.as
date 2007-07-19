@@ -169,7 +169,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function addTag( pid:Number, tag_uid:Number, tag_text:String, x:Number, y:Number, tags:String ):void {
+		public function addTag( pid:int, tag_uid:int, tag_text:String, x:Number, y:Number, tags:String ):void {
 			// Let the Helper do the work to invoke the method			
 			MethodGroupHelper.invokeMethod( _service, addTag_result, 
 									"facebook.photos.addTag", 
@@ -259,7 +259,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get( subj_id:Number = -1, aid:Number = -1, pids:Array = null ):void {
+		public function get( subj_id:int = -1, aid:int = -1, pids:Array = null ):void {
 			// Let the Helper do the work to invoke the method			
 			MethodGroupHelper.invokeMethod( _service, get_result, 
 									"facebook.photos.get", 
@@ -287,7 +287,7 @@ package com.adobe.webapis.facebook.methodgroups {
 												  URLLoader( event.target ).data, 
 												  result,
 												  "photos_get_response",
-												  MethodGroupHelper.parsePhotosGet );
+												  MethodGroupHelper.parsePhotosList );
 		}
 		
 		/**
@@ -300,7 +300,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function getAlbums( uid:Number, pids:Array ):void {
+		public function getAlbums( uid:int, pids:Array ):void {
 			// Let the Helper do the work to invoke the method			
 			MethodGroupHelper.invokeMethod( _service, getAlbums_result, 
 									"facebook.photos.getAlbums", 
@@ -384,7 +384,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function upload( data:String, aid:Number = -1, caption:String = "" ):void {
+		public function upload( data:String, aid:int = -1, caption:String = "" ):void {
 			// Let the Helper do the work to invoke the method			
 			MethodGroupHelper.invokeMethod( _service, upload_result, 
 									"facebook.photos.upload", 
