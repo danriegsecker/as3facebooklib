@@ -53,8 +53,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				*
 				*	http://developers.facebook.com/documentation.php?v=1.0&doc=auth
 				*/
-				FacebookServiceTest.API_KEY = "838249a75243d1ffb78d47bc14096357"; //Make sure to set this
-				FacebookServiceTest.SECRET = "94ae500c8a7720942422d48a46ebfae0"; //Make sure to set this
+				FacebookServiceTest.API_KEY = ""; //Make sure to set this
+				FacebookServiceTest.SECRET = ""; //Make sure to set this
 
 
 				testRunner.test = createSuite();
