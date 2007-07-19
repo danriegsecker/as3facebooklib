@@ -36,24 +36,23 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.adobe.webapis.facebook {
 	
 	/**
-	 * GetSessionResult is a ValueObject for the Facebook API.
+	 * AuthSession is a ValueObject for the Facebook API.
 	 */
-	public class GetSessionResult {
+	public class AuthSession {
 		
 		private var _session_key:String;
 		private var _uid:String;
 		private var _expires:String;
+		private var _secret:String;
 		
 		/**
-		 * Construct a new GetSessionResult instance
+		 * Construct a new AuthSession instance
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function GetSessionResult() {
-			// Assume no permission
-			//perms = AuthPerm.NONE;
+		public function AuthSession() {
 		}	
 		
 		/**
@@ -99,6 +98,21 @@ package com.adobe.webapis.facebook {
 		
 		public function set expires( value:String ):void {
 			_expires = value;
+		}
+		
+		/**
+		 * The secret for the logged in user
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get secret():String {
+			return _secret;
+		}
+		
+		public function set secret( value:String ):void {
+			_secret = value;
 		}
 		
 	}
