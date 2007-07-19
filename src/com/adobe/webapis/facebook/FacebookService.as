@@ -377,7 +377,7 @@ package com.adobe.webapis.facebook {
 			
 			var auth_url:String = AUTH_END_POINT;
 			auth_url += "api_key=" + api_key;
-			auth_url += "v=" + version;
+			auth_url += "&v=" + version;
 			auth_url += "&auth_token=" + auth_token; // required for desktop apps
 			//auth_url += "&api_sig=" + MD5.hash( sig );
 			
