@@ -93,6 +93,24 @@ package com.adobe.webapis.facebook {
 
 		/** Too many unapproved photos pending. */
 		public static const TO_MANY_UNAPPROVED_PENDING:int = 325;
+
+		/** Error while parsing FQL statement. */
+		public static const ERROR_PARSING_FQL:int = 601;
+
+		/** The field you requested does not exist. */
+		public static const INVALID_FIELD:int = 602;
+
+		/** The table you requested does not exist. */
+		public static const INVALID_TABLE:int = 603;
+
+		/** Your statement is not indexable. */
+		public static const STATEMENT_IS_NOT_INDEXABLE:int = 604;
+
+		/** The function you called does not exist. */
+		public static const INVALID_FUNCTION:int = 605;
+
+		/** Wrong number of arguments passed into the function. */
+		public static const WRONG_NUMBER_OF_ARGUMENTS:int = 606;
 		
 		private var _errorCode:int;
 		private var _errorMessage:String;

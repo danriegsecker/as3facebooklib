@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!--
+/*
 Adobe Systems Incorporated(r) Source Code License Agreement
-Copyright(c) 2005 Adobe Systems Incorporated, Inc. All rights reserved.
+Copyright(c) 2005 Adobe Systems Incorporated. All rights reserved.
 	
 Please read this Source Code License Agreement carefully before using
 the source code.
 	
-Adobe Systems Incorporated, Inc. grants to you a perpetual, worldwide, non-exclusive,
+Adobe Systems Incorporated grants to you a perpetual, worldwide, non-exclusive,
 no-charge, royalty-free, irrevocable copyright license, to reproduce,
 prepare derivative works of, publicly display, publicly perform, and
 distribute this source code and such derivative works in source or
@@ -33,47 +31,74 @@ OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE CODE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
+*/
 
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*"
-				xmlns:flexunit="flexunit.flexui.*"
-				creationComplete="onCreationComplete()">
+package com.adobe.webapis.facebook {
 	
-	<mx:Script>
-		<![CDATA[
-			
-			import com.adobe.webapis.facebook.*;
-			import flexunit.framework.TestSuite;
-			
-			private function onCreationComplete():void
-			{
-				/**
-				*	You need to provide your own API keys here in order for the
-				*	test to run.
-				*
-				*	http://developers.facebook.com/documentation.php?v=1.0&doc=auth
-				*/
-				FacebookServiceTest.API_KEY = "838249a75243d1ffb78d47bc14096357"; //Make sure to set this
-				FacebookServiceTest.SECRET = "94ae500c8a7720942422d48a46ebfae0"; //Make sure to set this
+	/**
+	 * EventMember is a ValueObject for the Facebook API.
+	 */
+	public class EventMember {
+		
+		private var _uid:int;
+		private var _eid:int;
+		private var _rsvp_status:String;
 
-
-				testRunner.test = createSuite();
-				testRunner.startTest();
-			}
-			
-			private function createSuite():TestSuite {
-				var ts:TestSuite = new TestSuite();
-				
-				ts.addTest( NameValuePairTest.suite() );
-				ts.addTest( FacebookErrorTest.suite() );
-				ts.addTest( ValueObjectTest.suite() );
-				ts.addTest( FacebookServiceTest.suite() );
-				
-				return ts;	
-			}
-			
-		]]>
-	</mx:Script>
-	<flexunit:TestRunnerBase id="testRunner" width="100%" height="100%">
-	</flexunit:TestRunnerBase>
-</mx:Application>
+		/**
+		 * Construct a new EventMember instance
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function EventMember() {
+		}	
+		
+		/**
+		 * The uid of the event membership
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get uid():int {
+			return _uid;
+		}
+		
+		public function set uid( value:int ):void {
+			_uid = value;
+		}
+		
+		/**
+		 * The eid of the event membership
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get eid():int {
+			return _eid;
+		}
+		
+		public function set eid( value:int ):void {
+			_eid = value;
+		}
+		
+		/**
+		 * The rsvp_status of the event membership
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get rsvp_status():String {
+			return _rsvp_status;
+		}
+		
+		public function set rsvp_status( value:String ):void {
+			_rsvp_status = value;
+		}
+		
+	}
+	
+}

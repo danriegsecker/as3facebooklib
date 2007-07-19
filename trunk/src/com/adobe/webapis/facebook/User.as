@@ -40,7 +40,7 @@ package com.adobe.webapis.facebook {
 	 */
 	public class User {
 		
-		private var _uid:String;
+		private var _uid:int;
 		private var _first_name:String;
 		private var _last_name:String;
 		private var _name:String;
@@ -49,7 +49,7 @@ package com.adobe.webapis.facebook {
 		private var _pic_square:String;
 		private var _pic:String;
 		private var _affiliations:Array;
-		private var _profile_update_time:String;
+		private var _profile_update_time:Date;
 		private var _timezone:String;
 		private var _religion:String;
 		private var _birthday:String;
@@ -58,12 +58,12 @@ package com.adobe.webapis.facebook {
 		private var _meeting_sex:Array;
 		private var _meeting_for:Array;
 		private var _relationship_status:String;
-		private var _significant_other_id:String;
+		private var _significant_other_id:int;
 		private var _political:String;
 		private var _current_location:String;
 		private var _activities:String;
 		private var _interests:String;
-		private var _is_app_user:String;
+		private var _is_app_user:Boolean;
 		private var _music:String;
 		private var _tv:String;
 		private var _movies:String;
@@ -76,7 +76,7 @@ package com.adobe.webapis.facebook {
 		private var _notes_count:String;
 		private var _wall_count:String;
 		private var _status:String;
-		private var _has_added_app:String;
+		private var _has_added_app:Boolean;
 
 		/**
 		 * Construct a new User instance
@@ -100,11 +100,11 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get uid():String {
+		public function get uid():int {
 			return _uid;
 		}
 		
-		public function set uid( value:String ):void {
+		public function set uid( value:int ):void {
 			_uid = value;
 		}
 		
@@ -235,11 +235,11 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get profile_update_time():String {
+		public function get profile_update_time():Date {
 			return _profile_update_time;
 		}
 		
-		public function set profile_update_time( value:String ):void {
+		public function set profile_update_time( value:Date ):void {
 			_profile_update_time = value;
 		}
 		
@@ -370,11 +370,11 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get significant_other_id():String {
+		public function get significant_other_id():int {
 			return _significant_other_id;
 		}
 		
-		public function set significant_other_id( value:String ):void {
+		public function set significant_other_id( value:int ):void {
 			_significant_other_id = value;
 		}
 		
@@ -445,11 +445,11 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get is_app_user():String {
+		public function get is_app_user():Boolean {
 			return _is_app_user;
 		}
 		
-		public function set is_app_user( value:String ):void {
+		public function set is_app_user( value:Boolean ):void {
 			_is_app_user = value;
 		}
 		
@@ -640,11 +640,11 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get has_added_app():String {
+		public function get has_added_app():Boolean {
 			return _has_added_app;
 		}
 		
-		public function set has_added_app( value:String ):void {
+		public function set has_added_app( value:Boolean ):void {
 			_has_added_app = value;
 		}
 
