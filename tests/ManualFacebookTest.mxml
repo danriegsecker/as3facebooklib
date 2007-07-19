@@ -396,11 +396,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		            <mx:FormHeading label="Enter your application api key and secret below:"/>
 		
 		            <mx:FormItem label="API KEY">
-		                <mx:TextInput id="apiKeyTextInput" width="200" text="838249a75243d1ffb78d47bc14096357" />
+		                <mx:TextInput id="apiKeyTextInput" width="200" />
 		            </mx:FormItem>
 		
 		            <mx:FormItem label="SECRET">
-		                <mx:TextInput id="secretTextInput" width="200" text="94ae500c8a7720942422d48a46ebfae0" />
+		                <mx:TextInput id="secretTextInput" width="200" />
 		            </mx:FormItem>
 
 		            <mx:FormItem>
