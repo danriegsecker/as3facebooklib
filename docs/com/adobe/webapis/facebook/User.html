@@ -100,7 +100,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">User</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#has_added_app">has_added_app</a> : String<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#has_added_app">has_added_app</a> : Boolean<div class="summaryTableDescription">
    The has_added_app of the user
       </div>
 </td><td class="summaryTableOwnerCol">User</td>
@@ -124,7 +124,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">User</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#is_app_user">is_app_user</a> : String<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#is_app_user">is_app_user</a> : Boolean<div class="summaryTableDescription">
    The is_app_user of the user
       </div>
 </td><td class="summaryTableOwnerCol">User</td>
@@ -202,7 +202,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">User</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#profile_update_time">profile_update_time</a> : String<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#profile_update_time">profile_update_time</a> : Date<div class="summaryTableDescription">
    The profile_update_time of the user
       </div>
 </td><td class="summaryTableOwnerCol">User</td>
@@ -232,7 +232,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">User</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#significant_other_id">significant_other_id</a> : String<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#significant_other_id">significant_other_id</a> : int<div class="summaryTableDescription">
    The significant_other_id of the user
       </div>
 </td><td class="summaryTableOwnerCol">User</td>
@@ -256,7 +256,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">User</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#uid">uid</a> : String<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#uid">uid</a> : int<div class="summaryTableDescription">
    The uid of the user
       </div>
 </td><td class="summaryTableOwnerCol">User</td>
@@ -435,13 +435,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>has_added_app:String</code>&nbsp;&nbsp;[read-write]<p>
+<code>has_added_app:Boolean</code>&nbsp;&nbsp;[read-write]<p>
    The has_added_app of the user
       </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get has_added_app():String</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get has_added_app():Boolean</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set has_added_app(value:String):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set has_added_app(value:Boolean):void</code>
 <br>
 </div>
 <a name="hometown_location"></a>
@@ -499,13 +499,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>is_app_user:String</code>&nbsp;&nbsp;[read-write]<p>
+<code>is_app_user:Boolean</code>&nbsp;&nbsp;[read-write]<p>
    The is_app_user of the user
       </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get is_app_user():String</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get is_app_user():Boolean</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set is_app_user(value:String):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set is_app_user(value:Boolean):void</code>
 <br>
 </div>
 <a name="last_name"></a>
@@ -707,13 +707,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>profile_update_time:String</code>&nbsp;&nbsp;[read-write]<p>
+<code>profile_update_time:Date</code>&nbsp;&nbsp;[read-write]<p>
    The profile_update_time of the user
       </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get profile_update_time():String</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get profile_update_time():Date</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set profile_update_time(value:String):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set profile_update_time(value:Date):void</code>
 <br>
 </div>
 <a name="quotes"></a>
@@ -787,13 +787,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>significant_other_id:String</code>&nbsp;&nbsp;[read-write]<p>
+<code>significant_other_id:int</code>&nbsp;&nbsp;[read-write]<p>
    The significant_other_id of the user
       </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get significant_other_id():String</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get significant_other_id():int</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set significant_other_id(value:String):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set significant_other_id(value:int):void</code>
 <br>
 </div>
 <a name="status"></a>
@@ -851,13 +851,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>uid:String</code>&nbsp;&nbsp;[read-write]<p>
+<code>uid:int</code>&nbsp;&nbsp;[read-write]<p>
    The uid of the user
       </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get uid():String</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get uid():int</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set uid(value:String):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set uid(value:int):void</code>
 <br>
 </div>
 <a name="wall_count"></a>
