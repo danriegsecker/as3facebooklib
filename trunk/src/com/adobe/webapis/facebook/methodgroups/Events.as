@@ -116,7 +116,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get( uid:Number = -1, eids:Array = null, start_time:Date = null, end_time:Date = null, rsvp_status:String = "" ):void {
+		public function get( uid:int = -1, eids:Array = null, start_time:Date = null, end_time:Date = null, rsvp_status:String = "" ):void {
 			// Let the Helper do the work to invoke the method			
 			MethodGroupHelper.invokeMethod( _service, get_result, 
 									"facebook.events.get", 
@@ -159,7 +159,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function getMembers( eid:Number ):void {
+		public function getMembers( eid:int ):void {
 			// Let the Helper do the work to invoke the method			
 			MethodGroupHelper.invokeMethod( _service, getMembers_result, 
 									"facebook.events.getMembers", 

@@ -75,7 +75,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#setFBML()">setFBML</a>(markup:String, uid:Number = -1):void</div>
+<a class="signatureLink" href="#setFBML()">setFBML</a>(markup:String, uid:int = -1):void</div>
 <div class="summaryTableDescription">
    Sets the FBML for a user's profile, including the content for both the profile 
    box and the profile actions.</div>
@@ -169,7 +169,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function setFBML(markup:String, uid:Number = -1):void</code><p>
+<code>public function setFBML(markup:String, uid:int = -1):void</code><p>
    Sets the FBML for a user's profile, including the content for both the profile 
    box and the profile actions.
    
@@ -183,7 +183,7 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">uid</span>:Number</code> (default = <code>-1</code>)<code></code> &mdash; (Optional) The user whose profile is to be updated. Not allowed for desktop applications (since the application secret is essentially public).
+<td width="20px"></td><td><code><span class="label">uid</span>:int</code> (default = <code>-1</code>)<code></code> &mdash; (Optional) The user whose profile is to be updated. Not allowed for desktop applications (since the application secret is essentially public).
    </td>
 </tr>
 </table>

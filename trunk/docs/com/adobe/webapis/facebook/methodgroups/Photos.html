@@ -67,7 +67,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#addTag()">addTag</a>(pid:Number, tag_uid:Number, tag_text:String, x:Number, y:Number, tags:String):void</div>
+<a class="signatureLink" href="#addTag()">addTag</a>(pid:int, tag_uid:int, tag_text:String, x:Number, y:Number, tags:String):void</div>
 <div class="summaryTableDescription">
    Adds a tag with the given information to a photo.</div>
 </td><td class="summaryTableOwnerCol">Photos</td>
@@ -83,7 +83,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#get()">get</a>(subj_id:Number = -1, aid:Number = -1, pids:Array = null):void</div>
+<a class="signatureLink" href="#get()">get</a>(subj_id:int = -1, aid:int = -1, pids:Array = null):void</div>
 <div class="summaryTableDescription">
    Returns all visible photos according to the filters specified.</div>
 </td><td class="summaryTableOwnerCol">Photos</td>
@@ -91,7 +91,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#getAlbums()">getAlbums</a>(uid:Number, pids:Array):void</div>
+<a class="signatureLink" href="#getAlbums()">getAlbums</a>(uid:int, pids:Array):void</div>
 <div class="summaryTableDescription">
    Returns membership list data associated with an event.</div>
 </td><td class="summaryTableOwnerCol">Photos</td>
@@ -107,7 +107,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#upload()">upload</a>(data:String, aid:Number = -1, caption:String = ""):void</div>
+<a class="signatureLink" href="#upload()">upload</a>(data:String, aid:int = -1, caption:String = ""):void</div>
 <div class="summaryTableDescription">
    Uploads a photo owned by the current session user and returns the new photo.</div>
 </td><td class="summaryTableOwnerCol">Photos</td>
@@ -222,21 +222,21 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function addTag(pid:Number, tag_uid:Number, tag_text:String, x:Number, y:Number, tags:String):void</code><p>
+<code>public function addTag(pid:int, tag_uid:int, tag_text:String, x:Number, y:Number, tags:String):void</code><p>
    Adds a tag with the given information to a photo. See photo uploads for a 
    description of the upload workflow.
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">pid</span>:Number</code> &mdash; The photo id of the photo to be tagged.
+<td width="20px"></td><td><code><span class="label">pid</span>:int</code> &mdash; The photo id of the photo to be tagged.
    </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">tag_uid</span>:Number</code> &mdash; The user id of the user being tagged. Either tag_uid or tag_text must be specified.
+<td width="20px"></td><td><code><span class="label">tag_uid</span>:int</code> &mdash; The user id of the user being tagged. Either tag_uid or tag_text must be specified.
    </td>
 </tr>
 <tr>
@@ -323,21 +323,21 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function get(subj_id:Number = -1, aid:Number = -1, pids:Array = null):void</code><p>
+<code>public function get(subj_id:int = -1, aid:int = -1, pids:Array = null):void</code><p>
    Returns all visible photos according to the filters specified. This may be used 
    to find all photos of a user, or to query specific eids.
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">subj_id</span>:Number</code> (default = <code>-1</code>)<code></code> &mdash; (Optional) Filter by photos associated tagged with this user.
+<td width="20px"></td><td><code><span class="label">subj_id</span>:int</code> (default = <code>-1</code>)<code></code> &mdash; (Optional) Filter by photos associated tagged with this user.
    </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">aid</span>:Number</code> (default = <code>-1</code>)<code></code> &mdash; (Optional) Filter by photos in this album.
+<td width="20px"></td><td><code><span class="label">aid</span>:int</code> (default = <code>-1</code>)<code></code> &mdash; (Optional) Filter by photos in this album.
    </td>
 </tr>
 <tr>
@@ -362,13 +362,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function getAlbums(uid:Number, pids:Array):void</code><p>
+<code>public function getAlbums(uid:int, pids:Array):void</code><p>
    Returns membership list data associated with an event.
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">uid</span>:Number</code> &mdash; (Optional) Return albums created by this user.
+<td width="20px"></td><td><code><span class="label">uid</span>:int</code> &mdash; (Optional) Return albums created by this user.
    </td>
 </tr>
 <tr>
@@ -417,7 +417,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function upload(data:String, aid:Number = -1, caption:String = ""):void</code><p>
+<code>public function upload(data:String, aid:int = -1, caption:String = ""):void</code><p>
    Uploads a photo owned by the current session user and returns the new photo. 
    See photo uploads for a description of the upload workflow. The only storable 
    values returned from this call are pid, aid, and owner.
@@ -435,7 +435,7 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">aid</span>:Number</code> (default = <code>-1</code>)<code></code> &mdash; (Optional) The album id of the destination album.
+<td width="20px"></td><td><code><span class="label">aid</span>:int</code> (default = <code>-1</code>)<code></code> &mdash; (Optional) The album id of the destination album.
    </td>
 </tr>
 <tr>

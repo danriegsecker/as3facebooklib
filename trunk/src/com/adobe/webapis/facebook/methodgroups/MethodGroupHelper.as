@@ -340,10 +340,28 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 		
 		/**
-		 * Converts a photos_get XML object into a string (the photos_get value)
+		 * Converts a photos_get XML object into an array of Photo instances
 		 */
-		internal static function parsePhotosGet( xml:XML ):String {
-			return xml.photos_get_response.toString();
+		internal static function parsePhotosList( xml:XML ):Array {
+			
+			var photos:Array = new Array();
+			
+			for each ( var p:XML in xml.photos_get_response.photo ) {
+				var photo:Photo = new Photo();
+				photo.pid = parseInt( p.pid );
+				photo.aid = parseInt( p.aid );
+				photo.owner = parseInt( p.owner );
+				photo.src = p.src.toString();
+				photo.src_big = p.src_big.toString();
+				photo.src_small = p.src_small.toString();
+				photo.link = p.link.toString();
+				photo.caption = p.caption.toString();
+				photo.created = stringToDate( p.created.toString() );
+				
+				photos.push( photo );
+			}
+			
+			return photos;
 		}
 		
 		/**

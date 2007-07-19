@@ -113,7 +113,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function setFBML( markup:String, uid:Number = -1 ):void {
+		public function setFBML( markup:String, uid:int = -1 ):void {
 			// Let the Helper do the work to invoke the method			
 			MethodGroupHelper.invokeMethod( _service, setFBML_result, 
 									"facebook.profile.setFBML", 

@@ -42,8 +42,14 @@ package com.adobe.webapis.facebook {
 	import flash.net.URLLoader;
 	
 	/**
-	 * The FacebookService class abstracts the Facebook API found
-	 * at http://developers.facebook.com
+	 * Class that provides an ActionScript 3 API to the Facebook platform.
+	 * 
+	 * @see http://developers.facebook.com
+	 * @langversion ActionScript 3.0
+	 * @playerversion Flash 8.5
+	 * @tiptext
+	 *
+ 	 * @author Keith Salisbury, www.globalkeith.com
 	 */
 	public class FacebookService extends URLLoaderBase {
 		

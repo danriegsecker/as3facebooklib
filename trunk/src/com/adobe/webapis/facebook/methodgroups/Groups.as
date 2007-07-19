@@ -113,7 +113,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get( uid:Number = -1, gids:Array = null ):void {
+		public function get( uid:int = -1, gids:Array = null ):void {
 			// Let the Helper do the work to invoke the method			
 			MethodGroupHelper.invokeMethod( _service, get_result, 
 									"facebook.groups.get", 
@@ -153,7 +153,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function getMembers( gid:Number ):void {
+		public function getMembers( gid:int ):void {
 			// Let the Helper do the work to invoke the method			
 			MethodGroupHelper.invokeMethod( _service, getMembers_result, 
 									"facebook.groups.getMembers", 
