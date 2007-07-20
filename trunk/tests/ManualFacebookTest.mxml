@@ -270,6 +270,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 						break;
 
 					case "facebook.friends.get":
+						service.addEventListener( FacebookResultEvent.FRIENDS_GET, genericResponseHandler );
+						service.friends.get();
 						break;
 
 					case "facebook.friends.getAppUsers":
@@ -385,7 +387,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	    <mx:DividedBox direction="vertical" width="100%" height="100%">
 
-			<mx:ViewStack id="viewStack" borderStyle="solid" width="100%" height="80%">
+			<mx:ViewStack id="viewStack" borderStyle="solid" width="100%" height="40%">
 			
 			    <mx:Canvas id="welcomePanel" label="Enter Authentication Token" width="100%" height="100%">
 					
@@ -485,7 +487,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 			</mx:ViewStack>
 			    
-			<mx:TextArea id="debug" width="100%" height="20%" text="" />
+			<mx:TextArea id="debug" width="100%" height="60%" text="" />
 
 		</mx:DividedBox>
 	</mx:Panel>
