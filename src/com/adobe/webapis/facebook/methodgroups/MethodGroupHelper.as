@@ -53,7 +53,9 @@ package com.adobe.webapis.facebook.methodgroups {
 	internal class MethodGroupHelper {
 	
 		internal static var facebook:Namespace = new Namespace("http://api.facebook.com/1.0/");
-
+		
+		internal static var call_id:int = 0;
+		
 		/**
 		 * Reusable method that the "method group" classes can call to invoke a
 		 * method on the API.
@@ -78,10 +80,10 @@ package com.adobe.webapis.facebook.methodgroups {
 			// these alphabetically
 			var args:Array = new Array();
 			
+			args.push( new NameValuePair( "call_id", String(call_id++) ) );
 			args.push( new NameValuePair( "v", service.version ) );
 			args.push( new NameValuePair( "method", method ) );
 			args.push( new NameValuePair( "api_key", service.api_key ) );
-			
 			
 			// Loop over the params and add them as arguments
 			for ( var i:int = 0; i < params.length; i++ ) {
@@ -93,26 +95,19 @@ package com.adobe.webapis.facebook.methodgroups {
 					args.push( new NameValuePair( "param" + i, params[i].toString() ) );
 				}
 			}
-			
-			// If a user is authenticated, automatically add their auth_token
-			if ( service.auth_token ) {
-				args.push( new NameValuePair( "auth_token", service.auth_token ) );
+
+			// If a user is authenticated, automatically add their session_key
+			if ( service.session_key ) {
+				args.push( new NameValuePair( "session_key", service.session_key ) );
 				// auto-sign the call because the user is authenticated
 				signed = true;
 			}
 			
-			// Sign the call if we have to, or if the user is logged in
+			// Sign the call
 			if ( signed ) {
 				
 				// sign the call according to the documentation
 				// here: http://developers.facebook.com/documentation.php?v=1.0&doc=auth
-				
-				/* FROM FACEBOOK:
-				args = array of args to the request, formatted in arg=val pairs
-				sorted_array = alphabetically_sort_array_by_keys(args);
-				request_str = concatenate_in_order(sorted_array);
-				signature = md5(concatenate(request_str, secret))
-				*/
 				
 				args.sortOn( "name" );
 				var sig:String = "";
@@ -133,6 +128,8 @@ package com.adobe.webapis.facebook.methodgroups {
 			// Use the "internal" facebookservice namespace to be able to
 			// access the urlLoader so we can make the request.
 			var loader:URLLoader = service.facebookservice_internal::urlLoader;
+
+			trace("URL:" + FacebookService.END_POINT + query);
 
 			// Construct a url request with our query string and invoke
 			// the Facebook method
