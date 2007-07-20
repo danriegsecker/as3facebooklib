@@ -378,111 +378,114 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		]]>
 	</mx:Script>
 
-     <mx:Panel title="Manual Facebook Test" height="95%" width="95%" 
-         paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10">
-
-        <mx:ViewStack id="viewStack" borderStyle="solid" width="100%" height="80%">
-
-            <mx:Canvas id="welcomePanel" label="Enter Authentication Token" width="100%" height="100%">
-				
-				<mx:Form width="100%" height="100%">
-		            <mx:FormHeading label="Enter your application api key and secret below:"/>
+	 <mx:Panel title="Manual Facebook Test" height="100%" width="100%" 
+	     paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10">
 		
-		            <mx:FormItem label="API KEY">
-		                <mx:TextInput id="apiKeyTextInput" width="200" text="3a3d6af5971ec898b54af6248b376731" />
-		            </mx:FormItem>
-		
-		            <mx:FormItem label="SECRET">
-		                <mx:TextInput id="secretTextInput" width="200" text="71d863de45013ddda8d72dea525e0a1c" />
-		            </mx:FormItem>
+	    <mx:DividedBox direction="vertical" width="100%" height="100%">
 
-		            <mx:FormItem>
-				        <mx:Button label="Login" click="startLoginSequence();"/>
-		            </mx:FormItem>
-		        </mx:Form>
-
-            </mx:Canvas>
-
-            <mx:Canvas id="authTokenPanel" label="Enter Authentication Token" width="100%" height="100%">
-				<mx:Form width="100%" height="100%">
-		            <mx:FormHeading label="Enter your authentication token here and click continue:"/>
-		            <mx:FormItem label="Auth Token">
-		                <mx:TextInput id="authTokenTextInput" width="200"/>
-		            </mx:FormItem>
-		            <mx:FormItem>
-				        <mx:Button label="Continue" click="getSession();"/>
-		            </mx:FormItem>
-		        </mx:Form>
-            </mx:Canvas>
-
-            <mx:Canvas id="sessionPanel" label="In Session" width="100%" height="100%">
-				<mx:HBox width="100%">
+			<mx:ViewStack id="viewStack" borderStyle="solid" width="100%" height="80%">
+			
+			    <mx:Canvas id="welcomePanel" label="Enter Authentication Token" width="100%" height="100%">
 					
-					<mx:HBox horizontalAlign="left" width="50%" height="100%" verticalAlign="bottom">
-						<mx:Label text="Select method to call:" />
-						<mx:ComboBox id="method">
-							<mx:dataProvider>
-								<mx:Array>
-									<mx:String>facebook.fbml.refreshImgSrc</mx:String>
-									<mx:String>facebook.fbml.refreshRefUrl</mx:String>
-									<mx:String>facebook.fbml.setRefHandle</mx:String>
-									<mx:String>facebook.feed.publishStoryToUser</mx:String>
-									<mx:String>facebook.feed.publishActionOfUser</mx:String>
-									<mx:String>facebook.fql.query</mx:String>
-									<mx:String>facebook.friends.areFriends</mx:String>
-									<mx:String>facebook.friends.get</mx:String>
-									<mx:String>facebook.friends.getAppUsers</mx:String>
-									<mx:String>facebook.notifications.get</mx:String>
-									<mx:String>facebook.notifications.send</mx:String>
-									<mx:String>facebook.notifications.sendRequest</mx:String>
-									<mx:String>facebook.profile.setFBML</mx:String>
-									<mx:String>facebook.profile.getFBML</mx:String>
-									<mx:String>facebook.users.getInfo</mx:String>
-									<mx:String>facebook.users.getLoggedInUser</mx:String>
-									<mx:String>facebook.events.get</mx:String>
-									<mx:String>facebook.events.getMembers</mx:String>
-									<mx:String>facebook.groups.get</mx:String>
-									<mx:String>facebook.groups.getMembers</mx:String>
-									<mx:String>facebook.photos.addTag</mx:String>
-									<mx:String>facebook.photos.createAlbum</mx:String>
-									<mx:String>facebook.photos.get</mx:String>
-									<mx:String>facebook.photos.getAlbums</mx:String>
-									<mx:String>facebook.photos.getTags</mx:String>
-									<!--mx:String>facebook.photos.upload</mx:String-->
-									<mx:String>facebook.users.getInfo</mx:String>
-									<mx:String>facebook.users.getLoggedInUser</mx:String>
-								</mx:Array>				
-							</mx:dataProvider>
-						</mx:ComboBox>
+					<mx:Form width="100%" height="100%">
+			            <mx:FormHeading label="Enter your application api key and secret below:"/>
+			
+			            <mx:FormItem label="API KEY">
+			                <mx:TextInput id="apiKeyTextInput" width="200" text="3a3d6af5971ec898b54af6248b376731" />
+			            </mx:FormItem>
+			
+			            <mx:FormItem label="SECRET">
+			                <mx:TextInput id="secretTextInput" width="200" text="71d863de45013ddda8d72dea525e0a1c" />
+			            </mx:FormItem>
+			
+			            <mx:FormItem>
+					        <mx:Button label="Login" click="startLoginSequence();"/>
+			            </mx:FormItem>
+			        </mx:Form>
+			
+			    </mx:Canvas>
+			
+			    <mx:Canvas id="authTokenPanel" label="Enter Authentication Token" width="100%" height="100%">
+					<mx:Form width="100%" height="100%">
+			            <mx:FormHeading label="Enter your authentication token here and click continue:"/>
+			            <mx:FormItem label="Auth Token">
+			                <mx:TextInput id="authTokenTextInput" width="200"/>
+			            </mx:FormItem>
+			            <mx:FormItem>
+					        <mx:Button label="Continue" click="getSession();"/>
+			            </mx:FormItem>
+			        </mx:Form>
+			    </mx:Canvas>
+			
+			    <mx:Canvas id="sessionPanel" label="In Session" width="100%" height="100%">
+					<mx:HBox width="100%">
 						
-						<mx:Label text="method argument:" />
-						<mx:TextInput id="extraArgs" />
+						<mx:HBox horizontalAlign="left" width="50%" height="100%" verticalAlign="bottom">
+							<mx:Label text="Select method to call:" />
+							<mx:ComboBox id="method">
+								<mx:dataProvider>
+									<mx:Array>
+										<mx:String>facebook.fbml.refreshImgSrc</mx:String>
+										<mx:String>facebook.fbml.refreshRefUrl</mx:String>
+										<mx:String>facebook.fbml.setRefHandle</mx:String>
+										<mx:String>facebook.feed.publishStoryToUser</mx:String>
+										<mx:String>facebook.feed.publishActionOfUser</mx:String>
+										<mx:String>facebook.fql.query</mx:String>
+										<mx:String>facebook.friends.areFriends</mx:String>
+										<mx:String>facebook.friends.get</mx:String>
+										<mx:String>facebook.friends.getAppUsers</mx:String>
+										<mx:String>facebook.notifications.get</mx:String>
+										<mx:String>facebook.notifications.send</mx:String>
+										<mx:String>facebook.notifications.sendRequest</mx:String>
+										<mx:String>facebook.profile.setFBML</mx:String>
+										<mx:String>facebook.profile.getFBML</mx:String>
+										<mx:String>facebook.users.getInfo</mx:String>
+										<mx:String>facebook.users.getLoggedInUser</mx:String>
+										<mx:String>facebook.events.get</mx:String>
+										<mx:String>facebook.events.getMembers</mx:String>
+										<mx:String>facebook.groups.get</mx:String>
+										<mx:String>facebook.groups.getMembers</mx:String>
+										<mx:String>facebook.photos.addTag</mx:String>
+										<mx:String>facebook.photos.createAlbum</mx:String>
+										<mx:String>facebook.photos.get</mx:String>
+										<mx:String>facebook.photos.getAlbums</mx:String>
+										<mx:String>facebook.photos.getTags</mx:String>
+										<!--mx:String>facebook.photos.upload</mx:String-->
+										<mx:String>facebook.users.getInfo</mx:String>
+										<mx:String>facebook.users.getLoggedInUser</mx:String>
+									</mx:Array>				
+								</mx:dataProvider>
+							</mx:ComboBox>
+							
+							<mx:Label text="method argument:" />
+							<mx:TextInput id="extraArgs" />
+							
+							<mx:Button label="Call Method" id="callMethod" click="invokeFacebookMethod();" />
 						
-						<mx:Button label="Call Method" id="callMethod" click="invokeFacebookMethod();" />
-					
-					</mx:HBox>
-					
-					<mx:VBox horizontalAlign="right" width="50%">
-						<mx:HBox>
-							<mx:Label text="Username:" 	/>
-							<mx:Text id="username" text="Not logged in" />
 						</mx:HBox>
 						
-						<mx:Canvas>
-							<!--mx:Button id="login" label="Login" click="startLoginSequence();" /-->
-							<mx:Button id="logout" label="Logout" click="processLogout();" visible="false" />
-						</mx:Canvas>
+						<mx:VBox horizontalAlign="right" width="50%">
+							<mx:HBox>
+								<mx:Label text="Username:" 	/>
+								<mx:Text id="username" text="Not logged in" />
+							</mx:HBox>
+							
+							<mx:Canvas>
+								<!--mx:Button id="login" label="Login" click="startLoginSequence();" /-->
+								<mx:Button id="logout" label="Logout" click="processLogout();" visible="false" />
+							</mx:Canvas>
+							
+						</mx:VBox>
 						
-					</mx:VBox>
+					</mx:HBox>
 					
-				</mx:HBox>
-				
-                <mx:Label text="Customer Info" color="#000000"/>
-            </mx:Canvas>
+			    </mx:Canvas>
+			
+			</mx:ViewStack>
+			    
+			<mx:TextArea id="debug" width="100%" height="20%" text="" />
 
-        </mx:ViewStack>
-		<mx:TextArea id="debug" width="100%" height="20%" text="" />
-
-    </mx:Panel>
+		</mx:DividedBox>
+	</mx:Panel>
 
 </mx:Application>
