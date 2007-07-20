@@ -134,8 +134,6 @@ package com.adobe.webapis.facebook.methodgroups {
 			// access the urlLoader so we can make the request.
 			var loader:URLLoader = service.facebookservice_internal::urlLoader;
 
-			trace("url:" + FacebookService.END_POINT + query)
-
 			// Construct a url request with our query string and invoke
 			// the Facebook method
 			loader.addEventListener( "complete", callBack );
@@ -161,7 +159,6 @@ package com.adobe.webapis.facebook.methodgroups {
 			// Process the response to create an object for return values
 			var rsp:Object = processResponse( response, propertyName, parseFunction );
 
-			trace("processAndDispatch2: rsp = " + ObjectUtil.toString( rsp ))
 			// Copy some properties from the response to the result event
 			result.success = rsp.success;
 			result.data = rsp.data;
@@ -202,8 +199,6 @@ package com.adobe.webapis.facebook.methodgroups {
 			doc.ignoreWhite = true;
 			doc.parseXML( facebookResponse );
 			
-			trace("processResponse: doc = "+doc.toString());
-
 			// Get the root rsp node from the document
 			var rsp:XMLNode = doc.firstChild;
 			
@@ -235,10 +230,11 @@ package com.adobe.webapis.facebook.methodgroups {
 				// use the plain text as the error message
 				
 				var error:FacebookError = new FacebookError();
-				if ( rsp.firstChild != null ) 
+				if ( rsp != null )
 				{
-					error.errorCode = int( rsp.firstChild.attributes.error_code );
-					error.errorMessage = rsp.firstChild.attributes.error_msg;
+					var errorResponse:XML = XML( rsp );
+					error.errorCode = int( errorResponse.facebook::error_code );
+					error.errorMessage = errorResponse.facebook::error_msg;
 					
 					result.data.error = error;
 				}
