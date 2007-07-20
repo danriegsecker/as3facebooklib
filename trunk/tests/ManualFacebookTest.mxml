@@ -198,10 +198,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				debug.text += "getSessionResponse: success = " + event.success + "\n";
 				
 				if ( event.success ) {
-					// The call was successful, just dump out the data object
-					debug.text += ObjectUtil.toString( event.data ) + "\n";
 
-					var authSession:AuthSession = AuthSession( event.data );
+					var authSession:AuthSession = AuthSession( event.data.auth_getSession_response );
 					
 					// Assign the token and permission to the service so that
 					// all calls that require authentication have their values
@@ -214,22 +212,24 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					facebookCookie.data.session_key = service.session_key;
 					facebookCookie.flush();
 					
+					viewStack.selectedChild = sessionPanel;
+
 					// Update the UI to show the currently logged in username
-					username.text = authSession.uid;
+					//username.text = authSession.uid;
 					//permission.text = service.permission;
 					
-					debug.text += "session_key: " + service.session_key + "\n";
+					debug.text += "uid: " + authSession.uid + "\n";
+					debug.text += "expires: " + authSession.expires + "\n";
+					debug.text += "secret: " + authSession.secret + "\n";
+					debug.text += "session_key: " + authSession.session_key + "\n";
 					
 					// Toggle the login/logout buttons
 					//login.visible = false;
-					logout.visible = true;
-					
-
-					viewStack.selectedChild = sessionPanel;
+					//logout.visible = true;
 					
 				} else {
-					debug.text += "error code: " + event.data.errorCode + "\n";
-					debug.text += "error message: " + event.data.errorMessage + "\n";
+					debug.text += "error code: " + event.data.error.errorCode + "\n";
+					debug.text += "error message: " + event.data.error.errorMessage + "\n";
 				}
 			}
 			
@@ -359,7 +359,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				// Update the UI to reflect the user being logged out
 				//login.visible = true;
 				username.text = "Not logged in.";
-				logout.visible = false;
+				//logout.visible = false;
 				
 				// Clear the authentication cookie so we don't auto-login next time
 				var facebookCookie:SharedObject = SharedObject.getLocal( "FacebookServiceTest" );
@@ -373,6 +373,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					+ " http://apps.facebook.com/",
 					"Logout successful",
 					Alert.OK );
+					
+				viewStack.selectedChild = welcomePanel;
 			}
 			
 		]]>
@@ -472,7 +474,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 							
 							<mx:Canvas>
 								<!--mx:Button id="login" label="Login" click="startLoginSequence();" /-->
-								<mx:Button id="logout" label="Logout" click="processLogout();" visible="false" />
+								<mx:Button id="logout" label="Logout" click="processLogout();" />
 							</mx:Canvas>
 							
 						</mx:VBox>
