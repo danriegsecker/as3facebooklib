@@ -52,6 +52,8 @@ package com.adobe.webapis.facebook.methodgroups {
 	 */
 	internal class MethodGroupHelper {
 	
+		internal static var facebook:Namespace = new Namespace("http://api.facebook.com/1.0/");
+
 		/**
 		 * Reusable method that the "method group" classes can call to invoke a
 		 * method on the API.
@@ -154,7 +156,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 */
 		internal static function processAndDispatch( service:FacebookService, response:String, result:FacebookResultEvent, propertyName:String = "", parseFunction:Function = null ):void {
 			
-			trace("processAndDispatch1")
+			trace("processAndDispatch1: response = " + response)
 			
 			// Process the response to create an object for return values
 			var rsp:Object = processResponse( response, propertyName, parseFunction );
@@ -191,6 +193,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @tiptext
 		 */
 		internal static function processResponse( facebookResponse:String, propertyName:String, parseFunction:Function ):Object {
+
 			var result:Object = new Object();
 			result.data = new Object();
 			
@@ -199,15 +202,13 @@ package com.adobe.webapis.facebook.methodgroups {
 			doc.ignoreWhite = true;
 			doc.parseXML( facebookResponse );
 			
-			trace("response: "+doc.toString());
+			trace("processResponse: doc = "+doc.toString());
 
 			// Get the root rsp node from the document
 			var rsp:XMLNode = doc.firstChild;
 			
 			// Clean up a little
 			doc = null; 
-			
-			trace("rsp.nodeName: "+rsp.nodeName)
 			
 			if ( rsp.nodeName != "error_response" ) {
 				result.success = true;
@@ -316,12 +317,11 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * Converts an auth_getSession XML object into an AuthSession instance
 		 */
 		internal static function parseAuthSessionResult( xml:XML ):AuthSession {
-			trace("parseAuthSessionResult: xml = " + xml);
 			var authSession:AuthSession = new AuthSession();
-			authSession.session_key = xml.auth_getSession_response.session_key.toString();
-			authSession.uid = xml.auth_getSession_response.uid.toString();
-			authSession.expires = xml.auth_getSession_response.expires.toString();
-			authSession.secret = xml.auth_getSession_response.secret.toString();
+			authSession.session_key = xml.facebook::session_key.toString();
+			authSession.uid = xml.facebook::uid.toString();
+			authSession.expires = xml.facebook::expires.toString();
+			authSession.secret = xml.facebook::secret.toString();
 			return authSession;
 		}
 		
@@ -329,8 +329,8 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * Converts a auth_createToken XML object into a string (the auth_token value)
 		 */
 		internal static function parseAuthToken( xml:XML ):String {
-			trace("parseAuthToken")
-			return xml.auth_createToken_response.toString();
+			trace("parseAuthToken: xml = " + xml)
+			return xml.toString();
 		}
 		
 		/**
@@ -354,17 +354,17 @@ package com.adobe.webapis.facebook.methodgroups {
 			
 			var photos:Array = new Array();
 			
-			for each ( var p:XML in xml.photos_get_response.photo ) {
+			for each ( var p:XML in xml.photo ) {
 				var photo:Photo = new Photo();
-				photo.pid = parseInt( p.pid );
-				photo.aid = parseInt( p.aid );
-				photo.owner = parseInt( p.owner );
-				photo.src = p.src.toString();
-				photo.src_big = p.src_big.toString();
-				photo.src_small = p.src_small.toString();
-				photo.link = p.link.toString();
-				photo.caption = p.caption.toString();
-				photo.created = stringToDate( p.created.toString() );
+				photo.pid = parseInt( p.facebook::pid );
+				photo.aid = parseInt( p.facebook::aid );
+				photo.owner = parseInt( p.facebook::owner );
+				photo.src = p.facebook::src.toString();
+				photo.src_big = p.facebook::src_big.toString();
+				photo.src_small = p.facebook::src_small.toString();
+				photo.link = p.facebook::link.toString();
+				photo.caption = p.facebook::caption.toString();
+				photo.created = stringToDate( p.facebook::created.toString() );
 				
 				photos.push( photo );
 			}
@@ -376,56 +376,56 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * Converts a photos_getAlbums XML object into a string (the photos_getAlbums value)
 		 */
 		internal static function parsePhotosGetAlbums( xml:XML ):String {
-			return xml.photos_getAlbums_response.toString();
+			return xml.toString();
 		}
 		
 		/**
 		 * Converts a photos_getTags XML object into a string (the photos_getTags value)
 		 */
 		internal static function parsePhotosGetTags( xml:XML ):String {
-			return xml.photos_getTags_response.toString();
+			return xml.toString();
 		}
 		
 		/**
 		 * Converts a photos_upload XML object into a string (the photos_upload value)
 		 */
 		internal static function parsePhotosUpload( xml:XML ):String {
-			return xml.photos_upload_response.toString();
+			return xml.toString();
 		}
 		
 		/**
 		 * Converts a groups_get XML object into a string (the groups_get value)
 		 */
 		internal static function parseGroupsGet( xml:XML ):String {
-			return xml.groups_get_response.toString();
+			return xml.toString();
 		}
 		
 		/**
 		 * Converts a groups_getMembers XML object into a string (the groups_getMembers value)
 		 */
 		internal static function parseGroupsGetMembers( xml:XML ):String {
-			return xml.groups_getMembers_response.toString();
+			return xml.toString();
 		}
 		
 		/**
 		 * Converts a users_getInfo XML object into a string (the users_getInfo value)
 		 */
 		internal static function parseUsersGetInfo( xml:XML ):String {
-			return xml.users_getInfo_response.toString();
+			return xml.toString();
 		}
 		
 		/**
 		 * Converts a users_getLoggedInUser XML object into a string (the users_getLoggedInUser value)
 		 */
 		internal static function parseUsersGetLoggedInUser( xml:XML ):String {
-			return xml.users_getLoggedInUser_response.toString();
+			return xml.toString();
 		}
 		
 		/**
 		 * Converts a fbml_refreshImgSrc XML object into a string (the fbml_refreshImgSrc value)
 		 */
 		internal static function parseFbmlRefreshImgSrc( xml:XML ):String {
-			return xml.fbml_refreshImgSrc_response.toString();
+			return xml.toString();
 		}
 		
 		/**
@@ -439,98 +439,98 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * Converts a fbml_setRefHandle XML object into a string (the fbml_setRefHandle value)
 		 */
 		internal static function parseFbmlSetRefHandle( xml:XML ):String {
-			return xml.fbml_setRefHandle_response.toString();
+			return xml.toString();
 		}
 		
 		/**
 		 * Converts a feed_publishStoryToUser XML object into a string (the feed_publishStoryToUser value)
 		 */
 		internal static function parseFeedPublishStoryToUser( xml:XML ):String {
-			return xml.feed_publishStoryToUser_response.toString();
+			return xml.toString();
 		}
 		
 		/**
 		 * Converts a feed_publishActionOfUser XML object into a string (the feed_publishActionOfUser value)
 		 */
 		internal static function parseFeedPublishActionOfUser( xml:XML ):String {
-			return xml.feed_publishActionOfUser_response.toString();
+			return xml.toString();
 		}
 		
 		/**
 		 * Converts a events_get XML object into a string (the events_get value)
 		 */
 		internal static function parseEventsGet( xml:XML ):String {
-			return xml.events_get_response.toString();
+			return xml.toString();
 		}
 		
 		/**
 		 * Converts a events_getMembers XML object into a string (the events_getMembers value)
 		 */
 		internal static function parseEventsGetMembers( xml:XML ):String {
-			return xml.events_getMembers_response.toString();
+			return xml.toString();
 		}
 		
 		/**
 		 * Converts a notifications_get XML object into a string (the notifications_get value)
 		 */
 		internal static function parseNotificationsGet( xml:XML ):String {
-			return xml.notifications_get_response.toString();
+			return xml.toString();
 		}
 		
 		/**
 		 * Converts a notifications_send XML object into a string (the notifications_send value)
 		 */
 		internal static function parseNotificationsSend( xml:XML ):String {
-			return xml.notifications_send_response.toString();
+			return xml.toString();
 		}
 
 		/**
 		 * Converts a notifications_sendRequest XML object into a string (the notifications_sendRequest value)
 		 */
 		internal static function parseNotificationsSendRequest( xml:XML ):String {
-			return xml.notifications_sendRequest_response.toString();
+			return xml.toString();
 		}
 
 		/**
 		 * Converts a profile_setFBML XML object into a string (the profile_setFBML value)
 		 */
 		internal static function parseProfileSetFBML( xml:XML ):String {
-			return xml.profile_setFBML_response.toString();
+			return xml.toString();
 		}
 
 		/**
 		 * Converts a profile_getFBML XML object into a string (the profile_getFBML value)
 		 */
 		internal static function parseProfileGetFBML( xml:XML ):String {
-			return xml.profile_getFBML_response.toString();
+			return xml.toString();
 		}
 
 		/**
 		 * Converts a friends_areFriends XML object into a string (the friends_areFriends value)
 		 */
 		internal static function parseFriendsAreFriends( xml:XML ):String {
-			return xml.friends_areFriends_response.toString();
+			return xml.toString();
 		}
 
 		/**
 		 * Converts a friends_get XML object into a string (the friends_get value)
 		 */
 		internal static function parseFriendsGet( xml:XML ):String {
-			return xml.friends_get_response.toString();
+			return xml.toString();
 		}
 
 		/**
 		 * Converts a friends_getAppUsers XML object into a string (the friends_getAppUsers value)
 		 */
 		internal static function parseFriendsGetAppUsers( xml:XML ):String {
-			return xml.friends_getAppUsers_response.toString();
+			return xml.toString();
 		}
 
 		/**
 		 * Converts a fql_query XML object into a string (the fql_query value)
 		 */
 		internal static function parseFqlQuery( xml:XML ):String {
-			return xml.fql_query_response.toString();
+			return xml.toString();
 		}
 
 	}
