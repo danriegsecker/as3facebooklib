@@ -63,15 +63,15 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			}
 			
 			/**
-			 * Initialize the application by creating a new instance of
-			 * the Facebook api with our application's api key
+			 * All methods require authentication except createToken and getSession, 
+			 * so this is how you would start the login sequence.  We need to set the secret
+			 * assigned to our particular application, and then get
+			 * a auth_token used for authentication.
 			 */
 			public function startLoginSequence():void
 			{
-				//var api_key:String = "<YOUR API KEY>";
 				var api_key:String = apiKeyTextInput.text;
 				service = new FacebookService( api_key );
-				//service.secret = "<YOUR APP SECRET>";
 				service.secret = secretTextInput.text;
 				
 				// Check to see if the auth token was stored, and if so
@@ -82,7 +82,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					debug.text += "Found stored session key.. trying to auto-login\n";
 					
 					// Check the token with the service to auto log in the user
-					service.addEventListener( FacebookResultEvent.AUTH_GET_SESSION, checkGetSessionResponse );
+					service.addEventListener( FacebookResultEvent.AUTH_GET_SESSION, checkGetSession );
 					service.auth.getSession( facebookCookie.data.session_key );
 				} else {
 					service.addEventListener( FacebookResultEvent.AUTH_CREATE_TOKEN, createTokenResponse );
@@ -91,14 +91,12 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					
 			}
 			
-			
-			
 			/**
 			 * Called if there was a session key stored locally in a cookie. Try to
 			 * log the user back in based on the token, otherwise clear
 			 * the value.
 			 */
-			private function checkGetSessionResponse( event:FacebookResultEvent ):void {
+			private function checkGetSession( event:FacebookResultEvent ):void {
 				debug.text += "checkGetSessionResponse: success = " + event.success + "\n";
 				if ( event.success ) {
 					// Re-use the login logic in getSessionResponse
@@ -183,7 +181,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 * assume that they logged into Facebook, so try to get their
 			 * auth token that we can use throughout the rest of our app
 			 */
-			private function sendAuthToken( ):void {
+			private function getSession( ):void {
 				
 				// Get their authentication token, and call getTokenResponse
 				// when it's available
@@ -200,13 +198,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				debug.text += "getSessionResponse: success = " + event.success + "\n";
 				
 				if ( event.success ) {
-					//var authSession:AuthSession = AuthSession( event.data );
-					
 					// The call was successful, just dump out the data object
 					debug.text += ObjectUtil.toString( event.data ) + "\n";
-					
-					/*
-					var authSession = event.data;
+
+					var authSession:AuthSession = AuthSession( event.data );
 					
 					// Assign the token and permission to the service so that
 					// all calls that require authentication have their values
@@ -224,8 +219,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					//permission.text = service.permission;
 					
 					debug.text += "session_key: " + service.session_key + "\n";
-					
-					*/
 					
 					// Toggle the login/logout buttons
 					//login.visible = false;
@@ -396,11 +389,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		            <mx:FormHeading label="Enter your application api key and secret below:"/>
 		
 		            <mx:FormItem label="API KEY">
-		                <mx:TextInput id="apiKeyTextInput" width="200" />
+		                <mx:TextInput id="apiKeyTextInput" width="200" text="3a3d6af5971ec898b54af6248b376731" />
 		            </mx:FormItem>
 		
 		            <mx:FormItem label="SECRET">
-		                <mx:TextInput id="secretTextInput" width="200" />
+		                <mx:TextInput id="secretTextInput" width="200" text="71d863de45013ddda8d72dea525e0a1c" />
 		            </mx:FormItem>
 
 		            <mx:FormItem>
@@ -417,7 +410,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		                <mx:TextInput id="authTokenTextInput" width="200"/>
 		            </mx:FormItem>
 		            <mx:FormItem>
-				        <mx:Button label="Continue" click="sendAuthToken();"/>
+				        <mx:Button label="Continue" click="getSession();"/>
 		            </mx:FormItem>
 		        </mx:Form>
             </mx:Canvas>
