@@ -78,12 +78,12 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				// check the token to see if a user is logged in and what
 				// kind of permission they have
 				var facebookCookie:SharedObject = SharedObject.getLocal( "FacebookServiceTest" );
-				if ( facebookCookie.data.session_key ) {
-					debug.text += "Found stored session key.. trying to auto-login\n";
+				if ( facebookCookie.data.auth_token ) {
+					debug.text += "Found stored auth token.. trying to auto-login\n";
 					
 					// Check the token with the service to auto log in the user
 					service.addEventListener( FacebookResultEvent.AUTH_GET_SESSION, checkGetSession );
-					service.auth.getSession( facebookCookie.data.session_key );
+					service.auth.getSession( facebookCookie.data.auth_token );
 				} else {
 					service.addEventListener( FacebookResultEvent.AUTH_CREATE_TOKEN, createTokenResponse );
 					service.auth.createToken();
@@ -205,11 +205,12 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					// all calls that require authentication have their values
 					// populated
 					service.session_key = authSession.session_key;
+					service.secret = authSession.secret;
 					
 					// Save the token in a shared object so that when the application
 					// loads again we can re-authenticate automatically
 					var facebookCookie:SharedObject = SharedObject.getLocal( "FacebookServiceTest" );
-					facebookCookie.data.session_key = service.session_key;
+					facebookCookie.data.auth_token = auth_token;
 					facebookCookie.flush();
 					
 					viewStack.selectedChild = sessionPanel;
@@ -218,10 +219,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					//username.text = authSession.uid;
 					//permission.text = service.permission;
 					
-					debug.text += "uid: " + authSession.uid + "\n";
-					debug.text += "expires: " + authSession.expires + "\n";
-					debug.text += "secret: " + authSession.secret + "\n";
-					debug.text += "session_key: " + authSession.session_key + "\n";
+					//debug.text += "uid: " + authSession.uid + "\n";
+					//debug.text += "expires: " + authSession.expires + "\n";
+					//debug.text += "secret: " + authSession.secret + "\n";
+					//debug.text += "session_key: " + authSession.session_key + "\n";
 					
 					// Toggle the login/logout buttons
 					//login.visible = false;
