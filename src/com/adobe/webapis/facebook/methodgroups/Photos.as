@@ -266,7 +266,7 @@ package com.adobe.webapis.facebook.methodgroups {
 									true,
 									new NameValuePair( "subj_id", subj_id == -1 ? "" : subj_id.toString() ),
 									new NameValuePair( "aid", aid == -1 ? "" : aid.toString() ),
-									new NameValuePair( "pids", pids.toString() ) );
+									new NameValuePair( "pids", pids == null ? "" : pids.toString() ) );
 		}
 		
 		/**

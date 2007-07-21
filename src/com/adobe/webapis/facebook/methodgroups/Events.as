@@ -122,7 +122,7 @@ package com.adobe.webapis.facebook.methodgroups {
 									"facebook.events.get", 
 									true,
 									new NameValuePair( "uid", uid == -1 ? "" : uid.toString() ),
-									new NameValuePair( "eids", eids.toString() ),
+									new NameValuePair( "eids", eids == null ? "" : eids.toString() ),
 									// convert dates to # of milliseconds
 									new NameValuePair( "start_time", start_time == null ? "" : start_time.valueOf().toString() ),
 									new NameValuePair( "end_time", end_time == null ? "" : end_time.valueOf().toString() ),

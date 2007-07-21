@@ -308,7 +308,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 					case "facebook.profile.getFBML":
 						service.addEventListener( FacebookResultEvent.PROFILE_GET_FBML, genericResponseHandler );
-						service.profile.getInfo();
+						service.profile.getFBML();
 						break;
 
 					case "facebook.users.getInfo":
@@ -322,9 +322,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 						break;
 
 					case "facebook.events.get":
-						service.addEventListener( FacebookResultEvent.USERS_GET, genericResponseHandler );
-						//service.users.get(uid:int = -1, eids:Array = null, start_time:Date = null, end_time:Date = null, rsvp_status:String = "");
-						service.users.get();
+						service.addEventListener( FacebookResultEvent.EVENTS_GET, genericResponseHandler );
+						//service.events.get(uid:int = -1, eids:Array = null, start_time:Date = null, end_time:Date = null, rsvp_status:String = "");
+						service.events.get();
 						break;
 
 					case "facebook.events.getMembers":

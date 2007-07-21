@@ -119,7 +119,7 @@ package com.adobe.webapis.facebook.methodgroups {
 									"facebook.groups.get", 
 									true,
 									new NameValuePair( "uid", uid == -1 ? "" : uid.toString() ),
-									new NameValuePair( "gids", gids.toString() )
+									new NameValuePair( "gids", gids == null ? "" : gids.toString() )
 									);
 		}
 		
