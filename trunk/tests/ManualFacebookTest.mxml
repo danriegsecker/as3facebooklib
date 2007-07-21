@@ -242,32 +242,38 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				switch ( method.selectedLabel ) {
 					
 					case "facebook.fbml.refreshImgSrc":
-						service.addEventListener( FacebookResultEvent.FBML_REFRESH_IMG_SRC, genericResponseHandler );
+						//service.addEventListener( FacebookResultEvent.FBML_REFRESH_IMG_SRC, genericResponseHandler );
 						//service.fbml.refreshImgSrc();
 						break;
 
 					case "facebook.fbml.refreshRefUrl":
-						service.addEventListener( FacebookResultEvent.FBML_REFRESH_REF_URL, genericResponseHandler );
+						//service.addEventListener( FacebookResultEvent.FBML_REFRESH_REF_URL, genericResponseHandler );
 						//service.fbml.refreshRefUrl();
 						break;
 
 					case "facebook.fbml.setRefHandle":
-						service.addEventListener( FacebookResultEvent.FBML_SET_REF_HANDLE, genericResponseHandler );
+						//service.addEventListener( FacebookResultEvent.FBML_SET_REF_HANDLE, genericResponseHandler );
 						//service.fbml.setRefHandle();
 						break;
 
 					case "facebook.feed.publishStoryToUser":
-						service.addEventListener( FacebookResultEvent.FEED_PUBLISH_STORY_TO_USER, genericResponseHandler );
+						//service.addEventListener( FacebookResultEvent.FEED_PUBLISH_STORY_TO_USER, genericResponseHandler );
 						//service.feed.publishStoryToUser();
 						break;
 
 					case "facebook.feed.publishActionOfUser":
+						//service.addEventListener( FacebookResultEvent.FEED_PUBLISH_ACTION_OF_USER, genericResponseHandler );
+						//service.feed.publishActionOfUser();
 						break;
 
 					case "facebook.fql.query":
+						//service.addEventListener( FacebookResultEvent.FQL_QUERY, genericResponseHandler );
+						//service.fql.query();
 						break;
 
 					case "facebook.friends.areFriends":
+						//service.addEventListener( FacebookResultEvent.FRIENDS_ARE_FRIENDS, genericResponseHandler );
+						//service.friends.areFriends(uid1,uid2);
 						break;
 
 					case "facebook.friends.get":
@@ -276,48 +282,91 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 						break;
 
 					case "facebook.friends.getAppUsers":
+						service.addEventListener( FacebookResultEvent.FRIENDS_GET_APP_USERS, genericResponseHandler );
+						service.friends.getAppUsers();
 						break;
 
 					case "facebook.notifications.get":
+						service.addEventListener( FacebookResultEvent.NOTIFICATIONS_GET, genericResponseHandler );
+						service.notifications.get();
 						break;
 
 					case "facebook.notifications.send":
+						//service.addEventListener( FacebookResultEvent.NOTIFICATIONS_SEND, genericResponseHandler );
+						//service.notifications.send(to_ids:Array, notification:String, email:String = "");
 						break;
 
 					case "facebook.notifications.sendRequest":
+						//service.addEventListener( FacebookResultEvent.NOTIFICATIONS_SEND_REQUEST, genericResponseHandler );
+						//service.notifications.sendRequest(to_ids:Array, type:String, content:String, image:String, invite:Boolean = false);
 						break;
 
 					case "facebook.profile.setFBML":
+						//service.addEventListener( FacebookResultEvent.PROFILE_SET_FBML, genericResponseHandler );
+						//service.profile.getInfo(markup:String, uid:int = -1);
 						break;
 
 					case "facebook.profile.getFBML":
+						service.addEventListener( FacebookResultEvent.PROFILE_GET_FBML, genericResponseHandler );
+						service.profile.getInfo();
 						break;
 
 					case "facebook.users.getInfo":
+						//service.addEventListener( FacebookResultEvent.USERS_GET_INFO, genericResponseHandler );
+						//service.users.getInfo(uids:Array, fields:Array);
 						break;
 
 					case "facebook.users.getLoggedInUser":
+						service.addEventListener( FacebookResultEvent.USERS_GET_LOGGED_IN_USER, genericResponseHandler );
+						service.users.getLoggedInUser();
 						break;
 
 					case "facebook.events.get":
+						service.addEventListener( FacebookResultEvent.USERS_GET, genericResponseHandler );
+						//service.users.get(uid:int = -1, eids:Array = null, start_time:Date = null, end_time:Date = null, rsvp_status:String = "");
+						service.users.get();
 						break;
 
 					case "facebook.events.getMembers":
+						//service.addEventListener( FacebookResultEvent.EVENTS_GET_MEMBERS, genericResponseHandler );
+						//service.events.getMembers(eid:int);
 						break;
 
 					case "facebook.groups.get":
+						service.addEventListener( FacebookResultEvent.GROUPS_GET, genericResponseHandler );
+						service.groups.get();
+						//service.groups.get(uid:int = -1, gids:Array = null);
 						break;
 
 					case "facebook.groups.getMembers":
+						//service.addEventListener( FacebookResultEvent.GROUPS_GET_MEMBERS, genericResponseHandler );
+						//service.groups.getMembers(gid:int);
+						break;
+
+					case "facebook.photos.addTag":
+						//service.addEventListener( FacebookResultEvent.PHOTOS_ADD_TAG, genericResponseHandler );
+						//service.photos.addTag(pid:int, tag_uid:int, tag_text:String, x:Number, y:Number, tags:String);
+						break;
+
+					case "facebook.photos.createAlbum":
+						//service.addEventListener( FacebookResultEvent.PHOTOS_CREATE_ALBUM, genericResponseHandler );
+						//service.photos.createAlbum(name:String, location:String = "", description:String = "");
 						break;
 
 					case "facebook.photos.get":
+						service.addEventListener( FacebookResultEvent.PHOTOS_GET, genericResponseHandler );
+						//service.photos.get(subj_id:int = -1, aid:int = -1, pids:Array = null);
+						service.photos.get();
 						break;
 
 					case "facebook.photos.getAlbums":
+						//service.addEventListener( FacebookResultEvent.PHOTOS_GET_ALBUMS, genericResponseHandler );
+						//service.photos.getAlbums(uid:int, pids:Array);
 						break;
 
 					case "facebook.photos.getTags":
+						//service.addEventListener( FacebookResultEvent.PHOTOS_GET_TAGS, genericResponseHandler );
+						//service.photos.getTags(pids:Array);
 						break;
 		
 				}
