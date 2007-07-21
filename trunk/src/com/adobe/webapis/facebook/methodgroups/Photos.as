@@ -249,7 +249,8 @@ package com.adobe.webapis.facebook.methodgroups {
 		
 		/**
 		 * Returns all visible photos according to the filters specified. This may be used 
-		 * to find all photos of a user, or to query specific eids.
+		 * to find all photos of a user, or to query specific eids. Note: It is an error to 
+		 * omit all three of the subj_id, aid, and pids parameters. They have no defaults.
 		 * 
 		 * @param subj_id (Optional) Filter by photos associated tagged with this user.
 		 * @param aid (Optional) Filter by photos in this album.
