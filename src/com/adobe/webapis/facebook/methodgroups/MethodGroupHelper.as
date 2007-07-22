@@ -44,7 +44,6 @@ package com.adobe.webapis.facebook.methodgroups {
 	import flash.events.Event;
 	import flash.xml.*;
 	import flash.geom.Rectangle;
-	import mx.utils.ObjectUtil;
 
 	/**
 	 * Contains helper functions for the method group classes that are
@@ -406,7 +405,7 @@ package com.adobe.webapis.facebook.methodgroups {
 				group.group_subtype = g.facebook::group_subtype.toString();
 				group.recent_news = g.facebook::recent_news.toString();
 				group.creator = parseInt( g.facebook::creator );
-				group.update_time = stringToDate( p.facebook::update_time.toString() );
+				group.update_time = stringToDate( g.facebook::update_time.toString() );
 				group.office = g.facebook::office.toString();
 				group.website = g.facebook::website.toString();
 				group.venue = g.facebook::venue.toString();

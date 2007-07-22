@@ -325,7 +325,8 @@ showHideInherited();
 <div class="detailBody">
 <code>public function get(subj_id:int = -1, aid:int = -1, pids:Array = null):void</code><p>
    Returns all visible photos according to the filters specified. This may be used 
-   to find all photos of a user, or to query specific eids.
+   to find all photos of a user, or to query specific eids. Note: It is an error to 
+   omit all three of the subj_id, aid, and pids parameters. They have no defaults.
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
