@@ -343,7 +343,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		/**
 		 * Converts a photos_get XML object into an array of Photo instances
 		 */
-		internal static function parsePhotosList( xml:XML ):Array {
+		internal static function parsePhotosGet( xml:XML ):Array {
 			
 			var photos:Array = new Array();
 			
@@ -387,10 +387,34 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 		
 		/**
-		 * Converts a groups_get XML object into a string (the groups_get value)
+		 * Converts a groups_get XML object into an array of Group instances
 		 */
-		internal static function parseGroupsGet( xml:XML ):String {
-			return xml.toString();
+		internal static function parseGroupsGet( xml:XML ):Array {
+			
+			var groups:Array = new Array();
+			
+			for each ( var g:XML in xml.group ) {
+				var group:Group = new Group();
+				group.gid = parseInt( g.facebook::gid );
+				group.name = g.facebook::name.toString();
+				group.nid = parseInt( g.facebook::nid );
+				group.pic_small = g.facebook::pic_small.toString();
+				group.pic_big = g.facebook::pic_big.toString();
+				group.pic = g.facebook::pic.toString();
+				group.description = g.facebook::description.toString();
+				group.group_type = g.facebook::group_type.toString();
+				group.group_subtype = g.facebook::group_subtype.toString();
+				group.recent_news = g.facebook::recent_news.toString();
+				group.creator = parseInt( g.facebook::creator );
+				group.update_time = stringToDate( p.facebook::update_time.toString() );
+				group.office = g.facebook::office.toString();
+				group.website = g.facebook::website.toString();
+				group.venue = g.facebook::venue.toString();
+				
+				groups.push( group );
+			}
+			
+			return groups;
 		}
 		
 		/**
@@ -450,10 +474,36 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 		
 		/**
-		 * Converts a events_get XML object into a string (the events_get value)
+		 * Converts a events_get XML object into an array of FbEvent instances
 		 */
-		internal static function parseEventsGet( xml:XML ):String {
-			return xml.toString();
+		internal static function parseEventsGet( xml:XML ):Array {
+
+			var events:Array = new Array();
+			
+			for each ( var e:XML in xml.event ) {
+				var event:FbEvent = new FbEvent();
+				event.eid = parseInt( e.facebook::eid );
+				event.name = e.facebook::name.toString();
+				event.tagline = e.facebook::tagline.toString();
+				event.nid = parseInt( e.facebook::nid );
+				event.pic_small = e.facebook::pic_small.toString();
+				event.pic_big = e.facebook::pic_big.toString();
+				event.pic = e.facebook::pic.toString();
+				event.host = e.facebook::host.toString();
+				event.description = e.facebook::description.toString();
+				event.event_type = e.facebook::event_type.toString();
+				event.event_subtype = e.facebook::event_subtype.toString();
+				event.start_time = stringToDate( e.facebook::start_time.toString() );
+				event.end_time = stringToDate( e.facebook::end_time.toString() );
+				event.creator = parseInt( e.facebook::creator );
+				event.update_time = stringToDate( e.facebook::update_time.toString() );
+				event.location = e.facebook::location.toString();
+				event.venue = e.facebook::venue.toString();
+				
+				events.push( event );
+			}
+			
+			return events;
 		}
 		
 		/**
@@ -506,10 +556,21 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 
 		/**
-		 * Converts a friends_get XML object into a string (the friends_get value)
+		 * Converts a friends_get XML object into an array of Friend instances
 		 */
-		internal static function parseFriendsGet( xml:XML ):String {
-			return xml.toString();
+		internal static function parseFriendsGet( xml:XML ):Array {
+
+			var friends:Array = new Array();
+			
+			for each ( var f:XML in xml.friend ) {
+				var friend:Friend = new Friend();
+				friend.uid1 = parseInt( f.facebook::uid1 );
+				friend.uid2 = parseInt( f.facebook::uid2 );
+				
+				friends.push( friend );
+			}
+			
+			return friends;
 		}
 
 		/**
