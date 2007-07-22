@@ -288,7 +288,7 @@ package com.adobe.webapis.facebook.methodgroups {
 												  URLLoader( event.target ).data, 
 												  result,
 												  "photos_get_response",
-												  MethodGroupHelper.parsePhotosList );
+												  MethodGroupHelper.parsePhotosGet );
 		}
 		
 		/**
