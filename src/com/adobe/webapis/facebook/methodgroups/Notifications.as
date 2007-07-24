@@ -140,7 +140,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function get_result( event:Event ):void {
+		private function get_result( event:flash.events.Event ):void {
 			// Create an NOTIFICATIONS_GET event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.NOTIFICATIONS_GET );
 
@@ -184,7 +184,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function send_result( event:Event ):void {
+		private function send_result( event:flash.events.Event ):void {
 			// Create an NOTIFICATIONS_GET event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.NOTIFICATIONS_SEND );
 
@@ -234,7 +234,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function sendRequest_result( event:Event ):void {
+		private function sendRequest_result( event:flash.events.Event ):void {
 			// Create an NOTIFICATIONS_SEND_REQUEST event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.NOTIFICATIONS_SEND_REQUEST );
 

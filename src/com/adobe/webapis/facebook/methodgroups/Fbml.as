@@ -142,7 +142,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function refreshImgSrc_result( event:Event ):void {
+		private function refreshImgSrc_result( event:flash.events.Event ):void {
 			// Create an FBML_REFRESH_IMG_SRC event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.FBML_REFRESH_IMG_SRC );
 
@@ -176,7 +176,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function refreshRefUrl_result( event:Event ):void {
+		private function refreshRefUrl_result( event:flash.events.Event ):void {
 			// Create an FBML_REFRESH_REF_URL event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.FBML_REFRESH_REF_URL );
 
@@ -219,7 +219,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function setRefHandle_result( event:Event ):void {
+		private function setRefHandle_result( event:flash.events.Event ):void {
 			// Create an FBML_SET_REF_HANDLE event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.FBML_SET_REF_HANDLE );
 

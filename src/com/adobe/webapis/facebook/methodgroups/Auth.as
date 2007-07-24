@@ -124,7 +124,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function createToken_result( event:Event ):void {
+		private function createToken_result( event:flash.events.Event ):void {
 			// Create an AUTH_CREATE_TOKEN event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.AUTH_CREATE_TOKEN );
 
@@ -163,7 +163,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function getSession_result( event:Event ):void {
+		private function getSession_result( event:flash.events.Event ):void {
 			// Create an AUTH_GET_SESSION event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.AUTH_GET_SESSION );
 
