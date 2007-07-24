@@ -137,7 +137,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function get_result( event:Event ):void {
+		private function get_result( event:flash.events.Event ):void {
 			// Create an EVENTS_GET event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.EVENTS_GET );
 
@@ -175,7 +175,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function getMembers_result( event:Event ):void {
+		private function getMembers_result( event:flash.events.Event ):void {
 			// Create an EVENTS_GET_MEMBERS event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.EVENTS_GET_MEMBERS );
 

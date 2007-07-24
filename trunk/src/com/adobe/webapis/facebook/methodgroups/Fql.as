@@ -111,7 +111,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function query_result( event:Event ):void {
+		private function query_result( event:flash.events.Event ):void {
 			// Create an FEED_PUBLISH_STORY_TO_USER event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.FQL_QUERY );
 

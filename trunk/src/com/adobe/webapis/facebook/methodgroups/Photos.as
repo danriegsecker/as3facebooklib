@@ -190,7 +190,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function addTag_result( event:Event ):void {
+		private function addTag_result( event:flash.events.Event ):void {
 			// Create an PHOTOS_ADD_TAG event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.PHOTOS_ADD_TAG );
 
@@ -234,7 +234,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function createAlbum_result( event:Event ):void {
+		private function createAlbum_result( event:flash.events.Event ):void {
 			// Create an PHOTOS_CREATE_ALBUM event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.PHOTOS_CREATE_ALBUM );
 
@@ -278,7 +278,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function get_result( event:Event ):void {
+		private function get_result( event:flash.events.Event ):void {
 			// Create an PHOTOS_GET event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.PHOTOS_GET );
 
@@ -318,7 +318,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function getAlbums_result( event:Event ):void {
+		private function getAlbums_result( event:flash.events.Event ):void {
 			// Create an PHOTOS_GET_MEMBERS event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.PHOTOS_GET_ALBUMS );
 
@@ -356,7 +356,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function getTags_result( event:Event ):void {
+		private function getTags_result( event:flash.events.Event ):void {
 			// Create an PHOTOS_GET_TAGS event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.PHOTOS_GET_TAGS );
 
@@ -403,7 +403,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function upload_result( event:Event ):void {
+		private function upload_result( event:flash.events.Event ):void {
 			// Create an PHOTOS_UPLOAD event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.PHOTOS_UPLOAD );
 

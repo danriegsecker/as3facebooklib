@@ -154,7 +154,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function publishStoryToUser_result( event:Event ):void {
+		private function publishStoryToUser_result( event:flash.events.Event ):void {
 			// Create an FEED_PUBLISH_STORY_TO_USER event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.FEED_PUBLISH_STORY_TO_USER );
 
@@ -220,7 +220,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function publishActionOfUser_result( event:Event ):void {
+		private function publishActionOfUser_result( event:flash.events.Event ):void {
 			// Create an FEED_PUBLISH_STORY_TO_USER event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.FEED_PUBLISH_ACTION_OF_USER );
 

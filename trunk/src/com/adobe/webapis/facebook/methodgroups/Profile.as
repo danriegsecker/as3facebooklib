@@ -131,7 +131,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function setFBML_result( event:Event ):void {
+		private function setFBML_result( event:flash.events.Event ):void {
 			// Create an PROFILE_SET_FBML event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.PROFILE_SET_FBML );
 
@@ -165,7 +165,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * 			that was used to communicate with the Facebook API
 		 *			from the invokeMethod method in MethodGroupHelper
 		 */
-		private function getFBML_result( event:Event ):void {
+		private function getFBML_result( event:flash.events.Event ):void {
 			// Create an PROFILE_GET_FBML event
 			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.PROFILE_GET_FBML );
 

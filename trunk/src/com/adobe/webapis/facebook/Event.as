@@ -36,9 +36,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.adobe.webapis.facebook {
 	
 	/**
-	 * FbEvent is a ValueObject for the Facebook API.
+	 * Event is a ValueObject for the Facebook API.
 	 */
-	public class FbEvent {
+	public class Event {
 		
 		private var _eid:int;
 		private var _name:String;
@@ -59,13 +59,13 @@ package com.adobe.webapis.facebook {
 		private var _venue:String;
 
 		/**
-		 * Construct a new FbEvent instance
+		 * Construct a new Event instance
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function FbEvent() {
+		public function Event() {
 		}	
 		
 		/**

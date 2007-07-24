@@ -51,8 +51,6 @@ package com.adobe.webapis.facebook.methodgroups {
 	 */
 	internal class MethodGroupHelper {
 	
-		internal static var facebook:Namespace = new Namespace("http://api.facebook.com/1.0/");
-		
 		internal static var call_id:int = 0;
 		
 		/**
@@ -473,14 +471,14 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 		
 		/**
-		 * Converts a events_get XML object into an array of FbEvent instances
+		 * Converts a events_get XML object into an array of Event instances
 		 */
 		internal static function parseEventsGet( xml:XML ):Array {
 
 			var events:Array = new Array();
 			
 			for each ( var e:XML in xml.event ) {
-				var event:FbEvent = new FbEvent();
+				var event:com.adobe.webapis.facebook.facebook::Event = new com.adobe.webapis.facebook.facebook::Event();
 				event.eid = parseInt( e.facebook::eid );
 				event.name = e.facebook::name.toString();
 				event.tagline = e.facebook::tagline.toString();
