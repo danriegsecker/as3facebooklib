@@ -690,17 +690,17 @@ package com.adobe.webapis.facebook.methodgroups {
 
 			var notification:Notification = new Notification();
 
-			var messages:Object = new Object()
+			var messages:Object = new Object();
 			messages.unread = parseInt( xml.messages.unread );
 			messages.most_recent = parseInt( xml.messages.most_recent );
 			notification.messages = messages;
 
-			var pokes:Object = new Object()
+			var pokes:Object = new Object();
 			pokes.unread = parseInt( xml.pokes.unread );
 			pokes.most_recent = parseInt( xml.pokes.most_recent );
 			notification.pokes = pokes;
 
-			var shares:Object = new Object()
+			var shares:Object = new Object();
 			shares.unread = parseInt( xml.shares.unread );
 			shares.most_recent = parseInt( xml.shares.most_recent );
 			notification.shares = shares;
