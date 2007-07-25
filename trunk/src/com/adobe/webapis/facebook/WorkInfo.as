@@ -36,115 +36,115 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.adobe.webapis.facebook {
 	
 	/**
-	 * Notification is a ValueObject for the Facebook API.
+	 * WorkInfo is a ValueObject for the Facebook API.
 	 */
-	public class Notification {
+	public class WorkInfo {
 		
-		private var _messages:Object;
-		private var _pokes:Object;
-		private var _shares:Object;
-		private var _friend_requests:Array;
-		private var _group_invites:Array;
-		private var _event_invites:Array;
+		private var _location:Location;
+		private var _company_name:String;
+		private var _description:String;
+		private var _position:String;
+		private var _start_date:Date;
+		private var _end_date:Date;
 
 		/**
-		 * Construct a new Notifications instance
+		 * Construct a new WorkInfo instance
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function Notification() {
+		public function WorkInfo() {
 		}	
 		
 		/**
-		 * The messages of the affiliation
+		 * The location of the Work
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get messages():Object {
-			return _messages;
+		public function get location():Location {
+			return _location;
 		}
 		
-		public function set messages( value:Object ):void {
-			_messages = value;
+		public function set location( value:Location ):void {
+			_location = value;
 		}
 		
 		/**
-		 * The pokes of the affiliation
+		 * The company_name of the Work
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get pokes():Object {
-			return _pokes;
+		public function get company_name():String {
+			return _company_name;
 		}
 		
-		public function set pokes( value:Object ):void {
-			_pokes = value;
+		public function set company_name( value:String ):void {
+			_company_name = value;
 		}
 		
 		/**
-		 * The shares of the affiliation
+		 * The description of the Work
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get shares():Object {
-			return _shares;
+		public function get description():String {
+			return _description;
 		}
 		
-		public function set shares( value:Object ):void {
-			_shares = value;
+		public function set description( value:String ):void {
+			_description = value;
 		}
 		
 		/**
-		 * The friend_requests of the affiliation
+		 * The position of the Work
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get friend_requests():Array {
-			return _friend_requests;
+		public function get position():String {
+			return _position;
 		}
 		
-		public function set friend_requests( value:Array ):void {
-			_friend_requests = value;
+		public function set position( value:String ):void {
+			_position = value;
 		}
 		
 		/**
-		 * The group_invites of the affiliation
+		 * The start_date of the Work
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get group_invites():Array {
-			return _group_invites;
+		public function get start_date():Date {
+			return _start_date;
 		}
 		
-		public function set group_invites( value:Array ):void {
-			_group_invites = value;
+		public function set start_date( value:Date ):void {
+			_start_date = value;
 		}
 		
 		/**
-		 * The event_invites of the affiliation
+		 * The end_date of the Work
 		 *
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get event_invites():Array {
-			return _event_invites;
+		public function get end_date():Date {
+			return _end_date;
 		}
 		
-		public function set event_invites( value:Array ):void {
-			_event_invites = value;
+		public function set end_date( value:Date ):void {
+			_end_date = value;
 		}
 		
 	}
