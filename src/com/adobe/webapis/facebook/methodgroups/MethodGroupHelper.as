@@ -57,6 +57,11 @@ package com.adobe.webapis.facebook.methodgroups {
 		 */
 		internal static var call_id:int = 0;
 		
+		/** 
+		 * Set the internal DefaultXMLNamespace property to the facebook namespace.
+		 */
+		default xml namespace = facebook;
+		
 		/**
 		 * Reusable method that the "method group" classes can call to invoke a
 		 * method on the API.
@@ -231,8 +236,8 @@ package com.adobe.webapis.facebook.methodgroups {
 				if ( rsp != null )
 				{
 					var errorResponse:XML = XML( rsp );
-					error.errorCode = int( errorResponse.facebook::error_code );
-					error.errorMessage = errorResponse.facebook::error_msg;
+					error.errorCode = int( errorResponse.error_code );
+					error.errorMessage = errorResponse.error_msg;
 					
 					result.data.error = error;
 				}
@@ -310,12 +315,12 @@ package com.adobe.webapis.facebook.methodgroups {
 		/**
 		 * Converts an auth_getSession XML object into an AuthSession instance
 		 */
-		internal static function parseAuthSessionResult( xml:XML ):AuthSession {
+		internal static function parseAuthSession( xml:XML ):AuthSession {
 			var authSession:AuthSession = new AuthSession();
-			authSession.session_key = xml.facebook::session_key.toString();
-			authSession.uid = xml.facebook::uid.toString();
-			authSession.expires = xml.facebook::expires.toString();
-			authSession.secret = xml.facebook::secret.toString();
+			authSession.session_key = xml.session_key.toString();
+			authSession.uid = xml.uid.toString();
+			authSession.expires = xml.expires.toString();
+			authSession.secret = xml.secret.toString();
 			return authSession;
 		}
 		
@@ -323,7 +328,6 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * Converts a auth_createToken XML object into a string (the auth_token value)
 		 */
 		internal static function parseAuthToken( xml:XML ):String {
-			trace("parseAuthToken: xml = " + xml)
 			return xml.toString();
 		}
 		
@@ -335,10 +339,22 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 		
 		/**
-		 * Converts a photos_createAlbum XML object into a string (the photos_createAlbum value)
+		 * Converts a photos_createAlbum XML object into an Album instance
 		 */
-		internal static function parsePhotosCreateAlbum( xml:XML ):String {
-			return xml.photos_createAlbum_response.toString();
+		internal static function parsePhotosCreateAlbum( xml:XML ):Album {
+			
+			var album:Album = new Album();
+			album.aid = parseInt( xml.aid );
+			album.cover_pid = parseInt( xml.cover_pid );
+			album.owner = parseInt( xml.owner );
+			album.name = xml.name.toString();
+			album.created = stringToDate( xml.created.toString() );
+			album.modified = stringToDate( xml.modified.toString() );
+			album.description = xml.description.toString();
+			album.location = xml.location.toString();
+			album.size = parseInt( xml.size );
+
+			return album
 		}
 		
 		/**
@@ -350,15 +366,15 @@ package com.adobe.webapis.facebook.methodgroups {
 			
 			for each ( var p:XML in xml.photo ) {
 				var photo:Photo = new Photo();
-				photo.pid = parseInt( p.facebook::pid );
-				photo.aid = parseInt( p.facebook::aid );
-				photo.owner = parseInt( p.facebook::owner );
-				photo.src = p.facebook::src.toString();
-				photo.src_big = p.facebook::src_big.toString();
-				photo.src_small = p.facebook::src_small.toString();
-				photo.link = p.facebook::link.toString();
-				photo.caption = p.facebook::caption.toString();
-				photo.created = stringToDate( p.facebook::created.toString() );
+				photo.pid = parseInt( p.pid );
+				photo.aid = parseInt( p.aid );
+				photo.owner = parseInt( p.owner );
+				photo.src = p.src.toString();
+				photo.src_big = p.src_big.toString();
+				photo.src_small = p.src_small.toString();
+				photo.link = p.link.toString();
+				photo.caption = p.caption.toString();
+				photo.created = stringToDate( p.created.toString() );
 				
 				photos.push( photo );
 			}
@@ -367,17 +383,48 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 		
 		/**
-		 * Converts a photos_getAlbums XML object into a string (the photos_getAlbums value)
+		 * Converts a photos_getAlbums XML object into an array of Album instances
 		 */
-		internal static function parsePhotosGetAlbums( xml:XML ):String {
-			return xml.toString();
+		internal static function parsePhotosGetAlbums( xml:XML ):Array {
+
+			var albums:Array = new Array();
+			
+			for each ( var a:XML in xml.album ) {
+				var album:Album = new Album();
+				album.aid = parseInt( a.aid );
+				album.cover_pid = parseInt( a.cover_pid );
+				album.owner = parseInt( a.owner );
+				album.name = a.name.toString();
+				album.created = stringToDate( a.created.toString() );
+				album.modified = stringToDate( a.modified.toString() );
+				album.description = a.description.toString();
+				album.location = a.location.toString();
+				album.size = parseInt( a.size );
+				
+				albums.push( album );
+			}
+			
+			return albums;
 		}
 		
 		/**
-		 * Converts a photos_getTags XML object into a string (the photos_getTags value)
+		 * Converts a photos_getTags XML object into an array of PhotoTag instances
 		 */
-		internal static function parsePhotosGetTags( xml:XML ):String {
-			return xml.toString();
+		internal static function parsePhotosGetTags( xml:XML ):Array {
+
+			var photoTags:Array = new Array();
+			
+			for each ( var t:XML in xml.photo_tag ) {
+				var photoTag:PhotoTag = new PhotoTag();
+				photoTag.pid = parseInt( t.cover_pid );
+				photoTag.subject = t.subject.toString();
+				photoTag.xcoord = t.xcoord.toString();
+				photoTag.ycoord = t.ycoord.toString();
+				
+				photoTags.push( photoTag );
+			}
+			
+			return photoTags;
 		}
 		
 		/**
@@ -396,21 +443,21 @@ package com.adobe.webapis.facebook.methodgroups {
 			
 			for each ( var g:XML in xml.group ) {
 				var group:Group = new Group();
-				group.gid = parseInt( g.facebook::gid );
-				group.name = g.facebook::name.toString();
-				group.nid = parseInt( g.facebook::nid );
-				group.pic_small = g.facebook::pic_small.toString();
-				group.pic_big = g.facebook::pic_big.toString();
-				group.pic = g.facebook::pic.toString();
-				group.description = g.facebook::description.toString();
-				group.group_type = g.facebook::group_type.toString();
-				group.group_subtype = g.facebook::group_subtype.toString();
-				group.recent_news = g.facebook::recent_news.toString();
-				group.creator = parseInt( g.facebook::creator );
-				group.update_time = stringToDate( g.facebook::update_time.toString() );
-				group.office = g.facebook::office.toString();
-				group.website = g.facebook::website.toString();
-				group.venue = g.facebook::venue.toString();
+				group.gid = parseInt( g.gid );
+				group.name = g.name.toString();
+				group.nid = parseInt( g.nid );
+				group.pic_small = g.pic_small.toString();
+				group.pic_big = g.pic_big.toString();
+				group.pic = g.pic.toString();
+				group.description = g.description.toString();
+				group.group_type = g.group_type.toString();
+				group.group_subtype = g.group_subtype.toString();
+				group.recent_news = g.recent_news.toString();
+				group.creator = parseInt( g.creator );
+				group.update_time = stringToDate( g.update_time.toString() );
+				group.office = g.office.toString();
+				group.website = g.website.toString();
+				group.venue = g.venue.toString();
 				
 				groups.push( group );
 			}
@@ -426,10 +473,132 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 		
 		/**
-		 * Converts a users_getInfo XML object into a string (the users_getInfo value)
+		 * Converts a users_getInfo XML object into a User instance
 		 */
-		internal static function parseUsersGetInfo( xml:XML ):String {
-			return xml.toString();
+		internal static function parseUsersGetInfo( xml:XML ):User {
+
+			var user:User = new User();
+
+			user.uid = parseInt( xml.nid );
+			user.first_name = xml.first_name.toString();
+			user.last_name = xml.last_name.toString();
+			user.name = xml.name.toString();
+			user.pic_small = xml.pic_small.toString();
+			user.pic_big = xml.pic_big.toString();
+			user.pic_square = xml.pic_square.toString();
+			user.pic = xml.name.toString();
+			
+			var affiliations:Array = new Array();
+			for each ( var a:XML in xml.affiliations ) {
+				var affiliation:Affiliation = new Affiliation();
+				affiliation.nid = parseInt( a.nid );
+				affiliation.name = a.name.toString();
+				affiliation.type = a.type.toString();
+				affiliation.status = a.status.toString();
+				affiliation.year = a.year.toString();
+
+				affiliations.push( affiliation );
+			}
+			user.affiliations = affiliations;
+			
+			user.profile_update_time = stringToDate( xml.profile_update_time.toString() );
+			user.timezone = parseInt( xml.timezone );
+			user.religion = xml.religion.toString();
+			user.birthday = xml.birthday.toString();
+			user.sex = xml.sex.toString();
+			
+			var hometownLocation:Location = new Location();
+			hometownLocation.city = xml.hometown_location.city.toString();
+			hometownLocation.state = xml.hometown_location.state.toString();
+			hometownLocation.country = xml.hometown_location.country.toString();
+			hometownLocation.zip = xml.hometown_location.zip.toString();
+			user.hometown_location = hometownLocation;
+			
+			var meetingSex:Array = new Array();
+			for each ( var sex:XML in xml.meeting_sex.sex ) {
+				meetingSex.push( sex.toString() )
+			}
+			user.meeting_sex = meetingSex;
+			
+			var meetingFor:Array = new Array();
+			for each ( var seeking:XML in xml.meeting_for.seeking ) {
+				meetingFor.push( seeking.toString() )
+			}
+			user.meeting_for = meetingFor;
+			
+			user.relationship_status = xml.relationship_status.toString();
+			user.significant_other_id = parseInt( xml.significant_other_id );
+			user.political = xml.political.toString();
+
+			var currentLocation:Location = new Location();
+			currentLocation.city = xml.hometown_location.city.toString();
+			currentLocation.state = xml.hometown_location.state.toString();
+			currentLocation.country = xml.hometown_location.country.toString();
+			currentLocation.zip = xml.hometown_location.zip.toString();
+			user.current_location = currentLocation;
+
+			user.activities = xml.activities.toString();
+			user.interests = xml.interests.toString();
+			user.is_app_user = ( xml.is_app_user.toString() == "1" ) ? true : false;
+			user.music = xml.music.toString();
+			user.tv = xml.tv.toString();
+			user.movies = xml.movies.toString();
+			user.books = xml.books.toString();
+			user.quotes = xml.quotes.toString();
+			user.about_me = xml.about_me.toString();
+			
+			var hsInfo:HsInfo = new HsInfo();
+			hsInfo.hs1_name = xml.hs_info.hs1_name.toString();
+			hsInfo.hs2_name = xml.hs_info.hs2_name.toString();
+			hsInfo.grad_year = xml.hs_info.grad_year.toString();
+			hsInfo.hs1_key = xml.hs_info.hs1_key.toString();
+			hsInfo.hs2_key = xml.hs_info.hs2_key.toString();
+			user.hs_info = hsInfo;
+			
+			var educationHistory:Array = new Array();
+			for each ( var e:XML in xml.education_info ) {
+				var educationInfo:EducationInfo = new EducationInfo();
+				educationInfo.name = e.name.toString();
+				educationInfo.year = e.year.toString();
+				
+				var concentrations:Array = new Array();
+				for each ( var c:XML in e.concentration ) {
+					concentrations.push( c.toString() )
+				}
+				educationInfo.concentrations = concentrations;
+
+				educationHistory.push( affiliation );
+			}
+			user.education_history = educationHistory;
+			
+
+			var workHistory:Array = new Array();
+			for each ( var w:XML in xml.work_info ) {
+				var workInfo:WorkInfo = new WorkInfo();
+
+				var location:Location = new Location();
+				location.city = w.location.city.toString();
+				location.state = w.location.state.toString();
+				location.country = w.location.country.toString();
+				location.zip = w.location.zip.toString();
+				workInfo.location = location;
+
+				workInfo.company_name = w.company_name.toString();
+				workInfo.description = w.description.toString();
+				workInfo.position = w.position.toString();
+				workInfo.start_date = stringToDate( w.start_date.toString() );
+				workInfo.end_date = stringToDate( w.end_date.toString() );
+
+				workHistory.push( workInfo );
+			}
+			user.work_history = workHistory;
+			
+			user.notes_count = xml.notes_count.toString();
+			user.wall_count = xml.wall_count.toString();
+			user.status = xml.status.toString();
+			user.has_added_app = ( xml.has_added_app.toString() == "1" ) ? true : false;
+			
+			return user;
 		}
 		
 		/**
@@ -482,24 +651,24 @@ package com.adobe.webapis.facebook.methodgroups {
 			var events:Array = new Array();
 			
 			for each ( var e:XML in xml.event ) {
-				var event:com.adobe.webapis.facebook.facebook::Event = new com.adobe.webapis.facebook.facebook::Event();
-				event.eid = parseInt( e.facebook::eid );
-				event.name = e.facebook::name.toString();
-				event.tagline = e.facebook::tagline.toString();
-				event.nid = parseInt( e.facebook::nid );
-				event.pic_small = e.facebook::pic_small.toString();
-				event.pic_big = e.facebook::pic_big.toString();
-				event.pic = e.facebook::pic.toString();
-				event.host = e.facebook::host.toString();
-				event.description = e.facebook::description.toString();
-				event.event_type = e.facebook::event_type.toString();
-				event.event_subtype = e.facebook::event_subtype.toString();
-				event.start_time = stringToDate( e.facebook::start_time.toString() );
-				event.end_time = stringToDate( e.facebook::end_time.toString() );
-				event.creator = parseInt( e.facebook::creator );
-				event.update_time = stringToDate( e.facebook::update_time.toString() );
-				event.location = e.facebook::location.toString();
-				event.venue = e.facebook::venue.toString();
+				var event:com.adobe.webapis.facebook.Event = new com.adobe.webapis.facebook.Event();
+				event.eid = parseInt( e.eid );
+				event.name = e.name.toString();
+				event.tagline = e.tagline.toString();
+				event.nid = parseInt( e.nid );
+				event.pic_small = e.pic_small.toString();
+				event.pic_big = e.pic_big.toString();
+				event.pic = e.pic.toString();
+				event.host = e.host.toString();
+				event.description = e.description.toString();
+				event.event_type = e.event_type.toString();
+				event.event_subtype = e.event_subtype.toString();
+				event.start_time = stringToDate( e.start_time.toString() );
+				event.end_time = stringToDate( e.end_time.toString() );
+				event.creator = parseInt( e.creator );
+				event.update_time = stringToDate( e.update_time.toString() );
+				event.location = e.location.toString();
+				event.venue = e.venue.toString();
 				
 				events.push( event );
 			}
@@ -515,10 +684,46 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 		
 		/**
-		 * Converts a notifications_get XML object into a string (the notifications_get value)
+		 * Converts a notifications_get XML object into a Notification instance
 		 */
-		internal static function parseNotificationsGet( xml:XML ):String {
-			return xml.toString();
+		internal static function parseNotificationsGet( xml:XML ):Notification {
+
+			var notification:Notification = new Notification();
+
+			var messages:Object = new Object()
+			messages.unread = parseInt( xml.messages.unread );
+			messages.most_recent = parseInt( xml.messages.most_recent );
+			notification.messages = messages;
+
+			var pokes:Object = new Object()
+			pokes.unread = parseInt( xml.pokes.unread );
+			pokes.most_recent = parseInt( xml.pokes.most_recent );
+			notification.pokes = pokes;
+
+			var shares:Object = new Object()
+			shares.unread = parseInt( xml.shares.unread );
+			shares.most_recent = parseInt( xml.shares.most_recent );
+			notification.shares = shares;
+
+			var friendRequests:Array = new Array();
+			for each ( var u:XML in xml.friend_requests.uid ) {
+				friendRequests.push( u.toString() )
+			}
+			notification.friend_requests = friendRequests;
+
+			var groupInvites:Array = new Array();
+			for each ( var g:XML in xml.group_invites.uid ) {
+				groupInvites.push( g.toString() )
+			}
+			notification.group_invites = groupInvites;
+
+			var eventInvites:Array = new Array();
+			for each ( var e:XML in xml.event_invites.uid ) {
+				eventInvites.push( e.toString() )
+			}
+			notification.event_invites = eventInvites;
+
+			return notification;
 		}
 		
 		/**
@@ -565,8 +770,8 @@ package com.adobe.webapis.facebook.methodgroups {
 			
 			for each ( var f:XML in xml.friend ) {
 				var friend:Friend = new Friend();
-				friend.uid1 = parseInt( f.facebook::uid1 );
-				friend.uid2 = parseInt( f.facebook::uid2 );
+				friend.uid1 = parseInt( f.uid1 );
+				friend.uid2 = parseInt( f.uid2 );
 				
 				friends.push( friend );
 			}

@@ -54,13 +54,13 @@ package com.adobe.webapis.facebook {
 		private var _religion:String;
 		private var _birthday:String;
 		private var _sex:String;
-		private var _hometown_location:String;
+		private var _hometown_location:Location;
 		private var _meeting_sex:Array;
 		private var _meeting_for:Array;
 		private var _relationship_status:String;
 		private var _significant_other_id:int;
 		private var _political:String;
-		private var _current_location:String;
+		private var _current_location:Location;
 		private var _activities:String;
 		private var _interests:String;
 		private var _is_app_user:Boolean;
@@ -70,7 +70,7 @@ package com.adobe.webapis.facebook {
 		private var _books:String;
 		private var _quotes:String;
 		private var _about_me:String;
-		private var _hs_info:String;
+		private var _hs_info:HsInfo;
 		private var _education_history:Array;
 		private var _work_history:Array;
 		private var _notes_count:String;
@@ -310,11 +310,11 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get hometown_location():String {
+		public function get hometown_location():Location {
 			return _hometown_location;
 		}
 		
-		public function set hometown_location( value:String ):void {
+		public function set hometown_location( value:Location ):void {
 			_hometown_location = value;
 		}
 		
@@ -400,11 +400,11 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get current_location():String {
+		public function get current_location():Location {
 			return _current_location;
 		}
 		
-		public function set current_location( value:String ):void {
+		public function set current_location( value:Location ):void {
 			_current_location = value;
 		}
 		
@@ -550,11 +550,11 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get hs_info():String {
+		public function get hs_info():HsInfo {
 			return _hs_info;
 		}
 		
-		public function set hs_info( value:String ):void {
+		public function set hs_info( value:HsInfo ):void {
 			_hs_info = value;
 		}
 		

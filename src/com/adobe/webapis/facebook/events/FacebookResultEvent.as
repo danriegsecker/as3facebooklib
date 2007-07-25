@@ -109,7 +109,7 @@ package com.adobe.webapis.facebook.events {
 		/** Constant for the photosUpload event type. */
 		public static const PHOTOS_UPLOAD:String = "photosUpload";
 		
-		/* Notification */
+		/* Notifications */
 		
 		/** Constant for the noticationsGet event type. */
 		public static const NOTIFICATIONS_GET:String = "noticationsGet";

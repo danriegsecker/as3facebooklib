@@ -173,7 +173,7 @@ package com.adobe.webapis.facebook.methodgroups {
 												  URLLoader( event.target ).data, 
 												  result,
 												  "auth_getSession_response",
-												  MethodGroupHelper.parseAuthSessionResult );
+												  MethodGroupHelper.parseAuthSession );
 			
 		}
 		
