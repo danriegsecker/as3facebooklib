@@ -51,6 +51,10 @@ package com.adobe.webapis.facebook.methodgroups {
 	 */
 	internal class MethodGroupHelper {
 	
+		/** 
+		 * The request's sequence number. Each successive call for any session 
+		 * must use a sequence number greater than the last.
+		 */
 		internal static var call_id:int = 0;
 		
 		/**
