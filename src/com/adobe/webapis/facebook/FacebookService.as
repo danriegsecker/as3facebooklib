@@ -67,6 +67,11 @@ package com.adobe.webapis.facebook {
 		 * Store the API key that gives developers access to the Facebook service 
 		 */
 		private var _api_key:String;
+
+		/** 
+		 * The format the responses are returned.
+		 */
+		private var _format:int;
 		
 		/** 
 		 * Store the session key of the logged in user. 
@@ -108,6 +113,7 @@ package com.adobe.webapis.facebook {
 			_auth_token = "";
 			_session_key = "";
 			_version = "1.0";
+			_format = ResponseFormats.FLASH;
 			
 			_auth = new Auth( this );
 			_fbml = new Fbml( this );

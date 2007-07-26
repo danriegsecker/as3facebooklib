@@ -56,7 +56,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * must use a sequence number greater than the last.
 		 */
 		internal static var call_id:int = 0;
-		
+
 		/** 
 		 * Set the internal DefaultXMLNamespace property to the facebook namespace.
 		 */
@@ -221,7 +221,8 @@ package com.adobe.webapis.facebook.methodgroups {
 					// the result we get back from Facebook is an xml response
 					result.data = XML( rsp );
 				} else {
-					result.data[propertyName] = parseFunction( XML( rsp ) );	
+					//result.data[propertyName] = parseFunction( XML( rsp ) );	
+					result.data = parseFunction( XML( rsp ) );
 				}			
 								
 			} else {
@@ -239,14 +240,14 @@ package com.adobe.webapis.facebook.methodgroups {
 					error.errorCode = int( errorResponse.error_code );
 					error.errorMessage = errorResponse.error_msg;
 					
-					result.data.error = error;
+					result.data = error;
 				}
 				else 
 				{
 					error.errorCode = -1;
 					error.errorMessage = rsp.nodeValue;
 					
-					result.data.error = error;
+					result.data = error;
 				}
 				
 			}
