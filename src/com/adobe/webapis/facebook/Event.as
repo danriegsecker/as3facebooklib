@@ -55,7 +55,7 @@ package com.adobe.webapis.facebook {
 		private var _end_time:Date;
 		private var _creator:int;
 		private var _update_time:Date;
-		private var _location:String;
+		private var _location:Location;
 		private var _venue:String;
 
 		/**
@@ -300,11 +300,11 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get location():String {
+		public function get location():Location {
 			return _location;
 		}
 		
-		public function set location( value:String ):void {
+		public function set location( value:Location ):void {
 			_location = value;
 		}
 		

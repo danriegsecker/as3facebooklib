@@ -668,7 +668,13 @@ package com.adobe.webapis.facebook.methodgroups {
 				event.end_time = stringToDate( e.end_time.toString() );
 				event.creator = parseInt( e.creator );
 				event.update_time = stringToDate( e.update_time.toString() );
-				event.location = e.location.toString();
+
+				var location:Location = new Location();
+				location.city = e.location.city.toString();
+				location.state = e.location.state.toString();
+				location.country = e.location.country.toString();
+				location.zip = e.location.zip.toString();
+				event.location = location;
 				event.venue = e.venue.toString();
 				
 				events.push( event );

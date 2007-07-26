@@ -63,6 +63,24 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			public function initApp():void
 			{
 				viewStack.selectedChild = welcomePanel;
+
+				// Check to see if the auth token was stored, and if so
+				// check the token to see if a user is logged in and what
+				// kind of permission they have
+				var facebookCookie:SharedObject = SharedObject.getLocal( "FacebookServiceTest" );
+				
+				if ( facebookCookie.data.session_key ) {
+					debug.text += "Found stored auth token.. trying to auto-login\n";
+
+					// Assign the token and permission to the service so that
+					// all calls that require authentication have their values
+					// populated
+					service.session_key = facebookCookie.data.session_key;
+					service.secret = facebookCookie.data.secret;
+					
+					viewStack.selectedChild = sessionPanel;
+
+				}
 			}
 			
 			/**
@@ -77,49 +95,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				service = new FacebookService( api_key );
 				service.secret = secretTextInput.text;
 				
-				// Check to see if the auth token was stored, and if so
-				// check the token to see if a user is logged in and what
-				// kind of permission they have
-				var facebookCookie:SharedObject = SharedObject.getLocal( "FacebookServiceTest" );
-				if ( facebookCookie.data.auth_token ) {
-					debug.text += "Found stored auth token.. trying to auto-login\n";
-					
-					// Check the token with the service to auto log in the user
-					service.addEventListener( FacebookResultEvent.AUTH_GET_SESSION, checkGetSession );
-					service.auth.getSession( facebookCookie.data.auth_token );
-				} else {
-					service.addEventListener( FacebookResultEvent.AUTH_CREATE_TOKEN, createTokenResponse );
-					service.auth.createToken();
-				}
-					
+				service.addEventListener( FacebookResultEvent.AUTH_CREATE_TOKEN, createTokenResponse );
+				service.auth.createToken();
 			}
-			
-			/**
-			 * Called if there was a session key stored locally in a cookie. Try to
-			 * log the user back in based on the token, otherwise clear
-			 * the value.
-			 */
-			private function checkGetSession( event:FacebookResultEvent ):void {
-				debug.text += "checkGetSessionResponse: success = " + event.success + "\n";
-				if ( event.success ) {
-					// Re-use the login logic in getSessionResponse
-					getSessionResponse( event );
-				} else {
-					var facebookCookie:SharedObject = SharedObject.getLocal( "FacebookServiceTest" );
-					facebookCookie.clear();
-				}
-			}
-		
-//			/**
-//			 * Some methods require authentication, so this is how you
-//			 * would start the login sequence.  We need to set the secret
-//			 * assigned to our particular application, and then get
-//			 * a auth_token used for authentication.
-//			 */
-//			private function startLoginSequence():void {
-//				service.addEventListener( FacebookResultEvent.AUTH_CREATE_TOKEN, createTokenResponse );
-//				service.auth.createToken();
-//			}
 			
 			/**
 			 * When we receive the auth_token, we need to construct a login link
@@ -213,7 +191,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					// Save the token in a shared object so that when the application
 					// loads again we can re-authenticate automatically
 					var facebookCookie:SharedObject = SharedObject.getLocal( "FacebookServiceTest" );
-					facebookCookie.data.auth_token = auth_token;
+					facebookCookie.data.session_key = authSession.session_key;
+					facebookCookie.data.secret = authSession.secret;
 					facebookCookie.flush();
 					
 					viewStack.selectedChild = sessionPanel;
@@ -448,7 +427,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<mx:HBox>
 			<mx:Label text="Username:" 	/>
 			<mx:Text id="username" text="Not logged in" />
-			<!--mx:Button id="login" label="Login" click="startLoginSequence();" /-->
 			<mx:Button id="logout" label="Logout" click="processLogout();" />
 		</mx:HBox>
 		
