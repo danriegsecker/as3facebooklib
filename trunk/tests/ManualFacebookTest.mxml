@@ -53,6 +53,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			private var service:FacebookService;
 			private var auth_token:String; // store the auth_token we'll use for authentication
 			
+			[Bindable]
+			private var dgData:Array; // source for datagrid
+			
 			/**
 			 * Initialize the application by creating a new instance of
 			 * the Facebook api with our application's api key
@@ -132,7 +135,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					// Have the service construct a login url for us with the
 					// authentication token, and request the user that we'd like
 					// to have DELETE access to their data
-					auth_token = String( event.data.auth_createToken_response );
+					auth_token = String( event.data );
 					
 					var auth_url:String = service.getLoginURL( auth_token );
 					
@@ -156,8 +159,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 								onCloseAuthWindow );
 								
 				} else {
-					debug.text += "error code: " + event.data.error.errorCode + "\n";
-					debug.text += "error message: " + event.data.error.errorMessage + "\n";
+					debug.text += "error code: " + event.data.errorCode + "\n";
+					debug.text += "error message: " + event.data.errorMessage + "\n";
 				}
 			}
 			
@@ -199,7 +202,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 				if ( event.success ) {
 
-					var authSession:AuthSession = AuthSession( event.data.auth_getSession_response );
+					var authSession:AuthSession = AuthSession( event.data );
 					
 					// Assign the token and permission to the service so that
 					// all calls that require authentication have their values
@@ -229,8 +232,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					//logout.visible = true;
 					
 				} else {
-					debug.text += "error code: " + event.data.error.errorCode + "\n";
-					debug.text += "error message: " + event.data.error.errorMessage + "\n";
+					debug.text += "error code: " + event.data.errorCode + "\n";
+					debug.text += "error message: " + event.data.errorMessage + "\n";
 				}
 			}
 			
@@ -380,11 +383,19 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				debug.text += event.type +  " success = " + event.success + "\n";
 				
 				if ( event.success ) {
+					
 					// The call was successful, just dump out the data object
 					debug.text += ObjectUtil.toString( event.data ) + "\n";
+					
+					if (event.data is Array) {
+						// The response was an Array of objects so lets push
+						// them into the datagrid dataprovider
+						dgData = event.data as Array;
+					}
+					
 				} else {
 					// Encountered some kind of error on Facebook...
-					var e:FacebookError = FacebookError( event.data.error );
+					var e:FacebookError = FacebookError( event.data );
 					
 					debug.text += "error code: " + e.errorCode + "\n";
 					debug.text += "error message: " + e.errorMessage + "\n";
@@ -479,7 +490,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 			    <mx:Canvas id="sessionPanel" label="In Session" width="100%" height="100%">
 			    
-				    <mx:DividedBox direction="vertical" width="100%" height="100%">
+				    <mx:VBox>
 						<mx:HBox>
 							<mx:ComboBox id="method">
 								<mx:dataProvider>
@@ -518,14 +529,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			                <mx:TextInput id="extraArgs" width="200"/>
 					        <mx:Button label="Call Method" click="invokeFacebookMethod();"/>
 				        </mx:HBox>
-						<mx:DataGrid id="dgResponse" width="100%" height="100%" rowCount="5" dataProvider="{}">
-							<mx:columns>
-							    <mx:DataGridColumn dataField="name" headerText="Name"/>
-							    <mx:DataGridColumn dataField="phone" headerText="Phone"/>
-							    <mx:DataGridColumn dataField="email" headerText="Email"/>
-							</mx:columns>
-						</mx:DataGrid>
-					</mx:DividedBox>
+						<mx:DataGrid id="dgResponse" width="100%" height="100%" dataProvider="{dgData}" />
+					</mx:VBox>
 
 			    </mx:Canvas>
 			
