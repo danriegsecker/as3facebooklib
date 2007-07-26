@@ -75,6 +75,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					// Assign the token and permission to the service so that
 					// all calls that require authentication have their values
 					// populated
+					service = new FacebookService( facebookCookie.data.api_key );
 					service.session_key = facebookCookie.data.session_key;
 					service.secret = facebookCookie.data.secret;
 					
@@ -191,8 +192,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					// Save the token in a shared object so that when the application
 					// loads again we can re-authenticate automatically
 					var facebookCookie:SharedObject = SharedObject.getLocal( "FacebookServiceTest" );
-					facebookCookie.data.session_key = authSession.session_key;
-					facebookCookie.data.secret = authSession.secret;
+					facebookCookie.data.api_key = service.api_key;
+					facebookCookie.data.session_key = service.session_key;
+					facebookCookie.data.secret = service.secret;
 					facebookCookie.flush();
 					
 					viewStack.selectedChild = sessionPanel;
