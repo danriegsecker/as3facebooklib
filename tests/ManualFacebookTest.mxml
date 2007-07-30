@@ -51,7 +51,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			import flash.geom.Rectangle;
 		
 			private var service:FacebookService;
-			private var auth_token:String; // store the auth_token we'll use for authentication
+			//private var auth_token:String; // store the auth_token we'll use for authentication
 			
 			[Bindable]
 			private var dgData:Array; // source for datagrid
@@ -112,9 +112,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 				if ( event.success ) {
 					// Have the service construct a login url for us with the
-					// authentication token, and request the user that we'd like
-					// to have DELETE access to their data
-					auth_token = String( event.data );
+					// authentication token
+					var auth_token:String = String( event.data );
 					
 					var auth_url:String = service.getLoginURL( auth_token );
 					
