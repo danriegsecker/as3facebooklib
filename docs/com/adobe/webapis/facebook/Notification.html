@@ -52,7 +52,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#event_invites">event_invites</a> : String<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#event_invites">event_invites</a> : Array<div class="summaryTableDescription">
    The event_invites of the affiliation
       </div>
 </td><td class="summaryTableOwnerCol">Notification</td>
@@ -64,25 +64,25 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">Notification</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#group_invites">group_invites</a> : String<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#group_invites">group_invites</a> : Array<div class="summaryTableDescription">
    The group_invites of the affiliation
       </div>
 </td><td class="summaryTableOwnerCol">Notification</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#messages">messages</a> : String<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#messages">messages</a> : Object<div class="summaryTableDescription">
    The messages of the affiliation
       </div>
 </td><td class="summaryTableOwnerCol">Notification</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#pokes">pokes</a> : String<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#pokes">pokes</a> : Object<div class="summaryTableDescription">
    The pokes of the affiliation
       </div>
 </td><td class="summaryTableOwnerCol">Notification</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#shares">shares</a> : String<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#shares">shares</a> : Object<div class="summaryTableDescription">
    The shares of the affiliation
       </div>
 </td><td class="summaryTableOwnerCol">Notification</td>
@@ -101,7 +101,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#Notification()">Notification</a>()</div>
 <div class="summaryTableDescription">
-   Construct a new Notification instance
+   Construct a new Notifications instance
       </div>
 </td><td class="summaryTableOwnerCol">Notification</td>
 </tr>
@@ -121,13 +121,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>event_invites:String</code>&nbsp;&nbsp;[read-write]<p>
+<code>event_invites:Array</code>&nbsp;&nbsp;[read-write]<p>
    The event_invites of the affiliation
       </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get event_invites():String</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get event_invites():Array</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set event_invites(value:String):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set event_invites(value:Array):void</code>
 <br>
 </div>
 <a name="friend_requests"></a>
@@ -153,13 +153,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>group_invites:String</code>&nbsp;&nbsp;[read-write]<p>
+<code>group_invites:Array</code>&nbsp;&nbsp;[read-write]<p>
    The group_invites of the affiliation
       </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get group_invites():String</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get group_invites():Array</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set group_invites(value:String):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set group_invites(value:Array):void</code>
 <br>
 </div>
 <a name="messages"></a>
@@ -169,13 +169,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>messages:String</code>&nbsp;&nbsp;[read-write]<p>
+<code>messages:Object</code>&nbsp;&nbsp;[read-write]<p>
    The messages of the affiliation
       </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get messages():String</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get messages():Object</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set messages(value:String):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set messages(value:Object):void</code>
 <br>
 </div>
 <a name="pokes"></a>
@@ -185,13 +185,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>pokes:String</code>&nbsp;&nbsp;[read-write]<p>
+<code>pokes:Object</code>&nbsp;&nbsp;[read-write]<p>
    The pokes of the affiliation
       </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get pokes():String</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get pokes():Object</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set pokes(value:String):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set pokes(value:Object):void</code>
 <br>
 </div>
 <a name="shares"></a>
@@ -201,13 +201,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>shares:String</code>&nbsp;&nbsp;[read-write]<p>
+<code>shares:Object</code>&nbsp;&nbsp;[read-write]<p>
    The shares of the affiliation
       </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get shares():String</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get shares():Object</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set shares(value:String):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set shares(value:Object):void</code>
 <br>
 </div>
 <a name="constructorDetail"></a>
@@ -220,7 +220,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function Notification()</code><p>
-   Construct a new Notification instance
+   Construct a new Notifications instance
       </p></div>
 <br>
 <br>
