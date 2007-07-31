@@ -226,12 +226,12 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					
 					case "facebook.fbml.refreshImgSrc":
 						//service.addEventListener( FacebookResultEvent.FBML_REFRESH_IMG_SRC, genericResponseHandler );
-						//service.fbml.refreshImgSrc();
+						//service.fbml.refreshImgSrc( url:String );
 						break;
 
 					case "facebook.fbml.refreshRefUrl":
 						//service.addEventListener( FacebookResultEvent.FBML_REFRESH_REF_URL, genericResponseHandler );
-						//service.fbml.refreshRefUrl();
+						//service.fbml.refreshRefUrl( url:String );
 						break;
 
 					case "facebook.fbml.setRefHandle":
@@ -364,7 +364,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 				if ( event.success ) {
 					
-					// The call was successful, just dump out the data object
+					// The call was successful, just dump out the data objectr
 					debug.text += ObjectUtil.toString( event.data ) + "\n";
 					
 					if (event.data is Array) {
