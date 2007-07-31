@@ -124,14 +124,18 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * to non-canvas pages via the API (e.g. to user profiles via facebook.profile.setFBML, 
 		 * or to news feed via facebook.feed.publishActionOfUser).
 		 * 
+		 * @param url Absolute URL from which to refresh the image.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&method=fbml.refreshImgSrc
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function refreshImgSrc():void {
+		public function refreshImgSrc( url:String ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, refreshImgSrc_result, "facebook.fbml.refreshImgSrc", true );
+			MethodGroupHelper.invokeMethod( _service, refreshImgSrc_result, 
+										"facebook.fbml.refreshImgSrc",
+										true,
+										new NameValuePair( "url", url ) );
 		}
 		
 		/**
@@ -158,14 +162,18 @@ package com.adobe.webapis.facebook.methodgroups {
 		/**
 		 * Fetches and re-caches the content stored at the given URL, for use in a fb:ref FBML tag.
 		 * 
+		 * @param url Absolute URL from which to fetch content. This URL should be used in a fb:ref FBML tag.
 		 * @see http://developers.facebook.com/documentation.php?v=1.0&method=fbml.refreshRefUrl
 		 * @langversion ActionScript 3.0
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function refreshRefUrl():void {
+		public function refreshRefUrl( url:String ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, refreshRefUrl_result, "facebook.fbml.refreshImgSrc", true );
+			MethodGroupHelper.invokeMethod( _service, refreshRefUrl_result, 
+										"facebook.fbml.refreshImgSrc", 
+										true,
+										new NameValuePair( "url", url ) );
 		}
 		
 		/**
