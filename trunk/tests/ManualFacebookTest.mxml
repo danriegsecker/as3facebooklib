@@ -51,7 +51,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			import flash.geom.Rectangle;
 		
 			private var service:FacebookService;
-			//private var auth_token:String; // store the auth_token we'll use for authentication
 			
 			[Bindable]
 			private var dgData:Array; // source for datagrid
@@ -295,8 +294,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 						break;
 
 					case "facebook.users.getInfo":
-						//service.addEventListener( FacebookResultEvent.USERS_GET_INFO, genericResponseHandler );
+						service.addEventListener( FacebookResultEvent.USERS_GET_INFO, genericResponseHandler );
 						//service.users.getInfo(uids:Array, fields:Array);
+						service.users.getInfo(["683505234"],["about_me","activities","affiliations","birthday","books","current_location","city","country","state","zip","education_history","first_name","has_added_app","hometown_location","city","country","state","zip","hs_info","grad_year","hs1_key","hs1_name","hs2_key","hs2_name","interests","is_app_user","last_name","meeting_for","meeting_sex","movies","music","name","notes_count","pic","pic_big","pic_small","pic_square","political","profile_update_time","quotes","relationship_status","religion","sex","significant_other_id","status","timezone","tv","uid","wall_count","work_history"]);
 						break;
 
 					case "facebook.users.getLoggedInUser":

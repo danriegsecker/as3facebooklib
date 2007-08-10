@@ -290,12 +290,17 @@ package com.adobe.webapis.facebook {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.FRIENDS_GET, 
 									  addAsync( onFriendsGet, CALL_TIMEOUT ) );
-			//service.friends.get();
+			service.friends.get();
 		}
 		
 		private function onFriendsGet( event:FacebookResultEvent ):void {
+			var friends:Array = event.data;
+			
+			assertTrue( "friends length > 0", friends.length > 0 );
+			assertTrue( "friends[0] uid1 populated", friends[0].uid1.length > 0 );
+			assertTrue( "friends[0] uid2 populated", friends[0].uid1.length > 0 );
 		}
-		
+
 		public function testFriendsGetAppUsers():void {
 			var service:FacebookService = new FacebookService( API_KEY );
 			service.addEventListener( FacebookResultEvent.FRIENDS_GET_APP_USERS, 
@@ -304,6 +309,8 @@ package com.adobe.webapis.facebook {
 		}
 		
 		private function onFriendsGetAppUsers( event:FacebookResultEvent ):void {
+			
+			
 		}
 
 		//**************************************************************
