@@ -480,17 +480,17 @@ package com.adobe.webapis.facebook.methodgroups {
 
 			var user:User = new User();
 
-			user.uid = parseInt( xml.nid );
-			user.first_name = xml.first_name.toString();
-			user.last_name = xml.last_name.toString();
-			user.name = xml.name.toString();
-			user.pic_small = xml.pic_small.toString();
-			user.pic_big = xml.pic_big.toString();
-			user.pic_square = xml.pic_square.toString();
-			user.pic = xml.name.toString();
+			user.uid = parseInt( xml.user.nid );
+			user.first_name = xml.user.first_name.toString();
+			user.last_name = xml.user.last_name.toString();
+			user.name = xml.user.name.toString();
+			user.pic_small = xml.user.pic_small.toString();
+			user.pic_big = xml.user.pic_big.toString();
+			user.pic_square = xml.user.pic_square.toString();
+			user.pic = xml.user.pic.toString();
 			
 			var affiliations:Array = new Array();
-			for each ( var a:XML in xml.affiliations ) {
+			for each ( var a:XML in xml.user.affiliations ) {
 				var affiliation:Affiliation = new Affiliation();
 				affiliation.nid = parseInt( a.nid );
 				affiliation.name = a.name.toString();
@@ -502,62 +502,62 @@ package com.adobe.webapis.facebook.methodgroups {
 			}
 			user.affiliations = affiliations;
 			
-			user.profile_update_time = stringToDate( xml.profile_update_time.toString() );
-			user.timezone = parseInt( xml.timezone );
-			user.religion = xml.religion.toString();
-			user.birthday = xml.birthday.toString();
-			user.sex = xml.sex.toString();
+			user.profile_update_time = stringToDate( xml.user.profile_update_time.toString() );
+			user.timezone = parseInt( xml.user.timezone );
+			user.religion = xml.user.religion.toString();
+			user.birthday = xml.user.birthday.toString();
+			user.sex = xml.user.sex.toString();
 			
 			var hometownLocation:Location = new Location();
-			hometownLocation.city = xml.hometown_location.city.toString();
-			hometownLocation.state = xml.hometown_location.state.toString();
-			hometownLocation.country = xml.hometown_location.country.toString();
-			hometownLocation.zip = xml.hometown_location.zip.toString();
+			hometownLocation.city = xml.user.hometown_location.city.toString();
+			hometownLocation.state = xml.user.hometown_location.state.toString();
+			hometownLocation.country = xml.user.hometown_location.country.toString();
+			hometownLocation.zip = xml.user.hometown_location.zip.toString();
 			user.hometown_location = hometownLocation;
 			
 			var meetingSex:Array = new Array();
-			for each ( var sex:XML in xml.meeting_sex.sex ) {
+			for each ( var sex:XML in xml.user.meeting_sex.sex ) {
 				meetingSex.push( sex.toString() )
 			}
 			user.meeting_sex = meetingSex;
 			
 			var meetingFor:Array = new Array();
-			for each ( var seeking:XML in xml.meeting_for.seeking ) {
+			for each ( var seeking:XML in xml.user.meeting_for.seeking ) {
 				meetingFor.push( seeking.toString() )
 			}
 			user.meeting_for = meetingFor;
 			
-			user.relationship_status = xml.relationship_status.toString();
-			user.significant_other_id = parseInt( xml.significant_other_id );
-			user.political = xml.political.toString();
+			user.relationship_status = xml.user.relationship_status.toString();
+			user.significant_other_id = parseInt( xml.user.significant_other_id );
+			user.political = xml.user.political.toString();
 
 			var currentLocation:Location = new Location();
-			currentLocation.city = xml.hometown_location.city.toString();
-			currentLocation.state = xml.hometown_location.state.toString();
-			currentLocation.country = xml.hometown_location.country.toString();
-			currentLocation.zip = xml.hometown_location.zip.toString();
+			currentLocation.city = xml.user.hometown_location.city.toString();
+			currentLocation.state = xml.user.hometown_location.state.toString();
+			currentLocation.country = xml.user.hometown_location.country.toString();
+			currentLocation.zip = xml.user.hometown_location.zip.toString();
 			user.current_location = currentLocation;
 
-			user.activities = xml.activities.toString();
-			user.interests = xml.interests.toString();
-			user.is_app_user = ( xml.is_app_user.toString() == "1" ) ? true : false;
-			user.music = xml.music.toString();
-			user.tv = xml.tv.toString();
-			user.movies = xml.movies.toString();
-			user.books = xml.books.toString();
-			user.quotes = xml.quotes.toString();
-			user.about_me = xml.about_me.toString();
+			user.activities = xml.user.activities.toString();
+			user.interests = xml.user.interests.toString();
+			user.is_app_user = ( xml.user.is_app_user.toString() == "1" ) ? true : false;
+			user.music = xml.user.music.toString();
+			user.tv = xml.user.tv.toString();
+			user.movies = xml.user.movies.toString();
+			user.books = xml.user.books.toString();
+			user.quotes = xml.user.quotes.toString();
+			user.about_me = xml.user.about_me.toString();
 			
 			var hsInfo:HsInfo = new HsInfo();
-			hsInfo.hs1_name = xml.hs_info.hs1_name.toString();
-			hsInfo.hs2_name = xml.hs_info.hs2_name.toString();
-			hsInfo.grad_year = xml.hs_info.grad_year.toString();
-			hsInfo.hs1_key = xml.hs_info.hs1_key.toString();
-			hsInfo.hs2_key = xml.hs_info.hs2_key.toString();
+			hsInfo.hs1_name = xml.user.hs_info.hs1_name.toString();
+			hsInfo.hs2_name = xml.user.hs_info.hs2_name.toString();
+			hsInfo.grad_year = xml.user.hs_info.grad_year.toString();
+			hsInfo.hs1_key = xml.user.hs_info.hs1_key.toString();
+			hsInfo.hs2_key = xml.user.hs_info.hs2_key.toString();
 			user.hs_info = hsInfo;
 			
 			var educationHistory:Array = new Array();
-			for each ( var e:XML in xml.education_info ) {
+			for each ( var e:XML in xml.user.education_info ) {
 				var educationInfo:EducationInfo = new EducationInfo();
 				educationInfo.name = e.name.toString();
 				educationInfo.year = e.year.toString();
@@ -574,7 +574,7 @@ package com.adobe.webapis.facebook.methodgroups {
 			
 
 			var workHistory:Array = new Array();
-			for each ( var w:XML in xml.work_info ) {
+			for each ( var w:XML in xml.user.work_info ) {
 				var workInfo:WorkInfo = new WorkInfo();
 
 				var location:Location = new Location();
@@ -594,13 +594,12 @@ package com.adobe.webapis.facebook.methodgroups {
 			}
 			user.work_history = workHistory;
 			
-			user.notes_count = xml.notes_count.toString();
-			user.wall_count = xml.wall_count.toString();
-			user.status = xml.status.toString();
-			user.has_added_app = ( xml.has_added_app.toString() == "1" ) ? true : false;
+			user.notes_count = xml.user.notes_count.toString();
+			user.wall_count = xml.user.wall_count.toString();
+			user.status = xml.user.status.toString();
+			user.has_added_app = ( xml.user.has_added_app.toString() == "1" ) ? true : false;
 			
-			return user;
-		}
+			return user;		}
 		
 		/**
 		 * Converts a users_getLoggedInUser XML object into a string (the users_getLoggedInUser value)
@@ -769,16 +768,15 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 
 		/**
-		 * Converts a friends_get XML object into an array of Friend instances
+		 * Converts a friends_get XML object into an array of User instances
 		 */
 		internal static function parseFriendsGet( xml:XML ):Array {
 
 			var friends:Array = new Array();
 			
-			for each ( var f:XML in xml.friend ) {
-				var friend:Friend = new Friend();
-				friend.uid1 = parseInt( f.uid1 );
-				friend.uid2 = parseInt( f.uid2 );
+			for each ( var f:XML in xml.uid ) {
+				var friend:User = new User();
+				friend.uid = parseInt( f.toString() );
 				
 				friends.push( friend );
 			}
