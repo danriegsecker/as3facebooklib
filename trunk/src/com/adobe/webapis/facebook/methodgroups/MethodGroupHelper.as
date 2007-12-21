@@ -127,7 +127,7 @@ package com.adobe.webapis.facebook.methodgroups {
 			// Construct the query string to send to the Facebook service
 			var query:String = "";
 			for ( var k:int = 0; k < args.length; k++ ) {
-				query += args[k].name + "=" + args[k].value
+				query += args[k].name + "=" + escape(args[k].value);
 				if (k<args.length-1) query += "&";
 			}
 			
@@ -608,6 +608,10 @@ package com.adobe.webapis.facebook.methodgroups {
 			return xml.toString();
 		}
 		
+		internal static function parseUsersSetStatus( xml:XML ):String {
+			return xml.toString();
+		}
+		
 		/**
 		 * Converts a fbml_refreshImgSrc XML object into a string (the fbml_refreshImgSrc value)
 		 */
@@ -718,13 +722,13 @@ package com.adobe.webapis.facebook.methodgroups {
 			notification.friend_requests = friendRequests;
 
 			var groupInvites:Array = new Array();
-			for each ( var g:XML in xml.group_invites.uid ) {
+			for each ( var g:XML in xml.group_invites.gid ) {
 				groupInvites.push( g.toString() )
 			}
 			notification.group_invites = groupInvites;
 
 			var eventInvites:Array = new Array();
-			for each ( var e:XML in xml.event_invites.uid ) {
+			for each ( var e:XML in xml.event_invites.eid ) {
 				eventInvites.push( e.toString() )
 			}
 			notification.event_invites = eventInvites;
