@@ -184,6 +184,29 @@ package com.adobe.webapis.facebook.methodgroups {
 												  "users_getLoggedInUser_response",
 												  MethodGroupHelper.parseUsersGetLoggedInUser );
 		}
+		
+		public function setStatus( status:String, clear:Boolean = false ):void {
+			// Let the Helper do the work to invoke the method			
+			MethodGroupHelper.invokeMethod( _service, setStatus_result, 
+									"facebook.users.setStatus", 
+									true,
+									new NameValuePair( "status", status ),
+									new NameValuePair( "clear", clear ? "1" : "0" )
+									);
+		}
+		
+		private function setStatus_result( event:flash.events.Event ):void {
+			// Create an USERS_SET_STATUS event
+			var result:FacebookResultEvent = new FacebookResultEvent( FacebookResultEvent.USERS_SET_STATUS );
+
+			// Have the Helper handle parsing the result from the server - get the data
+			// from the URLLoader which correspondes to the result from the API call
+			MethodGroupHelper.processAndDispatch( _service, 
+								  URLLoader( event.target ).data, 
+								  result,
+								  "users_setStatus_response",
+								  MethodGroupHelper.parseUsersSetStatus );
+		}
 
 	}	
 	
