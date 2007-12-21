@@ -215,7 +215,7 @@ package com.adobe.webapis.facebook.methodgroups {
 		 */
 		public function sendRequest( to_ids:Array, type:String, content:String, image:String, invite:Boolean = false ):void {
 			// Let the Helper do the work to invoke the method			
-			MethodGroupHelper.invokeMethod( _service, send_result, 
+			MethodGroupHelper.invokeMethod( _service, sendRequest_result, 
 									"facebook.notifications.sendRequest", 
 									true,
 									new NameValuePair( "to_ids", to_ids.toString() ),
