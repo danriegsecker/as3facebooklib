@@ -89,6 +89,9 @@ package com.adobe.webapis.facebook.events {
 		/** Constant for the usersIsAppAdded event type. */
 		public static const USERS_IS_APP_ADDED:String = "usersIsAppAdded";
 		
+		/** Constant for the usersSetStatus event type. */
+		public static const USERS_SET_STATUS:String = "usersSetStatus";
+		
 		/* Photos */
 
 		/** Constant for the photosAddTag event type. */
