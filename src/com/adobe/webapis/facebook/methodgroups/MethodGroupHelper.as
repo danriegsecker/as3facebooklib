@@ -41,9 +41,11 @@ package com.adobe.webapis.facebook.methodgroups {
 	import com.adobe.webapis.facebook.events.*;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	//import flash.net.URLVariables;
+	import flash.net.FileReference;
+	import flash.net.URLRequestMethod;
 	import flash.events.Event;
 	import flash.xml.*;
-	import flash.geom.Rectangle;
 
 	/**
 	 * Contains helper functions for the method group classes that are
@@ -141,6 +143,111 @@ package com.adobe.webapis.facebook.methodgroups {
 			// the Facebook method
 			loader.addEventListener( "complete", callBack );
 			loader.load( new URLRequest( FacebookService.END_POINT + query ) );
+		}
+		
+		/**
+		 * Reusable method that the "method group" classes can call to invoke a
+		 * method on the API.
+		 *
+		 * @param callBack The function to be notified when the RPC is complete
+		 * @param method The name of the method to invoke ( like facebook.test.echo )
+		 * @param signed A boolean value indicating if the method call needs
+		 *			an api_sig attached to it
+		 * @param fileReference The fileReference that the user "browsed" to
+		 * @param params An array of NameValuePair or primitive elements to pass
+		 *			as parameters to the remote method
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		internal static function invokeUploadMethod( service:FacebookService, 
+												callBack:Function, 
+												method:String, 
+												signed:Boolean,
+												fileReference:FileReference,
+												... params:Array ):void
+		{
+			
+			// Create an array to store our name/value pairs
+			// for the query because during signing we need to sort
+			// these alphabetically
+			var args:Array = new Array();
+			
+			args.push( new NameValuePair( "call_id", String(call_id++) ) );
+			args.push( new NameValuePair( "v", service.version ) );
+			args.push( new NameValuePair( "method", method ) );
+			args.push( new NameValuePair( "api_key", service.api_key ) );
+
+			// Flash sends both the 'Filename' and the 'Upload' values
+			// in the body of the POST request, so these are needed for the signature
+			// as well, otherwise Facebook returns a error code 104 'invalid signature'
+			args.push( new NameValuePair( "Filename", fileReference.name ) );
+			args.push( new NameValuePair( "UploadSubmit", "Query" ) );
+			
+			// Loop over the params and add them as arguments
+			for ( var i:int = 0; i < params.length; i++ ) {
+				// Do we have an argument name, or do we create one
+				if ( params[i] is NameValuePair ) {
+					args.push( params[i] );
+				} else {
+					// Create a unique argument name using our loop counter
+					args.push( new NameValuePair( "param" + i, params[i].toString() ) );
+				}
+			}
+
+			// If a user is authenticated, automatically add their session_key
+			if ( service.session_key ) {
+				args.push( new NameValuePair( "session_key", service.session_key ) );
+				// auto-sign the call because the user is authenticated
+				signed = true;
+			}
+			
+			// Sign the call
+			if ( signed ) {
+				
+				// sign the call according to the documentation
+				// here: http://developers.facebook.com/documentation.php?v=1.0&doc=auth
+				
+				args.sortOn( "name" );
+				var sig:String = "";
+				for ( var j:int = 0; j < args.length; j++ ) {
+					sig += args[j].name.toString() + "=" + args[j].value.toString();	
+				}
+				sig += service.secret;
+				args.push( new NameValuePair( "sig", MD5.hash( sig ) ) );
+			}
+			
+			// Construct the query string to send to the Facebook service
+			var query:String = "";
+			for ( var k:int = 0; k < args.length; k++ ) {
+				query += args[k].name + "=" + escape(args[k].value);
+				if (k<args.length-1) query += "&";
+			}
+			
+			// Use the "internal" facebookservice namespace to be able to
+			// access the urlLoader so we can make the request.
+			//var loader:URLLoader = service.facebookservice_internal::urlLoader;
+
+			trace("URL:" + FacebookService.END_POINT + query);
+
+			// Construct a url request with our query string and invoke
+			// the Facebook method
+			//loader.addEventListener( "complete", callBack );
+			//loader.load( new URLRequest( FacebookService.END_POINT + query ) );
+			
+			//var vars:URLVariables = new URLVariables();
+			
+			
+			var request:URLRequest = new URLRequest( FacebookService.END_POINT + query );
+			//request.data = vars;
+			request.method = URLRequestMethod.POST;
+			
+			
+			// Facebook expects the filename parameter to be named 'photo'
+			fileReference.addEventListener( "uploadCompleteData", callBack );
+			//fileReference.addEventListener( "complete", callBack );
+			fileReference.upload( request );
+			
 		}
 		
 		/**
@@ -608,7 +715,41 @@ package com.adobe.webapis.facebook.methodgroups {
 			return xml.toString();
 		}
 		
+		/**
+		 * Converts a users_setStatus XML object into a string (the users_setStatus value)
+		 */
 		internal static function parseUsersSetStatus( xml:XML ):String {
+			return xml.toString();
+		}
+
+		/**
+		 * Converts a pages_getInfo XML object into a string (the pages_getInfo value)
+		 */
+		internal static function parsePagesGetInfo( xml:XML ):String {
+
+			//var page:Page = new Page();
+
+			return xml.toString();
+		}
+
+		/**
+		 * Converts a pages_isAppAdded XML object into a string (the pages_isAppAdded value)
+		 */
+		internal static function parsePagesIsAppAdded( xml:XML ):String {
+			return xml.toString();
+		}
+
+		/**
+		 * Converts a pages_isAdmin XML object into a string (the pages_isAdmin value)
+		 */
+		internal static function parsePagesIsAdmin( xml:XML ):String {
+			return xml.toString();
+		}
+
+		/**
+		 * Converts a pages_isFan XML object into a string (the pages_isFan value)
+		 */
+		internal static function parsePagesIsFan( xml:XML ):String {
 			return xml.toString();
 		}
 		
