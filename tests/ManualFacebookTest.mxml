@@ -352,6 +352,14 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 						//service.photos.getTags(pids:Array);
 						break;
 		
+					case "facebook.photos.getTags":
+						var file:FileReference = new FileReference();
+						var types:Array = [{description: "Images (*.jpg;*.gif;*.png)", 
+											extension: "*.jpg;*.gif;*.png"}]
+						file.addEventListener( "select", onUploadPhotoSelect );
+						file.browse( /*types*/ );
+						break;
+		
 				}
 			}
 			
@@ -387,7 +395,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 */
 			private function onUploadPhotoSelect( event:flash.events.Event ):void {
 				/* Upload doesn't work - need some player modifications first */
-				//service.photos.upload.upload( FileReference( event.target ), "test", "dest descr", "testtag" );
+				var fileReference:FileReference = FileReference( event.target );
+				service.photos.upload( fileReference, 1, "test photo caption" );
 			}
 			
 			/**
@@ -499,7 +508,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 										<mx:String>facebook.photos.get</mx:String>
 										<mx:String>facebook.photos.getAlbums</mx:String>
 										<mx:String>facebook.photos.getTags</mx:String>
-										<!--mx:String>facebook.photos.upload</mx:String-->
+										<mx:String>facebook.photos.upload</mx:String>
 										<mx:String>facebook.users.getInfo</mx:String>
 										<mx:String>facebook.users.getLoggedInUser</mx:String>
 									</mx:Array>				

@@ -37,8 +37,10 @@ package com.adobe.webapis.facebook.methodgroups {
 	
 	import com.adobe.webapis.facebook.events.FacebookResultEvent;
 	import com.adobe.webapis.facebook.*;
+	import com.adobe.crypto.MD5;
 	import flash.events.Event;
 	import flash.net.URLLoader;
+	import flash.net.FileReference;
 	
 		/**
 		 * Broadcast as a result of the addTag method being called
@@ -385,14 +387,16 @@ package com.adobe.webapis.facebook.methodgroups {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function upload( data:String, aid:int = -1, caption:String = "" ):void {
-			// Let the Helper do the work to invoke the method			
+		public function upload( fileReference:FileReference, aid:int = -1, caption:String = "" ):void {
+			// Let the Helper do the work to invoke the method
+
 			MethodGroupHelper.invokeMethod( _service, upload_result, 
 									"facebook.photos.upload", 
-									true, 
+									true,
+									fileReference,
 									new NameValuePair( "aid", aid == -1 ? "" : aid.toString() ),
-									new NameValuePair( "caption", caption ),
-									new NameValuePair( "data", data ) );
+									new NameValuePair( "caption", caption ));
+									
 		}
 		
 		/**

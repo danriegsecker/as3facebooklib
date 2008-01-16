@@ -107,7 +107,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#upload()">upload</a>(data:String, aid:int = -1, caption:String = ""):void</div>
+<a class="signatureLink" href="#upload()">upload</a>(fileReference:FileReference, aid:int = -1, caption:String = ""):void</div>
 <div class="summaryTableDescription">
    Uploads a photo owned by the current session user and returns the new photo.</div>
 </td><td class="summaryTableOwnerCol">Photos</td>
@@ -418,7 +418,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function upload(data:String, aid:int = -1, caption:String = ""):void</code><p>
+<code>public function upload(fileReference:FileReference, aid:int = -1, caption:String = ""):void</code><p>
    Uploads a photo owned by the current session user and returns the new photo. 
    See photo uploads for a description of the upload workflow. The only storable 
    values returned from this call are pid, aid, and owner.
@@ -429,7 +429,7 @@ showHideInherited();
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">data</span>:String</code> &mdash; (Optional) The raw image data for the photo.
+<td width="20px"></td><td><code><span class="label">fileReference</span>:FileReference</code> &mdash; (Optional) The raw image data for the photo.
    </td>
 </tr>
 <tr>
