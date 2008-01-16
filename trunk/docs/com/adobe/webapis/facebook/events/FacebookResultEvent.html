@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../../../print.css" type="text/css" media="print">
-<meta content="FacebookResultEvent,com.adobe.webapis.facebook.events.FacebookResultEvent,AUTH_CREATE_TOKEN,AUTH_GET_SESSION,FQL_QUERY,EVENTS_GET,EVENTS_GET_MEMBERS,FRIENDS_ARE_FRIENDS,FRIENDS_GET,FRIENDS_GET_APP_USERS,FRIENDS_GET_REQUESTS,USERS_GET_INFO,USERS_GET_LOGGED_IN_USER,USERS_IS_APP_ADDED,PHOTOS_ADD_TAG,PHOTOS_CREATE_ALBUM,PHOTOS_GET,PHOTOS_GET_ALBUMS,PHOTOS_GET_TAGS,PHOTOS_UPLOAD,NOTIFICATIONS_GET,NOTIFICATIONS_SEND,NOTIFICATIONS_SEND_REQUEST,PROFILE_SET_FBML,PROFILE_GET_FBML,GROUPS_GET,GROUPS_GET_MEMBERS,FBML_REFRESH_REF_URL,FBML_REFRESH_IMG_SRC,FBML_SET_REF_HANDLE,FEED_PUBLISH_STORY_TO_USER,FEED_PUBLISH_ACTION_OF_USER,success" name="keywords">
+<meta content="FacebookResultEvent,com.adobe.webapis.facebook.events.FacebookResultEvent,AUTH_CREATE_TOKEN,AUTH_GET_SESSION,FQL_QUERY,EVENTS_GET,EVENTS_GET_MEMBERS,FRIENDS_ARE_FRIENDS,FRIENDS_GET,FRIENDS_GET_APP_USERS,FRIENDS_GET_REQUESTS,USERS_GET_INFO,USERS_GET_LOGGED_IN_USER,USERS_IS_APP_ADDED,USERS_SET_STATUS,PAGES_GET_INFO,PAGES_IS_APP_ADDED,PAGES_IS_ADMIN,PAGES_IS_FAN,PHOTOS_ADD_TAG,PHOTOS_CREATE_ALBUM,PHOTOS_GET,PHOTOS_GET_ALBUMS,PHOTOS_GET_TAGS,PHOTOS_UPLOAD,NOTIFICATIONS_GET,NOTIFICATIONS_SEND,NOTIFICATIONS_SEND_REQUEST,PROFILE_SET_FBML,PROFILE_GET_FBML,GROUPS_GET,GROUPS_GET_MEMBERS,FBML_REFRESH_REF_URL,FBML_REFRESH_IMG_SRC,FBML_SET_REF_HANDLE,FEED_PUBLISH_STORY_TO_USER,FEED_PUBLISH_ACTION_OF_USER,success" name="keywords">
 <title>com.adobe.webapis.facebook.events.FacebookResultEvent</title>
 </head>
 <body>
@@ -166,6 +166,22 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">FacebookResultEvent</td>
 </tr>
 <tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PAGES_GET_INFO">PAGES_GET_INFO</a> : String = "pagesGetInfo"<div class="summaryTableDescription">[static] Constant for the pagesGetInfo event type.</div>
+</td><td class="summaryTableOwnerCol">FacebookResultEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PAGES_IS_ADMIN">PAGES_IS_ADMIN</a> : String = "pagesIsAdmin"<div class="summaryTableDescription">[static] Constant for the pagesIsAdmin event type.</div>
+</td><td class="summaryTableOwnerCol">FacebookResultEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PAGES_IS_APP_ADDED">PAGES_IS_APP_ADDED</a> : String = "pagesIsAppAdded"<div class="summaryTableDescription">[static] Constant for the pagesIsAppAdded event type.</div>
+</td><td class="summaryTableOwnerCol">FacebookResultEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PAGES_IS_FAN">PAGES_IS_FAN</a> : String = "pagesIsFan"<div class="summaryTableDescription">[static] Constant for the pagesIsFan event type.</div>
+</td><td class="summaryTableOwnerCol">FacebookResultEvent</td>
+</tr>
+<tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PHOTOS_ADD_TAG">PHOTOS_ADD_TAG</a> : String = "photosAddTag"<div class="summaryTableDescription">[static] Constant for the photosAddTag event type.</div>
 </td><td class="summaryTableOwnerCol">FacebookResultEvent</td>
 </tr>
@@ -207,6 +223,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#USERS_IS_APP_ADDED">USERS_IS_APP_ADDED</a> : String = "usersIsAppAdded"<div class="summaryTableDescription">[static] Constant for the usersIsAppAdded event type.</div>
+</td><td class="summaryTableOwnerCol">FacebookResultEvent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#USERS_SET_STATUS">USERS_SET_STATUS</a> : String = "usersSetStatus"<div class="summaryTableDescription">[static] Constant for the usersSetStatus event type.</div>
 </td><td class="summaryTableOwnerCol">FacebookResultEvent</td>
 </tr>
 </table>
@@ -413,6 +433,38 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const NOTIFICATIONS_SEND_REQUEST:String = "noticationsSendRequest"</code><p> Constant for the noticationsSendRequest event type. </p></div>
+<a name="PAGES_GET_INFO"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PAGES_GET_INFO</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const PAGES_GET_INFO:String = "pagesGetInfo"</code><p> Constant for the pagesGetInfo event type. </p></div>
+<a name="PAGES_IS_ADMIN"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PAGES_IS_ADMIN</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const PAGES_IS_ADMIN:String = "pagesIsAdmin"</code><p> Constant for the pagesIsAdmin event type. </p></div>
+<a name="PAGES_IS_APP_ADDED"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PAGES_IS_APP_ADDED</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const PAGES_IS_APP_ADDED:String = "pagesIsAppAdded"</code><p> Constant for the pagesIsAppAdded event type. </p></div>
+<a name="PAGES_IS_FAN"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PAGES_IS_FAN</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const PAGES_IS_FAN:String = "pagesIsFan"</code><p> Constant for the pagesIsFan event type. </p></div>
 <a name="PHOTOS_ADD_TAG"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -501,6 +553,14 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const USERS_IS_APP_ADDED:String = "usersIsAppAdded"</code><p> Constant for the usersIsAppAdded event type. </p></div>
+<a name="USERS_SET_STATUS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">USERS_SET_STATUS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const USERS_SET_STATUS:String = "usersSetStatus"</code><p> Constant for the usersSetStatus event type. </p></div>
 <br>
 <br>
 <hr>

@@ -92,6 +92,20 @@ package com.adobe.webapis.facebook.events {
 		/** Constant for the usersSetStatus event type. */
 		public static const USERS_SET_STATUS:String = "usersSetStatus";
 		
+		/* Pages */
+
+		/** Constant for the pagesGetInfo event type. */
+		public static const PAGES_GET_INFO:String = "pagesGetInfo";
+
+		/** Constant for the pagesIsAppAdded event type. */
+		public static const PAGES_IS_APP_ADDED:String = "pagesIsAppAdded";
+
+		/** Constant for the pagesIsAdmin event type. */
+		public static const PAGES_IS_ADMIN:String = "pagesIsAdmin";
+		
+		/** Constant for the pagesIsFan event type. */
+		public static const PAGES_IS_FAN:String = "pagesIsFan";
+		
 		/* Photos */
 
 		/** Constant for the photosAddTag event type. */
