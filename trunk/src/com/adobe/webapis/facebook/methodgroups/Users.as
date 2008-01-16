@@ -75,7 +75,7 @@ package com.adobe.webapis.facebook.methodgroups {
 			 type="com.adobe.webapis.facebook.events.FacebookResultEvent")]
 
 	/**
-	 * Contains the methods for the Feed method group in the Facebook API.
+	 * Contains the methods for the Users method group in the Facebook API.
 	 * 
 	 * Even though the events are listed here, they're really broadcast
 	 * from the FacebookService instance itself to make using the service
