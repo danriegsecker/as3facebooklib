@@ -126,23 +126,58 @@ package com.adobe.webapis.facebook.methodgroups {
 				args.push( new NameValuePair( "sig", MD5.hash( sig ) ) );
 			}
 			
-			// Construct the query string to send to the Facebook service
-			var query:String = "";
-			for ( var k:int = 0; k < args.length; k++ ) {
-				query += args[k].name + "=" + escape(args[k].value);
-				if (k<args.length-1) query += "&";
-			}
-			
 			// Use the "internal" facebookservice namespace to be able to
 			// access the urlLoader so we can make the request.
 			var loader:URLLoader = service.facebookservice_internal::urlLoader;
-
-			trace("URL:" + FacebookService.END_POINT + query);
-
-			// Construct a url request with our query string and invoke
-			// the Facebook method
 			loader.addEventListener( "complete", callBack );
-			loader.load( new URLRequest( FacebookService.END_POINT + query ) );
+			
+			var query:String;
+			if (method!="facebook.photos.upload")
+			{
+				// Construct the query string to send to the Facebook service
+				query = "";
+				for ( var k:int = 0; k < args.length; k++ ) {
+					if (args[k].value.toString().length==0) continue;
+					query += args[k].name + "=" + escape(args[k].value); 
+					if (k<args.length-1) query += "&";
+				}
+				loader.dataFormat = URLLoaderDataFormat.TEXT;
+				loader.load( new URLRequest( FacebookService.END_POINT + query ) );
+			} 
+			/**
+			 * 	Added support for photos.upload method which has different message structure than other calls
+			 *  by Peter "sHTiF" Stefcek - 03.12.2007 
+			 */
+			else {			
+				var data:ByteArray
+				for (var it:Number=0; it<args.length; it++)
+				{
+					if (NameValuePair(args[it]).name=="data") 
+					{
+						data=NameValuePair(args[it]).data;
+					}
+				}
+
+				var mime:MIMEConstructor = new MIMEConstructor();
+				mime.writePostData("api_key", service.api_key.toString());
+				mime.writePostData("call_id", call_id.toString());
+				mime.writePostData("method", method);
+				mime.writePostData("session_key", service.session_key.toString());
+				mime.writePostData("v", "1.0");
+				mime.writePostData("sig", MD5.hash(sig));
+				mime.writeFileData("fn"+call_id.toString()+".jpg", data); 
+				mime.closePostData();
+				
+				var urlreq:URLRequest = new URLRequest();
+				urlreq.method = URLRequestMethod.POST;
+
+				urlreq.contentType = "multipart/form-data; boundary="+mime.getBoundary();
+				urlreq.data = mime.getPostData();
+				urlreq.url = "http://api.facebook.com/restserver.php";
+				//urlreq.requestHeaders.push( new URLRequestHeader( 'Cache-Control', 'no-cache' ) );
+				loader.dataFormat = URLLoaderDataFormat.BINARY;
+				loader.load(urlreq);
+			}
 		}
 		
 		/**
@@ -536,10 +571,23 @@ package com.adobe.webapis.facebook.methodgroups {
 		}
 		
 		/**
-		 * Converts a photos_upload XML object into a string (the photos_upload value)
+		 * Added by Peter "sHTiF" Stefcek - 04.12.2007
 		 */
-		internal static function parsePhotosUpload( xml:XML ):String {
-			return xml.toString();
+		internal static function parsePhotosUpload( xml:XML ):Photo 
+		{
+			var photo:Photo = new Photo();
+			
+			photo.pid = parseInt( xml.pid );
+			photo.aid = parseInt( xml.aid );
+			photo.owner = parseInt( xml.owner );
+			photo.src = xml.src.toString();
+			photo.src_big = xml.src_big.toString();
+			photo.src_small = xml.src_small.toString();
+			photo.link = xml.link.toString();
+			photo.caption = xml.caption.toString();
+			photo.created = stringToDate( xml.created.toString() );
+			
+			return photo;
 		}
 		
 		/**
@@ -582,131 +630,141 @@ package com.adobe.webapis.facebook.methodgroups {
 		
 		/**
 		 * Converts a users_getInfo XML object into a User instance
+		 * 
+		 * Added support for multi user getInfo call response - Peter "sHTiF" Stefcek - 05.12.2007
 		 */
-		internal static function parseUsersGetInfo( xml:XML ):User {
-
-			var user:User = new User();
-
-			user.uid = parseInt( xml.user.nid );
-			user.first_name = xml.user.first_name.toString();
-			user.last_name = xml.user.last_name.toString();
-			user.name = xml.user.name.toString();
-			user.pic_small = xml.user.pic_small.toString();
-			user.pic_big = xml.user.pic_big.toString();
-			user.pic_square = xml.user.pic_square.toString();
-			user.pic = xml.user.pic.toString();
+		internal static function parseUsersGetInfo( xml:XML ):Array
+		{
+			var users:Array = new Array();
 			
-			var affiliations:Array = new Array();
-			for each ( var a:XML in xml.user.affiliations ) {
-				var affiliation:Affiliation = new Affiliation();
-				affiliation.nid = parseInt( a.nid );
-				affiliation.name = a.name.toString();
-				affiliation.type = a.type.toString();
-				affiliation.status = a.status.toString();
-				affiliation.year = a.year.toString();
-
-				affiliations.push( affiliation );
-			}
-			user.affiliations = affiliations;
-			
-			user.profile_update_time = stringToDate( xml.user.profile_update_time.toString() );
-			user.timezone = parseInt( xml.user.timezone );
-			user.religion = xml.user.religion.toString();
-			user.birthday = xml.user.birthday.toString();
-			user.sex = xml.user.sex.toString();
-			
-			var hometownLocation:Location = new Location();
-			hometownLocation.city = xml.user.hometown_location.city.toString();
-			hometownLocation.state = xml.user.hometown_location.state.toString();
-			hometownLocation.country = xml.user.hometown_location.country.toString();
-			hometownLocation.zip = xml.user.hometown_location.zip.toString();
-			user.hometown_location = hometownLocation;
-			
-			var meetingSex:Array = new Array();
-			for each ( var sex:XML in xml.user.meeting_sex.sex ) {
-				meetingSex.push( sex.toString() )
-			}
-			user.meeting_sex = meetingSex;
-			
-			var meetingFor:Array = new Array();
-			for each ( var seeking:XML in xml.user.meeting_for.seeking ) {
-				meetingFor.push( seeking.toString() )
-			}
-			user.meeting_for = meetingFor;
-			
-			user.relationship_status = xml.user.relationship_status.toString();
-			user.significant_other_id = parseInt( xml.user.significant_other_id );
-			user.political = xml.user.political.toString();
-
-			var currentLocation:Location = new Location();
-			currentLocation.city = xml.user.hometown_location.city.toString();
-			currentLocation.state = xml.user.hometown_location.state.toString();
-			currentLocation.country = xml.user.hometown_location.country.toString();
-			currentLocation.zip = xml.user.hometown_location.zip.toString();
-			user.current_location = currentLocation;
-
-			user.activities = xml.user.activities.toString();
-			user.interests = xml.user.interests.toString();
-			user.is_app_user = ( xml.user.is_app_user.toString() == "1" ) ? true : false;
-			user.music = xml.user.music.toString();
-			user.tv = xml.user.tv.toString();
-			user.movies = xml.user.movies.toString();
-			user.books = xml.user.books.toString();
-			user.quotes = xml.user.quotes.toString();
-			user.about_me = xml.user.about_me.toString();
-			
-			var hsInfo:HsInfo = new HsInfo();
-			hsInfo.hs1_name = xml.user.hs_info.hs1_name.toString();
-			hsInfo.hs2_name = xml.user.hs_info.hs2_name.toString();
-			hsInfo.grad_year = xml.user.hs_info.grad_year.toString();
-			hsInfo.hs1_key = xml.user.hs_info.hs1_key.toString();
-			hsInfo.hs2_key = xml.user.hs_info.hs2_key.toString();
-			user.hs_info = hsInfo;
-			
-			var educationHistory:Array = new Array();
-			for each ( var e:XML in xml.user.education_info ) {
-				var educationInfo:EducationInfo = new EducationInfo();
-				educationInfo.name = e.name.toString();
-				educationInfo.year = e.year.toString();
+			for each ( var f:XML in xml.user )
+			{
+				var user:User = new User();
+				// Fixed (should be uid instead of nid) by Peter "sHTiF" Stefcek - 04.12.2007
+				user.uid = parseInt( f.uid );
+				user.first_name = f.first_name.toString();
+				user.last_name = f.last_name.toString();
+				user.name = f.name.toString();
+				user.pic_small = f.pic_small.toString();
+				user.pic_big = f.pic_big.toString();
+				user.pic_square = f.pic_square.toString();
+				user.pic = f.pic.toString();
 				
-				var concentrations:Array = new Array();
-				for each ( var c:XML in e.concentration ) {
-					concentrations.push( c.toString() )
+				var affiliations:Array = new Array();
+				for each ( var a:XML in f.affiliations ) {
+					var affiliation:Affiliation = new Affiliation();
+					affiliation.nid = parseInt( a.nid );
+					affiliation.name = a.name.toString();
+					affiliation.type = a.type.toString();
+					affiliation.status = a.status.toString();
+					affiliation.year = a.year.toString();
+	
+					affiliations.push( affiliation );
 				}
-				educationInfo.concentrations = concentrations;
-
-				educationHistory.push( affiliation );
+				user.affiliations = affiliations;
+				
+				user.profile_update_time = stringToDate( f.profile_update_time.toString() );
+				user.timezone = parseInt( f.timezone );
+				user.religion = f.religion.toString();
+				user.birthday = f.birthday.toString();
+				user.sex = f.sex.toString();
+				
+				var hometownLocation:Location = new Location();
+				hometownLocation.city = f.hometown_location.city.toString();
+				hometownLocation.state = f.hometown_location.state.toString();
+				hometownLocation.country = f.hometown_location.country.toString();
+				hometownLocation.zip = f.hometown_location.zip.toString();
+				user.hometown_location = hometownLocation;
+				
+				var meetingSex:Array = new Array();
+				for each ( var sex:XML in f.meeting_sex.sex ) {
+					meetingSex.push( sex.toString() )
+				}
+				user.meeting_sex = meetingSex;
+				
+				var meetingFor:Array = new Array();
+				for each ( var seeking:XML in f.meeting_for.seeking ) {
+					meetingFor.push( seeking.toString() )
+				}
+				user.meeting_for = meetingFor;
+				
+				user.relationship_status = f.relationship_status.toString();
+				user.significant_other_id = parseInt( f.significant_other_id );
+				user.political = f.political.toString();
+	
+				var currentLocation:Location = new Location();
+				currentLocation.city = f.hometown_location.city.toString();
+				currentLocation.state = f.hometown_location.state.toString();
+				currentLocation.country = f.hometown_location.country.toString();
+				currentLocation.zip = f.hometown_location.zip.toString();
+				user.current_location = currentLocation;
+	
+				user.activities = f.activities.toString();
+				user.interests = f.interests.toString();
+				user.is_app_user = ( f.is_app_user.toString() == "1" ) ? true : false;
+				user.music = f.music.toString();
+				user.tv = f.tv.toString();
+				user.movies = f.movies.toString();
+				user.books = f.books.toString();
+				user.quotes = f.quotes.toString();
+				user.about_me = f.about_me.toString();
+				
+				var hsInfo:HsInfo = new HsInfo();
+				hsInfo.hs1_name = f.hs_info.hs1_name.toString();
+				hsInfo.hs2_name = f.hs_info.hs2_name.toString();
+				hsInfo.grad_year = f.hs_info.grad_year.toString();
+				hsInfo.hs1_key = f.hs_info.hs1_key.toString();
+				hsInfo.hs2_key = f.hs_info.hs2_key.toString();
+				user.hs_info = hsInfo;
+				
+				var educationHistory:Array = new Array();
+				for each ( var e:XML in f.education_info ) {
+					var educationInfo:EducationInfo = new EducationInfo();
+					educationInfo.name = e.name.toString();
+					educationInfo.year = e.year.toString();
+					
+					var concentrations:Array = new Array();
+					for each ( var c:XML in e.concentration ) {
+						concentrations.push( c.toString() )
+					}
+					educationInfo.concentrations = concentrations;
+	
+					educationHistory.push( affiliation );
+				}
+				user.education_history = educationHistory;
+				
+	
+				var workHistory:Array = new Array();
+				for each ( var w:XML in f.work_info ) {
+					var workInfo:WorkInfo = new WorkInfo();
+	
+					var location:Location = new Location();
+					location.city = w.location.city.toString();
+					location.state = w.location.state.toString();
+					location.country = w.location.country.toString();
+					location.zip = w.location.zip.toString();
+					workInfo.location = location;
+	
+					workInfo.company_name = w.company_name.toString();
+					workInfo.description = w.description.toString();
+					workInfo.position = w.position.toString();
+					workInfo.start_date = stringToDate( w.start_date.toString() );
+					workInfo.end_date = stringToDate( w.end_date.toString() );
+	
+					workHistory.push( workInfo );
+				}
+				user.work_history = workHistory;
+				
+				user.notes_count = f.notes_count.toString();
+				user.wall_count = f.wall_count.toString();
+				user.status = f.status.toString();
+				user.has_added_app = ( f.has_added_app.toString() == "1" ) ? true : false;
+				
+				users.push(user);
 			}
-			user.education_history = educationHistory;
 			
-
-			var workHistory:Array = new Array();
-			for each ( var w:XML in xml.user.work_info ) {
-				var workInfo:WorkInfo = new WorkInfo();
-
-				var location:Location = new Location();
-				location.city = w.location.city.toString();
-				location.state = w.location.state.toString();
-				location.country = w.location.country.toString();
-				location.zip = w.location.zip.toString();
-				workInfo.location = location;
-
-				workInfo.company_name = w.company_name.toString();
-				workInfo.description = w.description.toString();
-				workInfo.position = w.position.toString();
-				workInfo.start_date = stringToDate( w.start_date.toString() );
-				workInfo.end_date = stringToDate( w.end_date.toString() );
-
-				workHistory.push( workInfo );
-			}
-			user.work_history = workHistory;
-			
-			user.notes_count = xml.user.notes_count.toString();
-			user.wall_count = xml.user.wall_count.toString();
-			user.status = xml.user.status.toString();
-			user.has_added_app = ( xml.user.has_added_app.toString() == "1" ) ? true : false;
-			
-			return user;		}
+			return users;		
+		}
 		
 		/**
 		 * Converts a users_getLoggedInUser XML object into a string (the users_getLoggedInUser value)

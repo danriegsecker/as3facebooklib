@@ -33,7 +33,13 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE CODE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+/**
+ * 	Updated by Peter "sHTiF" Stefcek - 03.12.2007 to support data bytearrays as well for photos.upload method calls
+ */
 package com.adobe.webapis.facebook {
+	import flash.utils.ByteArray;
+	import com.flashcore.corelib.debug.Console;
+	
 	
 	/**
 	 * NameValuePair is an object containing a key/value
@@ -43,6 +49,7 @@ package com.adobe.webapis.facebook {
 		
 		private var _name:String;
 		private var _value:String;
+		private var _data:ByteArray;
 	
 		/**
 		 * Construct a new name value pair
@@ -51,9 +58,10 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function NameValuePair( name:String = "", value:String = "" ) {
+		public function NameValuePair( name:String = "", value:String = "", data:ByteArray=null ) {
 			_name = name;
 			_value = value;
+			_data = data;
 		}
 		
 		/**
@@ -85,7 +93,8 @@ package com.adobe.webapis.facebook {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function get value():String {
+		public function get value():String
+		{
 			return _value;
 		}
 		
@@ -98,6 +107,30 @@ package com.adobe.webapis.facebook {
 		 */
 		public function set value( v:String ):void {
 			_value = v;
+		}
+		
+		/**
+		 * Returns the value
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function get data():ByteArray
+		{
+			return _data;
+		}
+		
+		/**
+		 * Sets the value
+		 *
+		 * @langversion ActionScript 3.0
+		 * @playerversion Flash 8.5
+		 * @tiptext
+		 */
+		public function set data( v:ByteArray ):void 
+		{
+			_data = v;
 		}
 	}	
 	
